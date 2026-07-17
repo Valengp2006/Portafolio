@@ -4,10 +4,9 @@ interface Props {
 }
 const { active = "" } = Astro.props;
 
-// Obtenemos la ruta base (el nombre del repositorio) configurada en astro.config.mjs
+// Mantenemos la ruta base para GitHub Pages
 const base = import.meta.env.BASE_URL; 
 
-// Función auxiliar para evitar dobles barras diagonales
 const getUrl = (path: string) => {
   return `${base}${path}`.replace(/\/\/+/g, '/');
 };
@@ -20,14 +19,17 @@ const links = [
 ];
 ---
 <header class="nav">
-  <!-- Actualizamos también el enlace de inicio al BASE_URL -->
   <a href={base} class="nav-name">Valentina</a>
-  <div class="nav-lang">ES <span class="nav-lang-dim">/ EN</span></div>
-  <nav class="nav-links">
-    {links.map((l) => (
-      <a href={l.href} class={active === l.key ? "is-active" : ""}>{l.label}</a>
-    ))}
-  </nav>
+  
+  <!-- Agrupamos los enlaces y el idioma en un contenedor derecho -->
+  <div class="nav-right">
+    <nav class="nav-links">
+      {links.map((l) => (
+        <a href={l.href} class={active === l.key ? "is-active" : ""}>{l.label}</a>
+      ))}
+    </nav>
+    <div class="nav-lang">ES <span class="nav-lang-dim">/ EN</span></div>
+  </div>
 </header>
 
 <style>
@@ -50,21 +52,27 @@ const links = [
     color: var(--ink);
     font-variation-settings: "SOFT" 0, "WONK" 1;
   }
+  
+  /* Nuevo contenedor derecho con flexbox */
+  .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 40px; /* Separación entre el menú de enlaces y el ES / EN */
+  }
+
   .nav-lang {
     font-family: var(--font-body);
     font-weight: 600;
     font-size: 14px;
     color: var(--ink-soft);
-    position: absolute;
-    left: 50%;
-    transform: translateX(calc(-50% - 244px));
+    /* Eliminamos el position: absolute y el transform */
   }
   .nav-lang-dim { font-weight: 400; }
+  
   .nav-links {
     display: flex;
     gap: 31px;
-    position: absolute;
-    right: 56px;
+    /* Eliminamos el position: absolute */
   }
   .nav-links a {
     font-family: var(--font-body);
@@ -77,9 +85,10 @@ const links = [
     text-decoration: underline;
     text-underline-offset: 3px;
   }
+  
   @media (max-width: 900px) {
     .nav-lang { display: none; }
-    .nav-links { gap: 16px; position: static; }
+    .nav-links { gap: 16px; }
     .nav { padding: 0 20px; }
   }
 </style>
