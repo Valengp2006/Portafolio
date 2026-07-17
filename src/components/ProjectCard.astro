@@ -17,7 +17,6 @@ const getUrl = (path: string) => {
 ---
 
 {layout === "hero" && (
-  <!-- 3. Usamos la función getUrl en el href -->
   <a href={getUrl(`/proyectos/${p.slug}/`)} class="card card-hero">
     <img src={p.cover} alt={p.title} class="card-hero-img" loading="lazy" />
     <div class="card-hero-shade"></div>
