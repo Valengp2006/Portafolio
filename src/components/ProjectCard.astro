@@ -1,0 +1,87 @@
+---
+import type { Project } from "../data/projects";
+
+interface Props {
+  project: Project;
+  layout: "hero" | "vertical" | "horizontal";
+}
+const { project: p, layout } = Astro.props;
+---
+
+{layout === "hero" && (
+  <a href={`/proyectos/${p.slug}/`} class="card card-hero">
+    <img src={p.cover} alt={p.title} class="card-hero-img" loading="lazy" />
+    <div class="card-hero-shade"></div>
+    <div class="card-hero-content">
+      <span class="tag-pill card-tag" style={`background:${p.tint}; color:${p.textColor}; border:none;`}>{p.tag}</span>
+      <div class="card-hero-text">
+        <p class="card-hero-title">{p.title}</p>
+        <p class="card-hero-desc">{p.result}</p>
+      </div>
+      <span class="card-hero-icon" aria-hidden="true">↗</span>
+    </div>
+  </a>
+)}
+
+{layout === "vertical" && (
+  <a href={`/proyectos/${p.slug}/`} class="card card-vertical">
+    <img src={p.cover} alt={p.title} class="card-vertical-img" loading="lazy" />
+    <div class="card-vertical-body">
+      <span class="tag-pill card-tag" style={`background:${p.tint}; color:${p.textColor}; border:none;`}>{p.tag}</span>
+      <p class="card-vertical-title">{p.title}</p>
+      <p class="card-vertical-desc">{p.result}</p>
+      <span class="card-link" style={`color:${p.color}`}>Ver proyecto <span aria-hidden="true">↗</span></span>
+    </div>
+  </a>
+)}
+
+{layout === "horizontal" && (
+  <a href={`/proyectos/${p.slug}/`} class="card card-horizontal">
+    <img src={p.cover} alt={p.title} class="card-horizontal-img" loading="lazy" />
+    <div class="card-horizontal-body">
+      <span class="tag-pill card-tag" style={`background:${p.tint}; color:${p.textColor}; border:none;`}>{p.tag}</span>
+      <p class="card-horizontal-title">{p.title}</p>
+      <p class="card-horizontal-desc">{p.result}</p>
+      <span class="card-link" style={`color:${p.color}`}>Ver proyecto <span aria-hidden="true">↗</span></span>
+    </div>
+  </a>
+)}
+
+<style>
+  .card { display: block; position: relative; border-radius: 16px; overflow: hidden; }
+  .card-tag { font-size: 14px; padding: 5px 10px; }
+
+  /* Hero (MUSE-style full-width dark card) */
+  .card-hero { height: 483px; }
+  .card-hero-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .card-hero-shade { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.75) 95%); }
+  .card-hero-content { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: flex-end; gap: 16px; padding: 54px; }
+  .card-hero-text { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; }
+  .card-hero-title { font-family: var(--font-display); font-weight: 400; font-size: 56px; line-height: 1; color: var(--paper); margin: 0; font-variation-settings: "SOFT" 0, "WONK" 1; }
+  .card-hero-desc { font-size: 18px; color: rgba(250,247,242,0.72); max-width: 60ch; margin: 0; }
+  .card-hero-icon { display: none; }
+
+  /* Vertical (2-up medium cards) */
+  .card-vertical { background: var(--surface); border: none; }
+  .card-vertical-img { width: 100%; height: 258px; object-fit: cover; }
+  .card-vertical-body { background: var(--surface-warm); padding: 32px; display: flex; flex-direction: column; align-items: flex-start; gap: 16px; }
+  .card-vertical-title { font-family: var(--font-display); font-weight: 400; font-size: 32px; margin: 0; letter-spacing: -0.16px; font-variation-settings: "SOFT" 0, "WONK" 1; }
+  .card-vertical-desc { font-size: 14px; color: var(--ink); margin: 0; }
+
+  /* Horizontal (wide 2-column card) */
+  .card-horizontal { display: flex; height: 280px; }
+  .card-horizontal-img { width: 50%; height: 100%; object-fit: cover; border-radius: 16px 0 0 16px; }
+  .card-horizontal-body { width: 50%; background: var(--surface-warm); display: flex; flex-direction: column; justify-content: center; align-items: flex-start; gap: 16px; padding: 0 60px; border-radius: 0 16px 16px 0; }
+  .card-horizontal-title { font-family: var(--font-display); font-weight: 400; font-size: 32px; margin: 0; letter-spacing: -0.16px; font-variation-settings: "SOFT" 0, "WONK" 1; }
+  .card-horizontal-desc { font-size: 14px; color: var(--ink); margin: 0; }
+
+  .card-link { font-size: 14px; font-weight: 500; display: inline-flex; align-items: center; gap: 4px; }
+
+  @media (max-width: 900px) {
+    .card-hero-title, .card-vertical-title, .card-horizontal-title { font-size: 28px; }
+    .card-horizontal { flex-direction: column; height: auto; }
+    .card-horizontal-img, .card-horizontal-body { width: 100%; }
+    .card-horizontal-img { border-radius: 16px 16px 0 0; height: 200px; }
+    .card-horizontal-body { border-radius: 0 0 16px 16px; padding: 24px; }
+  }
+</style>

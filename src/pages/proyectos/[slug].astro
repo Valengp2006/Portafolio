@@ -1,0 +1,191 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Nav from "../../components/Nav.astro";
+import Footer from "../../components/Footer.astro";
+import ProjectCard from "../../components/ProjectCard.astro";
+import { projects, getProject } from "../../data/projects";
+
+export function getStaticPaths() {
+  return projects.map((p) => ({ params: { slug: p.slug } }));
+}
+
+const { slug } = Astro.params;
+const p = getProject(slug as string)!;
+const next = getProject(p.nextSlug)!;
+---
+
+<Layout title={`${p.title} — Valentina`}>
+  <Nav active="proyectos" />
+  <main>
+    <section class="hero">
+      <img src={p.cover} alt={p.title} class="hero-img" />
+      <div class="hero-shade"></div>
+      <div class="hero-content">
+        <a href="/proyectos/" class="breadcrumb">← Proyectos</a>
+        <div class="hero-text">
+          <span class="tag-pill hero-tag" style={`background:${p.tint}; color:${p.textColor}; border:none;`}>{p.tag}</span>
+          <p class="hero-title">{p.title}</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="info-row wrap reveal">
+      <div class="info-item">
+        <p class="info-label">Rol</p>
+        <p class="info-body">{p.role}</p>
+      </div>
+      <div class="info-item info-item-sm">
+        <p class="info-label">Duración</p>
+        <p class="info-body">{p.duration}</p>
+      </div>
+      <div class="info-item">
+        <p class="info-label">Herramientas</p>
+        <p class="info-body">{p.tools}</p>
+      </div>
+      <div class="info-item info-item-lg">
+        <p class="info-label">Resultado</p>
+        <p class="info-body">{p.result}</p>
+      </div>
+    </section>
+
+    <section class="labeled-row wrap reveal">
+      <p class="section-label labeled-row-label">Contexto</p>
+      <p class="labeled-row-body">{p.contexto}</p>
+    </section>
+
+    <section class="question" style={`background:var(--surface-tag)`}>
+      <div class="wrap question-inner reveal">
+        <p class="section-label question-label">Pregunta de diseño</p>
+        <blockquote class="question-quote" style={`border-color:${p.color}`}>{p.preguntaDiseno}</blockquote>
+      </div>
+    </section>
+
+    <section class="labeled-row wrap reveal">
+      <p class="section-label labeled-row-label">Investigación</p>
+      <p class="labeled-row-body">{p.investigacion}</p>
+    </section>
+
+    <section class="labeled-row wrap reveal">
+      <p class="section-label labeled-row-label">Proceso de diseño</p>
+      <p class="labeled-row-body">{p.procesoDiseno}</p>
+    </section>
+
+    <section class="wrap reveal iteraciones">
+      <p class="section-label">Iteraciones y decisiones clave</p>
+      <div class="iteraciones-grid">
+        {p.iteraciones.map((it) => (
+          <div class="iteracion-card">
+            <p class="section-label">Reto</p>
+            <p class="iteracion-body">{it.reto}</p>
+            <p class="section-label" style="margin-top:24px">Solución</p>
+            <p class="iteracion-body">{it.solucion}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section class="wrap reveal implementacion">
+      <div class="implementacion-text">
+        <p class="section-label">Implementación técnica</p>
+        <p class="labeled-row-body">{p.implementacionTecnica}</p>
+      </div>
+      <div class="accordions">
+        <details class="accordion" open>
+          <summary class="section-label">Detalle del sistema</summary>
+          <div class="steps">
+            {p.detalleSistema.map((s) => (
+              <div class="step">
+                <span class="step-n">{s.label}</span>
+                <div>
+                  <p class="step-title">{s.title}</p>
+                  <p class="step-body">{s.body}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </details>
+        <details class="accordion" open>
+          <summary class="section-label">Stack y herramientas</summary>
+          <div class="stack-tags">
+            {p.stackHerramientas.map((t) => <span class="stack-tag">{t}</span>)}
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <section class="wrap reveal resultado">
+      <p class="section-label">Resultado final</p>
+      <div class="resultado-img"></div>
+      <p class="labeled-row-body">
+        {p.resultadoFinal}
+        {p.siteUrl && (
+          <>
+            {" "}Sitio web del proyecto <a href={p.siteUrl} target="_blank" class="link-underline">aquí</a>.
+          </>
+        )}
+      </p>
+    </section>
+
+    <section class="wrap reveal next-project">
+      <p class="section-label">Siguiente proyecto</p>
+      <ProjectCard project={next} layout="horizontal" />
+    </section>
+  </main>
+  <Footer />
+
+  <style define:vars={{ accent: p.color }}>
+    .hero { position: relative; height: 526px; overflow: hidden; }
+    .hero-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+    .hero-shade { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(87,80,74,0) 0%, rgba(0,0,0,0.75) 90%); }
+    .hero-content { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: space-between; padding: 32px 54px; }
+    .breadcrumb { align-self: flex-start; background: rgba(250,247,242,0.85); padding: 8px 12px; border-radius: 10px; font-size: 14px; color: var(--ink-soft); }
+    .hero-text { display: flex; flex-direction: column; gap: 16px; align-items: flex-start; }
+    .hero-tag { font-size: 14px; padding: 5px 10px; }
+    .hero-title { font-family: var(--font-display); font-weight: 400; font-size: 72px; line-height: 1; color: var(--paper); margin: 0; letter-spacing: -1.44px; font-variation-settings: "SOFT" 0, "WONK" 1; }
+    @media (max-width: 700px) { .hero-title { font-size: 40px; } .hero { height: 360px; } }
+
+    .info-row { display: flex; gap: 40px; padding: 45px 98px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); flex-wrap: wrap; }
+    .info-item { flex: 1; min-width: 160px; }
+    .info-item-lg { flex: 1.6; }
+    .info-label { font-family: var(--font-display); font-weight: 600; font-size: 20px; color: var(--ink-muted); margin: 0 0 8px; font-variation-settings: "SOFT" 0, "WONK" 1; }
+    .info-body { font-size: 16px; color: var(--ink); margin: 0; line-height: 1.75; }
+
+    .labeled-row { display: flex; gap: 60px; padding: 45px 155px; align-items: flex-start; }
+    .labeled-row-label { min-width: 230px; flex-shrink: 0; }
+    .labeled-row-body { font-size: 18px; color: var(--ink-soft); line-height: 1.65; margin: 0; max-width: 900px; }
+    @media (max-width: 900px) { .labeled-row { flex-direction: column; gap: 12px; padding: 32px 20px; } }
+
+    .question-inner { padding: 45px 155px; display: flex; gap: 60px; }
+    .question-label { min-width: 230px; flex-shrink: 0; }
+    .question-quote { border-left: 2px solid var(--accent); padding-left: 26px; margin: 0; font-size: 18px; color: var(--ink); line-height: 1.65; font-style: normal; }
+    @media (max-width: 900px) { .question-inner { flex-direction: column; gap: 16px; padding: 32px 20px; } }
+
+    .iteraciones { padding: 45px 155px; }
+    .iteraciones-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 24px; }
+    .iteracion-card { background: var(--surface-warm); border: 1px solid var(--line); border-radius: 16px; padding: 29px 41px; }
+    .iteracion-body { font-size: 16px; color: var(--ink); line-height: 1.75; margin: 8px 0 0; }
+    @media (max-width: 900px) { .iteraciones { padding: 32px 20px; } .iteraciones-grid { grid-template-columns: 1fr; gap: 20px; } }
+
+    .implementacion { display: flex; gap: 60px; padding: 45px 155px; align-items: flex-start; }
+    .implementacion-text { flex: 1; max-width: 595px; }
+    .accordions { flex: 1; max-width: 400px; }
+    .accordion { border-bottom: 1px solid var(--line); padding: 16px 0; }
+    .accordion summary { cursor: pointer; list-style: none; margin-bottom: 12px; }
+    .accordion summary::-webkit-details-marker { display: none; }
+    .steps { display: flex; flex-direction: column; gap: 8px; }
+    .step { display: flex; gap: 24px; padding: 8px 0; }
+    .step-n { width: 32px; height: 32px; background: var(--surface-tag); border-radius: 999px; display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-weight: 600; font-size: 14px; flex-shrink: 0; }
+    .step-title { font-family: var(--font-display); font-weight: 600; font-size: 18px; margin: 0 0 4px; font-variation-settings: "SOFT" 0, "WONK" 1; }
+    .step-body { font-size: 16px; color: var(--ink-soft); line-height: 1.75; margin: 0; }
+    .stack-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+    .stack-tag { background: var(--paper); border: 1px solid var(--line); border-radius: 999px; padding: 5px 13px; font-size: 12px; color: var(--ink-soft); }
+    @media (max-width: 900px) { .implementacion { flex-direction: column; padding: 32px 20px; gap: 32px; } .accordions { max-width: none; } }
+
+    .resultado { padding: 45px 155px; display: flex; flex-direction: column; gap: 24px; }
+    .resultado-img { height: 536px; border-radius: 16px; background: var(--line); }
+    @media (max-width: 900px) { .resultado { padding: 32px 20px; } .resultado-img { height: 260px; } }
+
+    .next-project { padding: 45px 155px; display: flex; flex-direction: column; gap: 24px; }
+    @media (max-width: 900px) { .next-project { padding: 32px 20px; } }
+  </style>
+</Layout>

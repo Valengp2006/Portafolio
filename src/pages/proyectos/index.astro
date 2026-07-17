@@ -1,0 +1,40 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Nav from "../../components/Nav.astro";
+import Footer from "../../components/Footer.astro";
+import ProjectCard from "../../components/ProjectCard.astro";
+import { projects } from "../../data/projects";
+
+const order = ["muse", "pasos-de-tradicion", "cosmos", "luna-y-las-estrellas-perdidas"];
+const ordered = order.map((slug) => projects.find((p) => p.slug === slug)!);
+---
+
+<Layout title="Proyectos — Valentina">
+  <Nav active="proyectos" />
+  <main>
+    <section class="hero wrap">
+      <p class="eyebrow reveal">Trabajo</p>
+      <h1 class="hero-title reveal">Proyectos</h1>
+      <p class="hero-body reveal">Diseño experiencias donde la interacción se convierte en una forma de contar historias, preservar memorias y acercar a las personas a la tecnología. Mi trabajo combina investigación, diseño y desarrollo para crear proyectos que conectan lo digital con lo cultural, lo participativo y lo humano.</p>
+    </section>
+
+    <section class="grid wrap">
+      {ordered.map((p) => (
+        <div class="reveal"><ProjectCard project={p} layout="vertical" /></div>
+      ))}
+    </section>
+  </main>
+  <Footer />
+
+  <style>
+    .hero { padding: 45px 155px 0; display: flex; flex-direction: column; gap: 42px; }
+    .hero-title { font-family: var(--font-display); font-weight: 400; font-size: 72px; line-height: 1; letter-spacing: -1.44px; margin: 0; font-variation-settings: "SOFT" 0, "WONK" 1; }
+    .hero-body { font-size: 18px; color: var(--ink-soft); line-height: 1.65; max-width: 900px; margin: 0; }
+    .grid { padding: 45px 155px; display: grid; grid-template-columns: 1fr 1fr; gap: 24px 32px; }
+    @media (max-width: 1000px) {
+      .hero { padding: 32px 20px 0; }
+      .hero-title { font-size: 44px; }
+      .grid { padding: 32px 20px; grid-template-columns: 1fr; }
+    }
+  </style>
+</Layout>

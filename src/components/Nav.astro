@@ -1,0 +1,75 @@
+---
+interface Props {
+  active?: "sobre-mi" | "proyectos" | "servicios" | "contacto" | "";
+}
+const { active = "" } = Astro.props;
+const links = [
+  { href: "/sobre-mi/", label: "Sobre mí", key: "sobre-mi" },
+  { href: "/proyectos/", label: "Proyectos", key: "proyectos" },
+  { href: "/servicios/", label: "Servicios", key: "servicios" },
+  { href: "/contacto/", label: "Contacto", key: "contacto" },
+];
+---
+<header class="nav">
+  <a href="/" class="nav-name">Valentina</a>
+  <div class="nav-lang">ES <span class="nav-lang-dim">/ EN</span></div>
+  <nav class="nav-links">
+    {links.map((l) => (
+      <a href={l.href} class={active === l.key ? "is-active" : ""}>{l.label}</a>
+    ))}
+  </nav>
+</header>
+
+<style>
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    background: var(--surface-warm);
+    border-bottom: 1px solid var(--line);
+    height: 72px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 56px;
+  }
+  .nav-name {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 18px;
+    color: var(--ink);
+    font-variation-settings: "SOFT" 0, "WONK" 1;
+  }
+  .nav-lang {
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--ink-soft);
+    position: absolute;
+    left: 50%;
+    transform: translateX(calc(-50% - 244px));
+  }
+  .nav-lang-dim { font-weight: 400; }
+  .nav-links {
+    display: flex;
+    gap: 31px;
+    position: absolute;
+    right: 56px;
+  }
+  .nav-links a {
+    font-family: var(--font-body);
+    font-weight: 500;
+    font-size: 14px;
+    color: var(--ink-soft);
+  }
+  .nav-links a.is-active {
+    font-weight: 700;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  @media (max-width: 900px) {
+    .nav-lang { display: none; }
+    .nav-links { gap: 16px; position: static; }
+    .nav { padding: 0 20px; }
+  }
+</style>

@@ -1,0 +1,97 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Nav from "../../components/Nav.astro";
+import Footer from "../../components/Footer.astro";
+
+const services = [
+  {
+    title: "UI/UX Design & Prototipado",
+    tagline: "Experiencias que se sienten intuitivas y humanas",
+    body: "Combino investigación de usuarios, wireframing y prototipado en alta fidelidad para crear interfaces funcionales y visualmente coherentes.",
+    image: "/images/servicios/uiux.jpg",
+    reverse: false,
+    faqs: [
+      { q: "¿Cómo es el proceso de diseño?", a: "Empiezo en etapa de investigación para entender al usuario y sus necesidades, luego desarrollo wireframes de baja fidelidad para definir la estructura, y finalmente construyo prototipos interactivos de alta fidelidad en Figma." },
+      { q: "¿Entrego wireframes y prototipos finales?", a: "Dependiendo del proyecto puedo entregar desde wireframes iniciales hasta prototipos interactivos completos listos para pruebas de usuario." },
+      { q: "¿Qué herramientas uso?", a: "Trabajo principalmente con Figma y FigJam para investigación, diseño y prototipado." },
+    ],
+  },
+  {
+    title: "Diseño de Medios Interactivos",
+    tagline: "Experiencias donde la audiencia se convierte en parte de la obra.",
+    body: "Diseño de sistemas interactivos que conectan a las personas con el contenido a través de la participación, la interacción en tiempo real y los medios generativos.",
+    image: "/images/servicios/medios-interactivos.jpg",
+    reverse: true,
+    faqs: [
+      { q: "¿Qué tipos de proyectos realizas?", a: "Instalaciones audiovisuales, interfaces de control para performances en vivo, experiencias participativas y sistemas reactivos que combinan sonido, visuales e interacción del público." },
+      { q: "¿Con qué tecnologías trabajas?", a: "TouchDesigner, Node.js, Socket.io, OSC, Open Stage Control y Strudel." },
+    ],
+  },
+  {
+    title: "Patrimonio cultural y experiencias digitales",
+    tagline: "Traer la memoria a la vida a través de la tecnología.",
+    body: "Investigación, conceptualización y producción digital de experiencias que documentan y preservan tradiciones culturales mediante medios inmersivos e interactivos.",
+    image: "/images/servicios/patrimonio.jpg",
+    reverse: false,
+    faqs: [
+      { q: "¿Qué tipos de proyectos culturales realizas?", a: "Archivos digitales interactivos, experiencias de realidad aumentada, instalaciones audiovisuales y narrativas interactivas orientadas a la preservación y difusión del patrimonio cultural." },
+      { q: "¿Combinas investigación con producción digital?", a: "Sí, mi proceso incluye investigación documental y de campo como base para el desarrollo de las experiencias digitales." },
+      { q: "¿Este trabajo puede adaptarse para museos o espacios comunitarios?", a: "Sí, las experiencias pueden diseñarse para distintos contextos, incluyendo espacios expositivos, comunidades locales y plataformas digitales accesibles." },
+    ],
+  },
+];
+---
+
+<Layout title="Servicios — Valentina">
+  <Nav active="servicios" />
+  <main>
+    <section class="hero wrap">
+      <p class="eyebrow reveal">Servicios</p>
+      <h1 class="hero-title reveal">¿En qué puedo ayudarte?</h1>
+      <p class="hero-body reveal">Trabajo desde la investigación hacia el prototipo, en proyectos de diseño de experiencias, medios interactivos y patrimonio cultural digital.</p>
+    </section>
+
+    {services.map((s) => (
+      <section class={`service wrap ${s.reverse ? "reverse" : ""}`}>
+        <div class="service-info reveal">
+          <p class="service-title">{s.title}</p>
+          <p class="service-tagline">{s.tagline}</p>
+          <p class="service-body">{s.body}</p>
+          {s.faqs.map((f) => (
+            <div class="faq">
+              <p class="faq-q">→ {f.q}</p>
+              <p class="faq-a">{f.a}</p>
+            </div>
+          ))}
+        </div>
+        <div class="service-image reveal"><img src={s.image} alt={s.title} loading="lazy" /></div>
+      </section>
+    ))}
+  </main>
+  <Footer />
+
+  <style>
+    .hero { padding: 64px 155px; display: flex; flex-direction: column; gap: 58px; border-bottom: 1px solid var(--line); }
+    .hero-title { font-family: var(--font-display); font-weight: 400; font-size: 56px; line-height: 1.07; letter-spacing: -0.56px; margin: 0; font-variation-settings: "SOFT" 0, "WONK" 1; }
+    .hero-body { font-size: 18px; color: var(--ink-soft); margin: 0; max-width: 800px; }
+
+    .service { padding: 45px 155px; display: flex; align-items: center; justify-content: space-between; gap: 48px; }
+    .service.reverse { flex-direction: row-reverse; }
+    .service-info { max-width: 727px; }
+    .service-title { font-family: var(--font-display); font-weight: 600; font-size: 20px; color: var(--ink-muted); margin: 0 0 8px; font-variation-settings: "SOFT" 0, "WONK" 1; }
+    .service-tagline { font-family: var(--font-display); font-style: italic; font-size: 18px; color: var(--ink-muted); margin: 0 0 24px; }
+    .service-body { font-size: 18px; color: var(--ink-soft); line-height: 1.65; margin: 0 0 24px; }
+    .faq { margin-bottom: 20px; }
+    .faq-q { font-weight: 600; font-size: 18px; color: var(--ink-soft); margin: 0 0 8px; }
+    .faq-a { font-size: 18px; color: var(--ink-soft); line-height: 1.65; margin: 0; }
+    .service-image { width: 448px; height: 286px; border-radius: 16px; overflow: hidden; background: var(--line); flex-shrink: 0; }
+    .service-image img { width: 100%; height: 100%; object-fit: cover; }
+
+    @media (max-width: 1000px) {
+      .hero { padding: 40px 20px; gap: 32px; }
+      .hero-title { font-size: 36px; }
+      .service, .service.reverse { flex-direction: column; padding: 32px 20px; }
+      .service-image { width: 100%; height: 220px; }
+    }
+  </style>
+</Layout>
