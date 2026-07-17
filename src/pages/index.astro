@@ -5,6 +5,9 @@ import Footer from "../components/Footer.astro";
 import ProjectCard from "../components/ProjectCard.astro";
 import { projects } from "../data/projects";
 
+// 1. Añadimos la variable de la ruta base
+const base = import.meta.env.BASE_URL;
+
 const muse = projects.find((p) => p.slug === "muse")!;
 const pasos = projects.find((p) => p.slug === "pasos-de-tradicion")!;
 const cosmos = projects.find((p) => p.slug === "cosmos")!;
@@ -29,20 +32,23 @@ const areas = [
           <p class="hero-role">Estudiante de Ingeniería en Diseño de Entretenimiento Digital · UPB</p>
           <p class="hero-bio">Diseño experiencias donde la interacción se convierte en una forma de contar historias, preservar memorias y acercar a las personas a la tecnología. Mi trabajo combina investigación, diseño y desarrollo para crear proyectos que conectan lo digital con lo cultural, lo participativo y lo humano.</p>
           <div class="hero-links">
-            <a href="/sobre-mi/" class="link-underline">Sobre mí ↗</a>
-            <a href="/proyectos/" class="link-underline">Ver todos los proyectos ↗</a>
+            <!-- 2. Actualizamos los enlaces principales -->
+            <a href={`${base}sobre-mi/`.replace(/\/\/+/g, '/')} class="link-underline">Sobre mí ↗</a>
+            <a href={`${base}proyectos/`.replace(/\/\/+/g, '/')} class="link-underline">Ver todos los proyectos ↗</a>
           </div>
         </div>
       </div>
       <div class="hero-photo reveal">
-        <img src="/images/valentina.jpg" alt="Retrato de Valentina" />
+        <!-- 3. Aseguramos que la imagen también use el base URL para que no se rompa -->
+        <img src={`${base}images/valentina.jpg`.replace(/\/\/+/g, '/')} alt="Retrato de Valentina" />
       </div>
     </section>
 
     <section class="quote reveal">
       <div class="wrap">
         <p class="quote-text">"Los que hacen posible la procesión rara vez aparecen en las fotografías."</p>
-        <p class="quote-source">— hallazgo central de investigación, <a href="/proyectos/pasos-de-tradicion/" class="link-underline">Pasos de Tradición</a></p>
+        <!-- 4. Actualizamos el enlace del proyecto en la cita -->
+        <p class="quote-source">— hallazgo central de investigación, <a href={`${base}proyectos/pasos-de-tradicion/`.replace(/\/\/+/g, '/')} class="link-underline">Pasos de Tradición</a></p>
       </div>
     </section>
 
@@ -61,7 +67,8 @@ const areas = [
           <p class="eyebrow reveal">Proyectos destacados</p>
           <h2 class="featured-heading reveal">Una selección de trabajo reciente</h2>
         </div>
-        <a href="/proyectos/" class="link-underline featured-all">Ver todos ↗</a>
+        <!-- 5. Actualizamos el enlace de "Ver todos" -->
+        <a href={`${base}proyectos/`.replace(/\/\/+/g, '/')} class="link-underline featured-all">Ver todos ↗</a>
       </div>
       <div class="featured-cards">
         <div class="reveal"><ProjectCard project={muse} layout="hero" /></div>
@@ -91,6 +98,7 @@ const areas = [
     <section class="contact wrap">
       <p class="contact-title reveal">¿Trabajamos un poco?</p>
       <p class="contact-body reveal">Disponible para proyectos de diseño de experiencias, patrimonio cultural y UI/UX.</p>
+      <!-- Este enlace se queda igual porque apunta a un correo externo, no a tu web -->
       <a href="mailto:valentinagp2006@gmail.com" class="link-underline contact-email reveal">valentinagp2006@gmail.com ↗</a>
     </section>
   </main>
