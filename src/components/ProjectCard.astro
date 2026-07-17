@@ -6,10 +6,19 @@ interface Props {
   layout: "hero" | "vertical" | "horizontal";
 }
 const { project: p, layout } = Astro.props;
+
+// 1. Obtenemos la ruta base configurada
+const base = import.meta.env.BASE_URL;
+
+// 2. Creamos la función auxiliar para limpiar las barras duplicadas
+const getUrl = (path: string) => {
+  return `${base}${path}`.replace(/\/\/+/g, '/');
+};
 ---
 
 {layout === "hero" && (
-  <a href={`/proyectos/${p.slug}/`} class="card card-hero">
+  <!-- 3. Usamos la función getUrl en el href -->
+  <a href={getUrl(`/proyectos/${p.slug}/`)} class="card card-hero">
     <img src={p.cover} alt={p.title} class="card-hero-img" loading="lazy" />
     <div class="card-hero-shade"></div>
     <div class="card-hero-content">
@@ -24,7 +33,7 @@ const { project: p, layout } = Astro.props;
 )}
 
 {layout === "vertical" && (
-  <a href={`/proyectos/${p.slug}/`} class="card card-vertical">
+  <a href={getUrl(`/proyectos/${p.slug}/`)} class="card card-vertical">
     <img src={p.cover} alt={p.title} class="card-vertical-img" loading="lazy" />
     <div class="card-vertical-body">
       <span class="tag-pill card-tag" style={`background:${p.tint}; color:${p.textColor}; border:none;`}>{p.tag}</span>
@@ -36,7 +45,7 @@ const { project: p, layout } = Astro.props;
 )}
 
 {layout === "horizontal" && (
-  <a href={`/proyectos/${p.slug}/`} class="card card-horizontal">
+  <a href={getUrl(`/proyectos/${p.slug}/`)} class="card card-horizontal">
     <img src={p.cover} alt={p.title} class="card-horizontal-img" loading="lazy" />
     <div class="card-horizontal-body">
       <span class="tag-pill card-tag" style={`background:${p.tint}; color:${p.textColor}; border:none;`}>{p.tag}</span>
