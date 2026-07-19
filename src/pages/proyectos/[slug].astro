@@ -12,6 +12,9 @@ export function getStaticPaths() {
 const { slug } = Astro.params;
 const p = getProject(slug as string)!;
 const next = getProject(p.nextSlug)!;
+
+// Obtenemos la ruta base para GitHub Pages
+const base = import.meta.env.BASE_URL;
 ---
 
 <Layout title={`${p.title} — Valentina`}>
@@ -21,7 +24,7 @@ const next = getProject(p.nextSlug)!;
       <img src={p.cover} alt={p.title} class="hero-img" />
       <div class="hero-shade"></div>
       <div class="hero-content">
-        <a href="/proyectos/" class="breadcrumb">← Proyectos</a>
+        <a href={`${base}proyectos/`.replace(/\/\/+/g, '/')} class="breadcrumb">← Proyectos</a>
         <div class="hero-text">
           <span class="tag-pill hero-tag" style={`background:${p.tint}; color:${p.textColor}; border:none;`}>{p.tag}</span>
           <p class="hero-title">{p.title}</p>
@@ -116,7 +119,8 @@ const next = getProject(p.nextSlug)!;
     <section class="wrap reveal resultado">
       <p class="section-label">Resultado final</p>
       <div class="resultado-img"></div>
-      <p class="labeled-row-body">
+      <!-- Cambiamos la clase para que tome el ancho completo -->
+      <p class="resultado-body">
         {p.resultadoFinal}
         {p.siteUrl && (
           <>
@@ -134,11 +138,19 @@ const next = getProject(p.nextSlug)!;
   <Footer />
 
   <style define:vars={{ accent: p.color }}>
+    /* CLASE WRAP PARA CENTRAR Y LIMITAR EL ANCHO DE LA PÁGINA */
+    .wrap {
+      max-width: 1513px;
+      margin: 0 auto;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
     .hero { position: relative; height: 526px; overflow: hidden; }
     .hero-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
     .hero-shade { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(87,80,74,0) 0%, rgba(0,0,0,0.75) 90%); }
     .hero-content { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: space-between; padding: 32px 54px; }
-    .breadcrumb { align-self: flex-start; background: rgba(250,247,242,0.85); padding: 8px 12px; border-radius: 10px; font-size: 14px; color: var(--ink-soft); }
+    .breadcrumb { align-self: flex-start; background: rgba(250,247,242,0.85); padding: 8px 12px; border-radius: 10px; font-size: 14px; color: var(--ink-soft); text-decoration: none; }
     .hero-text { display: flex; flex-direction: column; gap: 16px; align-items: flex-start; }
     .hero-tag { font-size: 14px; padding: 5px 10px; }
     .hero-title { font-family: var(--font-display); font-weight: 400; font-size: 72px; line-height: 1; color: var(--paper); margin: 0; letter-spacing: -1.44px; font-variation-settings: "SOFT" 0, "WONK" 1; }
@@ -183,6 +195,8 @@ const next = getProject(p.nextSlug)!;
 
     .resultado { padding: 45px 155px; display: flex; flex-direction: column; gap: 24px; }
     .resultado-img { height: 536px; border-radius: 16px; background: var(--line); }
+    /* NUEVO ESTILO: El texto del resultado ahora no tiene límite de 900px */
+    .resultado-body { font-size: 18px; color: var(--ink-soft); line-height: 1.65; margin: 0; }
     @media (max-width: 900px) { .resultado { padding: 32px 20px; } .resultado-img { height: 260px; } }
 
     .next-project { padding: 45px 155px; display: flex; flex-direction: column; gap: 24px; }
