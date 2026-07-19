@@ -5,7 +5,6 @@ import Footer from "../components/Footer.astro";
 import ProjectCard from "../components/ProjectCard.astro";
 import { projects } from "../data/projects";
 
-// 1. Añadimos la variable de la ruta base
 const base = import.meta.env.BASE_URL;
 
 const muse = projects.find((p) => p.slug === "muse")!;
@@ -23,7 +22,8 @@ const areas = [
 <Layout title="Valentina — Diseño de experiencias interactivas">
   <Nav active="" />
   <main>
-    <section class="hero wrap">
+    <!-- Se eliminan las clases .wrap de todas las secciones -->
+    <section class="hero">
       <div class="hero-info">
         <p class="eyebrow reveal">Portafolio</p>
         <h1 class="hero-title reveal">Diseño de <span>experiencias</span><br />interactivas</h1>
@@ -32,42 +32,34 @@ const areas = [
           <p class="hero-role">Estudiante de Ingeniería en Diseño de Entretenimiento Digital · UPB</p>
           <p class="hero-bio">Diseño experiencias donde la interacción se convierte en una forma de contar historias, preservar memorias y acercar a las personas a la tecnología. Mi trabajo combina investigación, diseño y desarrollo para crear proyectos que conectan lo digital con lo cultural, lo participativo y lo humano.</p>
           <div class="hero-links">
-            <!-- 2. Actualizamos los enlaces principales -->
             <a href={`${base}sobre-mi/`.replace(/\/\/+/g, '/')} class="link-underline">Sobre mí ↗</a>
             <a href={`${base}proyectos/`.replace(/\/\/+/g, '/')} class="link-underline">Ver todos los proyectos ↗</a>
           </div>
         </div>
       </div>
       <div class="hero-photo reveal">
-        <!-- 3. Aseguramos que la imagen también use el base URL para que no se rompa -->
         <img src={`${base}images/valentina.jpg`.replace(/\/\/+/g, '/')} alt="Retrato de Valentina" />
       </div>
     </section>
 
     <section class="quote reveal">
-      <div class="wrap">
-        <p class="quote-text">"Los que hacen posible la procesión rara vez aparecen en las fotografías."</p>
-        <!-- 4. Actualizamos el enlace del proyecto en la cita -->
-        <p class="quote-source">— hallazgo central de investigación, <a href={`${base}proyectos/pasos-de-tradicion/`.replace(/\/\/+/g, '/')} class="link-underline">Pasos de Tradición</a></p>
-      </div>
+      <p class="quote-text">"Los que hacen posible la procesión rara vez aparecen en las fotografías."</p>
+      <p class="quote-source">— hallazgo central de investigación, <a href={`${base}proyectos/pasos-de-tradicion/`.replace(/\/\/+/g, '/')} class="link-underline">Pasos de Tradición</a></p>
     </section>
 
     <section class="way-of-designing">
-      <div class="wrap">
-        <p class="way-title">Mi forma de diseñar</p>
-        <p class="way-body">No empiezo un proyecto pensando en la tecnología que voy a utilizar. Empiezo con una <em>pregunta</em>.</p>
-        <p class="way-body">¿Cómo puede una interfaz acercar a las personas a una historia? ¿Cómo puede una experiencia interactiva preservar una tradición? ¿Cómo puede un sistema invitar a participar en lugar de observar?</p>
-        <p class="way-body">A partir de esas preguntas combino <em>investigación, diseño y desarrollo</em> para construir experiencias donde la tecnología deja de ser el centro y se convierte en un medio para <em>conectar personas, ideas y memorias.</em></p>
-      </div>
+      <p class="way-title">Mi forma de diseñar</p>
+      <p class="way-body">No empiezo un proyecto pensando en la tecnología que voy a utilizar. Empiezo con una <em>pregunta</em>.</p>
+      <p class="way-body">¿Cómo puede una interfaz acercar a las personas a una historia? ¿Cómo puede una experiencia interactiva preservar una tradición? ¿Cómo puede un sistema invitar a participar en lugar de observar?</p>
+      <p class="way-body">A partir de esas preguntas combino <em>investigación, diseño y desarrollo</em> para construir experiencias donde la tecnología deja de ser el centro y se convierte en un medio para <em>conectar personas, ideas y memorias.</em></p>
     </section>
 
-    <section class="featured wrap">
+    <section class="featured">
       <div class="featured-head">
         <div>
           <p class="eyebrow reveal">Proyectos destacados</p>
           <h2 class="featured-heading reveal">Una selección de trabajo reciente</h2>
         </div>
-        <!-- 5. Actualizamos el enlace de "Ver todos" -->
         <a href={`${base}proyectos/`.replace(/\/\/+/g, '/')} class="link-underline featured-all">Ver todos ↗</a>
       </div>
       <div class="featured-cards">
@@ -81,30 +73,28 @@ const areas = [
     </section>
 
     <section class="areas">
-      <div class="wrap">
-        <p class="eyebrow reveal">Áreas de Trabajo</p>
-        <div class="areas-grid reveal">
-          {areas.map((a) => (
-            <div class="area">
-              <p class="area-n">{a.n}</p>
-              <p class="area-title">{a.title}</p>
-              <p class="area-body">{a.body}</p>
-            </div>
-          ))}
-        </div>
+      <p class="eyebrow reveal">Áreas de Trabajo</p>
+      <div class="areas-grid reveal">
+        {areas.map((a) => (
+          <div class="area">
+            <p class="area-n">{a.n}</p>
+            <p class="area-title">{a.title}</p>
+            <p class="area-body">{a.body}</p>
+          </div>
+        ))}
       </div>
     </section>
 
-    <section class="contact wrap">
+    <section class="contact">
       <p class="contact-title reveal">¿Trabajamos un poco?</p>
       <p class="contact-body reveal">Disponible para proyectos de diseño de experiencias, patrimonio cultural y UI/UX.</p>
-      <!-- Este enlace se queda igual porque apunta a un correo externo, no a tu web -->
       <a href="mailto:valentinagp2006@gmail.com" class="link-underline contact-email reveal">valentinagp2006@gmail.com ↗</a>
     </section>
   </main>
   <Footer />
 
   <style>
+    /* Se estandariza el padding: 45px 155px; en todas las secciones principales */
     .hero { display: flex; align-items: flex-end; justify-content: space-between; gap: 40px; padding: 45px 155px; height: auto; }
     .hero-info { max-width: 860px; }
     .hero-title { font-family: var(--font-display); font-weight: 400; font-size: 72px; line-height: 1; letter-spacing: -1.44px; margin: 10px 0 42px; font-variation-settings: "SOFT" 0, "WONK" 1; }
@@ -121,10 +111,11 @@ const areas = [
       .hero-photo { order: -1; margin-bottom: 24px; }
     }
 
-    .quote { background: var(--ink); color: var(--paper); padding: 77px 0; }
+    .quote { background: var(--ink); color: #ffffff; padding: 45px 155px; }
     .quote-text { font-family: var(--font-display); font-weight: 400; font-size: 42px; line-height: 1.14; letter-spacing: -0.42px; margin: 0 0 12px; max-width: 22ch; font-variation-settings: "SOFT" 0, "WONK" 1; }
     .quote-source { font-size: 12px; color: var(--ink-muted); margin: 0; }
-    .quote-source a { color: #FAF7F2; }
+    .quote-source a { color: #ffffff; }
+    @media (max-width: 900px) { .quote { padding: 32px 20px; } }
 
     .way-of-designing { background: var(--line); padding: 45px 155px; }
     .way-title { font-family: var(--font-display); font-weight: 400; font-size: 32px; margin: 0 0 21px; letter-spacing: -0.16px; font-variation-settings: "SOFT" 0, "WONK" 1; }
