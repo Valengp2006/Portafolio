@@ -22,133 +22,314 @@ const areas = [
 <Layout title="Valentina — Diseño de experiencias interactivas">
   <Nav active="" />
   <main>
-    <!-- Se eliminan las clases .wrap de todas las secciones -->
     <section class="hero">
-      <div class="hero-info">
-        <p class="eyebrow reveal">Portafolio</p>
-        <h1 class="hero-title reveal">Diseño de <span>experiencias</span><br />interactivas</h1>
-        <div class="hero-personal reveal">
-          <p class="hero-name">Valentina</p>
-          <p class="hero-role">Estudiante de Ingeniería en Diseño de Entretenimiento Digital · UPB</p>
-          <p class="hero-bio">Diseño experiencias donde la interacción se convierte en una forma de contar historias, preservar memorias y acercar a las personas a la tecnología. Mi trabajo combina investigación, diseño y desarrollo para crear proyectos que conectan lo digital con lo cultural, lo participativo y lo humano.</p>
-          <div class="hero-links">
-            <a href={`${base}sobre-mi/`.replace(/\/\/+/g, '/')} class="link-underline">Sobre mí ↗</a>
-            <a href={`${base}proyectos/`.replace(/\/\/+/g, '/')} class="link-underline">Ver todos los proyectos ↗</a>
+      <div class="wrap hero-wrap">
+        <div class="hero-info">
+          <p class="eyebrow reveal">Portafolio</p>
+          <h1 class="hero-title reveal">Diseño de experiencias<br />interactivas</h1>
+          <div class="hero-personal reveal">
+            <p class="hero-name">Valentina</p>
+            <p class="hero-role">Estudiante de Ingeniería en Diseño de Entretenimiento Digital · UPB</p>
+            <p class="hero-bio">Diseño experiencias donde la interacción se convierte en una forma de contar historias, preservar memorias y acercar a las personas a la tecnología. Mi trabajo combina investigación, diseño y desarrollo para crear proyectos que conectan lo digital con lo cultural, lo participativo y lo humano.</p>
+            <div class="hero-links">
+              <a href={`${base}sobre-mi/`.replace(/\/\/+/g, '/')} class="link-underline">Sobre mí ↗</a>
+              <a href={`${base}proyectos/`.replace(/\/\/+/g, '/')} class="link-underline">Ver todos los proyectos ↗</a>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="hero-photo reveal">
-        <img src={`${base}images/valentina.jpg`.replace(/\/\/+/g, '/')} alt="Retrato de Valentina" />
+        <div class="hero-photo reveal">
+          <img src={`${base}images/valentina.jpg`.replace(/\/\/+/g, '/')} alt="Retrato de Valentina" />
+        </div>
       </div>
     </section>
 
     <section class="quote reveal">
-      <p class="quote-text">"Los que hacen posible la procesión rara vez aparecen en las fotografías."</p>
-      <p class="quote-source">— hallazgo central de investigación, <a href={`${base}proyectos/pasos-de-tradicion/`.replace(/\/\/+/g, '/')} class="link-underline">Pasos de Tradición</a></p>
+      <div class="wrap quote-wrap">
+        <p class="quote-text">"Los que hacen posible la procesión rara vez aparecen en las fotografías."</p>
+        <div class="quote-footer">
+          <p class="quote-source">— hallazgo central de investigación,</p>
+          <a href={`${base}proyectos/pasos-de-tradicion/`.replace(/\/\/+/g, '/')} class="quote-link">Pasos de Tradición</a>
+        </div>
+      </div>
     </section>
 
-    <section class="way-of-designing">
-      <p class="way-title">Mi forma de diseñar</p>
-      <p class="way-body">No empiezo un proyecto pensando en la tecnología que voy a utilizar. Empiezo con una <em>pregunta</em>.</p>
-      <p class="way-body">¿Cómo puede una interfaz acercar a las personas a una historia? ¿Cómo puede una experiencia interactiva preservar una tradición? ¿Cómo puede un sistema invitar a participar en lugar de observar?</p>
-      <p class="way-body">A partir de esas preguntas combino <em>investigación, diseño y desarrollo</em> para construir experiencias donde la tecnología deja de ser el centro y se convierte en un medio para <em>conectar personas, ideas y memorias.</em></p>
+    <section class="way-of-designing section-bg">
+      <div class="wrap">
+        <h2 class="way-title">Mi forma de diseñar</h2>
+        <p class="way-body">No empiezo un proyecto pensando en la tecnología que voy a utilizar. Empiezo con una <em>pregunta</em>.</p>
+        <p class="way-body">¿Cómo puede una interfaz acercar a las personas a una historia? ¿Cómo puede una experiencia interactiva preservar una tradición? ¿Cómo puede un sistema invitar a participar en lugar de observar?</p>
+        <p class="way-body">A partir de esas preguntas combino <em>investigación, diseño y desarrollo</em> para construir experiencias donde la tecnología deja de ser el centro y se convierte en un medio para <em>conectar personas, ideas y memorias.</em></p>
+      </div>
     </section>
 
     <section class="featured">
-      <div class="featured-head">
-        <div>
-          <p class="eyebrow reveal">Proyectos destacados</p>
-          <h2 class="featured-heading reveal">Una selección de trabajo reciente</h2>
+      <div class="wrap">
+        <div class="featured-head">
+          <div class="featured-head-text">
+            <p class="eyebrow reveal">Proyectos destacados</p>
+            <h2 class="featured-heading reveal">Una selección de trabajo reciente</h2>
+          </div>
+          <a href={`${base}proyectos/`.replace(/\/\/+/g, '/')} class="link-underline featured-all">Ver todos ↗</a>
         </div>
-        <a href={`${base}proyectos/`.replace(/\/\/+/g, '/')} class="link-underline featured-all">Ver todos ↗</a>
-      </div>
-      <div class="featured-cards">
-        <div class="reveal"><ProjectCard project={muse} layout="hero" /></div>
-        <div class="featured-pair">
-          <div class="reveal"><ProjectCard project={pasos} layout="vertical" /></div>
-          <div class="reveal"><ProjectCard project={cosmos} layout="vertical" /></div>
+        <div class="featured-cards">
+          <div class="reveal"><ProjectCard project={muse} layout="hero" /></div>
+          <div class="featured-pair">
+            <div class="reveal"><ProjectCard project={pasos} layout="vertical" /></div>
+            <div class="reveal"><ProjectCard project={cosmos} layout="vertical" /></div>
+          </div>
+          <div class="reveal"><ProjectCard project={luna} layout="horizontal" /></div>
         </div>
-        <div class="reveal"><ProjectCard project={luna} layout="horizontal" /></div>
       </div>
     </section>
 
-    <section class="areas">
-      <p class="eyebrow reveal">Áreas de Trabajo</p>
-      <div class="areas-grid reveal">
-        {areas.map((a) => (
-          <div class="area">
-            <p class="area-n">{a.n}</p>
-            <p class="area-title">{a.title}</p>
-            <p class="area-body">{a.body}</p>
-          </div>
-        ))}
+    <section class="areas section-bg">
+      <div class="wrap">
+        <p class="eyebrow reveal">Áreas de Trabajo</p>
+        <div class="areas-grid reveal">
+          {areas.map((a) => (
+            <div class="area">
+              <p class="area-n">{a.n}</p>
+              <h3 class="area-title">{a.title}</h3>
+              <p class="area-body">{a.body}</p>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
 
     <section class="contact">
-      <p class="contact-title reveal">¿Trabajamos un poco?</p>
-      <p class="contact-body reveal">Disponible para proyectos de diseño de experiencias, patrimonio cultural y UI/UX.</p>
-      <a href="mailto:valentinagp2006@gmail.com" class="link-underline contact-email reveal">valentinagp2006@gmail.com ↗</a>
+      <div class="wrap contact-wrap">
+        <h2 class="contact-title reveal">¿Trabajamos un poco?</h2>
+        <p class="contact-body reveal">Disponible para proyectos de diseño de experiencias, patrimonio cultural y UI/UX.</p>
+        <a href="mailto:valentinagp2006@gmail.com" class="link-underline contact-email reveal">valentinagp2006@gmail.com ↗</a>
+      </div>
     </section>
   </main>
   <Footer />
 
   <style>
-    /* Se estandariza el padding: 45px 155px; en todas las secciones principales */
-    .hero { display: flex; align-items: flex-end; justify-content: space-between; gap: 40px; padding: 45px 155px; height: auto; }
-    .hero-info { max-width: 860px; }
-    .hero-title { font-family: var(--font-display); font-weight: 400; font-size: 72px; line-height: 1; letter-spacing: -1.44px; margin: 10px 0 42px; font-variation-settings: "SOFT" 0, "WONK" 1; }
-    .hero-personal { display: flex; flex-direction: column; gap: 6px; }
-    .hero-name { font-family: var(--font-display); font-weight: 600; font-size: 24px; margin: 0; font-variation-settings: "SOFT" 0, "WONK" 1; }
-    .hero-role { font-size: 16px; color: var(--ink-muted); margin: 0 0 8px; }
-    .hero-bio { font-size: 18px; color: var(--ink-soft); line-height: 1.65; margin: 0 0 20px; max-width: 62ch; }
-    .hero-links { display: flex; gap: 24px; font-size: 16px; }
-    .hero-photo { width: 204px; height: 254px; border-radius: 16px; overflow: hidden; background: var(--line); flex-shrink: 0; }
-    .hero-photo img { width: 100%; height: 100%; object-fit: cover; }
+    /* ==========================================================
+       VARIABLES EXACTAS DE FIGMA (Tipografía y colores base)
+       ========================================================== */
+    :root {
+      --figma-dark: #1F1B16;
+      --figma-light: #FAF7F2;
+      --figma-bg: #E4DFD6;
+      --figma-muted: #8A837A;
+      --figma-soft: #57504A;
+      --font-fraunces: 'Fraunces', serif;
+      --font-inter: 'Inter', sans-serif;
+    }
+
+    /* 1. CONTENEDOR GLOBAL (Responsivo con márgenes de Figma) */
+    .wrap {
+      max-width: 1513px; /* El ancho total que tenía tu exportación */
+      margin: 0 auto;
+      padding: 45px 155px;
+      width: 100%;
+      box-sizing: border-box;
+    }
     @media (max-width: 1000px) {
-      .hero { flex-direction: column; align-items: flex-start; padding: 40px 20px; }
-      .hero-title { font-size: 44px; }
+      .wrap { padding: 40px 20px; }
+    }
+
+    /* 2. ESTILOS DE SECCIÓN */
+    .section-bg { background: var(--figma-bg); }
+    
+    .eyebrow {
+      font-family: var(--font-fraunces);
+      font-weight: 600;
+      font-size: 18px;
+      line-height: 26px;
+      color: var(--figma-muted);
+      margin: 0 0 16px 0;
+    }
+
+    /* --- HERO --- */
+    .hero-wrap { 
+      display: flex; 
+      align-items: flex-end; 
+      justify-content: space-between; 
+      gap: 40px; 
+    }
+    .hero-info { max-width: 860px; }
+    .hero-title { 
+      font-family: var(--font-fraunces); 
+      font-weight: 400; 
+      font-size: 72px; 
+      line-height: 72px; 
+      color: var(--figma-dark); 
+      margin: 0 0 42px 0; 
+    }
+    .hero-personal { display: flex; flex-direction: column; gap: 6px; }
+    .hero-name { 
+      font-family: var(--font-fraunces); 
+      font-weight: 600; 
+      font-size: 24px; 
+      line-height: 32px;
+      color: var(--figma-dark);
+      margin: 0; 
+    }
+    .hero-role { 
+      font-family: var(--font-inter);
+      font-size: 16px; 
+      line-height: 28px;
+      color: var(--figma-muted); 
+      margin: 0; 
+    }
+    .hero-bio { 
+      font-family: var(--font-inter);
+      font-size: 18px; 
+      line-height: 30px;
+      color: var(--figma-soft); 
+      margin: 0 0 10px 0; 
+      max-width: 100%; 
+    }
+    .hero-links { display: flex; gap: 24px; }
+    .link-underline {
+      font-family: var(--font-inter);
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--figma-dark);
+      text-decoration: underline;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .hero-photo { 
+      width: 204px; 
+      height: 254px; 
+      border-radius: 16px; 
+      overflow: hidden; 
+      background: var(--figma-bg); 
+      flex-shrink: 0; 
+    }
+    .hero-photo img { width: 100%; height: 100%; object-fit: cover; }
+    
+    @media (max-width: 1000px) {
+      .hero-wrap { flex-direction: column; align-items: flex-start; }
+      .hero-title { font-size: 44px; line-height: 50px; }
       .hero-photo { order: -1; margin-bottom: 24px; }
     }
 
-    .quote { background: var(--ink); color: #ffffff; padding: 45px 155px; }
-    .quote-text { font-family: var(--font-display); font-weight: 400; font-size: 42px; line-height: 1.14; letter-spacing: -0.42px; margin: 0 0 12px; max-width: 22ch; font-variation-settings: "SOFT" 0, "WONK" 1; }
-    .quote-source { font-size: 12px; color: var(--ink-muted); margin: 0; }
-    .quote-source a { color: #ffffff; }
-    @media (max-width: 900px) { .quote { padding: 32px 20px; } }
+    /* --- QUOTE --- */
+    .quote { background: var(--figma-dark); }
+    .quote-wrap { padding-top: 77px; padding-bottom: 77px; }
+    .quote-text { 
+      font-family: var(--font-fraunces); 
+      font-weight: 400; 
+      font-size: 42px; 
+      line-height: 48px; 
+      color: var(--figma-light); 
+      margin: 0 0 32px 0; 
+    }
+    .quote-footer { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+    .quote-source { 
+      font-family: var(--font-inter);
+      font-size: 12px; 
+      line-height: 18px;
+      color: var(--figma-muted); 
+      margin: 0; 
+    }
+    .quote-link {
+      font-family: var(--font-inter);
+      font-size: 16px;
+      font-weight: 500;
+      color: #B5651D; /* Color exacto de Pasos de Tradición en Figma */
+      text-decoration: underline;
+    }
 
-    .way-of-designing { background: var(--line); padding: 45px 155px; }
-    .way-title { font-family: var(--font-display); font-weight: 400; font-size: 32px; margin: 0 0 21px; letter-spacing: -0.16px; font-variation-settings: "SOFT" 0, "WONK" 1; }
-    .way-body { font-size: 18px; color: var(--ink-soft); line-height: 1.65; max-width: 900px; margin: 0 0 14px; }
-    .way-body em { color: var(--ink); font-style: italic; font-weight: 600; }
-    @media (max-width: 760px) { .way-of-designing { padding: 32px 20px; } }
+    /* --- WAY OF DESIGNING --- */
+    .way-title { 
+      font-family: var(--font-fraunces); 
+      font-weight: 400; 
+      font-size: 32px; 
+      line-height: 40px;
+      color: var(--figma-dark);
+      margin: 0 0 21px 0; 
+    }
+    .way-body { 
+      font-family: var(--font-inter);
+      font-size: 18px; 
+      line-height: 30px;
+      color: var(--figma-soft); 
+      margin: 0 0 14px 0; 
+    }
+    .way-body em { 
+      font-style: italic; 
+      font-weight: 600; 
+    }
 
-    .featured { padding: 45px 155px; }
-    .featured-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; margin-bottom: 32px; }
-    .featured-heading { font-family: var(--font-display); font-weight: 400; font-size: 32px; margin: 12px 0 0; letter-spacing: -0.16px; font-variation-settings: "SOFT" 0, "WONK" 1; }
-    .featured-all { font-size: 16px; white-space: nowrap; }
+    /* --- FEATURED --- */
+    .featured-head { 
+      display: flex; 
+      align-items: flex-end; 
+      justify-content: space-between; 
+      gap: 24px; 
+      margin-bottom: 32px; 
+    }
+    .featured-head-text { display: flex; flex-direction: column; gap: 12px; }
+    .featured-heading { 
+      font-family: var(--font-fraunces); 
+      font-weight: 400; 
+      font-size: 32px; 
+      line-height: 40px;
+      color: var(--figma-dark);
+      margin: 0; 
+    }
     .featured-cards { display: flex; flex-direction: column; gap: 31px; }
     .featured-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    
     @media (max-width: 900px) {
-      .featured { padding: 32px 20px; }
       .featured-pair { grid-template-columns: 1fr; }
       .featured-head { flex-direction: column; align-items: flex-start; }
     }
 
-    .areas { background: var(--line); padding: 45px 155px; }
+    /* --- AREAS --- */
     .areas-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; margin-top: 38px; }
-    .area-n { font-size: 12px; color: var(--ink-muted); margin: 0 0 16px; }
-    .area-title { font-family: var(--font-display); font-weight: 600; font-size: 24px; margin: 0 0 16px; font-variation-settings: "SOFT" 0, "WONK" 1; }
-    .area-body { font-size: 16px; color: var(--ink-soft); line-height: 1.75; margin: 0; }
+    .area-n { 
+      font-family: var(--font-inter);
+      font-size: 12px; 
+      line-height: 18px;
+      color: var(--figma-muted); 
+      margin: 0 0 16px 0; 
+    }
+    .area-title { 
+      font-family: var(--font-fraunces); 
+      font-weight: 600; 
+      font-size: 24px; 
+      line-height: 32px;
+      color: var(--figma-dark);
+      margin: 0 0 16px 0; 
+    }
+    .area-body { 
+      font-family: var(--font-inter);
+      font-size: 16px; 
+      line-height: 28px;
+      color: var(--figma-soft); 
+      margin: 0; 
+    }
+    
     @media (max-width: 900px) {
-      .areas { padding: 32px 20px; }
       .areas-grid { grid-template-columns: 1fr; gap: 28px; }
     }
 
-    .contact { padding: 45px 155px 96px; }
-    .contact-title { font-family: var(--font-display); font-weight: 400; font-size: 42px; letter-spacing: -0.42px; margin: 0 0 20px; font-variation-settings: "SOFT" 0, "WONK" 1; }
-    .contact-body { font-size: 18px; color: var(--ink-soft); margin: 0 0 20px; }
-    .contact-email { font-size: 16px; }
-    @media (max-width: 900px) { .contact { padding: 32px 20px 64px; } }
+    /* --- CONTACT --- */
+    .contact-wrap { padding-bottom: 96px; display: flex; flex-direction: column; gap: 20px; }
+    .contact-title { 
+      font-family: var(--font-fraunces); 
+      font-weight: 400; 
+      font-size: 42px; 
+      line-height: 48px;
+      color: var(--figma-dark);
+      margin: 0; 
+    }
+    .contact-body { 
+      font-family: var(--font-inter);
+      font-size: 18px; 
+      line-height: 30px;
+      color: var(--figma-soft); 
+      margin: 0; 
+    }
   </style>
 </Layout>
