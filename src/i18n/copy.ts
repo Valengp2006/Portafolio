@@ -49,6 +49,8 @@ export const ui = {
     metrics: { es: "Investigación en números", en: "Research in numbers" },
     awards: { es: "Reconocimientos", en: "Recognitions" },
     gallery: { es: "Galería", en: "Gallery" },
+    videos: { es: "Videos", en: "Videos" },
+    playVideo: { es: "Reproducir video", en: "Play video" },
     links: { es: "Enlaces", en: "Links" },
     outcome: { es: "Resultado final", en: "Final outcome" },
     next: { es: "Siguiente proyecto", en: "Next project" },
@@ -190,10 +192,10 @@ export const about = {
   },
   languages: { es: ["Español (nativo)", "Inglés (B2)"], en: ["Spanish (native)", "English (B2)"] },
   awardsEyebrow: { es: "Reconocimientos", en: "Recognitions" },
-  awardsTitle: { es: "Muestra DEX 2026 · UPB", en: "DEX 2026 Showcase · UPB" },
+  awardsTitle: { es: "Reconocimientos de la UPB", en: "UPB recognitions" },
   awardsNote: {
-    es: "Cuatro distinciones para Dissonance, entregadas en Medellín el 10 de noviembre de 2026.",
-    en: "Four distinctions for Dissonance, awarded in Medellín on November 10, 2026.",
+    es: "Cuatro distinciones para Dissonance en la muestra DEX 2026 (Medellín, 10 de noviembre de 2026) y el reconocimiento al mejor proyecto del Taller 5 para Pasos de Tradición.",
+    en: "Four distinctions for Dissonance at the DEX 2026 showcase (Medellín, November 10, 2026) and the best project of Workshop 5 recognition for Pasos de Tradición.",
   },
 } as const;
 

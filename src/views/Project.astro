@@ -167,6 +167,29 @@ const t = ui.project;
       </section>
     )}
 
+    {p.videos && p.videos.length > 0 && (
+      <section class="wrap reveal videos-sec">
+        <p class="section-label">{t.videos[lang]}</p>
+        <div class={`videos-grid ${p.videos.length === 1 ? "single" : ""}`}>
+          {p.videos.map((vd) => (
+            <figure class="video-card">
+              {vd.youtube ? (
+                <div class="yt-frame" data-yt={vd.youtube} data-title={vd.title[lang]}>
+                  <button type="button" class="yt-play" aria-label={`${t.playVideo[lang]}: ${vd.title[lang]}`}>
+                    <img src={`https://i.ytimg.com/vi/${vd.youtube}/hqdefault.jpg`} alt="" loading="lazy" />
+                    <span class="yt-icon" aria-hidden="true">▶</span>
+                  </button>
+                </div>
+              ) : (
+                <video controls preload="none" playsinline poster={vd.poster ? asset(vd.poster) : undefined} src={vd.src ? asset(vd.src) : undefined} class="local-video" aria-label={vd.title[lang]}></video>
+              )}
+              <figcaption>{vd.title[lang]}</figcaption>
+            </figure>
+          ))}
+        </div>
+      </section>
+    )}
+
     <section class="wrap reveal resultado">
       <p class="section-label">{t.outcome[lang]}</p>
       <p class="resultado-body">{p.outcome[lang]}</p>
@@ -185,6 +208,21 @@ const t = ui.project;
       <ProjectCard project={next} layout="horizontal" lang={lang} />
     </section>
   </main>
+
+  <script>
+    document.querySelectorAll<HTMLElement>(".yt-frame").forEach((box) => {
+      const btn = box.querySelector("button");
+      btn?.addEventListener("click", () => {
+        const id = box.dataset.yt;
+        const f = document.createElement("iframe");
+        f.src = `https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0`;
+        f.title = box.dataset.title || "Video";
+        f.allow = "autoplay; encrypted-media; picture-in-picture; fullscreen";
+        f.allowFullscreen = true;
+        box.replaceChildren(f);
+      });
+    });
+  </script>
 
   <style define:vars={{ accent: p.color }}>
     /* CLASE WRAP PARA CENTRAR Y LIMITAR EL ANCHO DE LA PÁGINA */
@@ -282,5 +320,18 @@ const t = ui.project;
     @media (max-width: 900px) { .info-row { padding: 32px 20px; gap: 24px; } }
     .implementacion { padding: 45px 155px; }
     .implementacion-text { max-width: 595px; }
+
+    .videos-sec { padding: 45px 155px; }
+    .videos-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 20px; }
+    .videos-grid.single { grid-template-columns: minmax(0, 900px); }
+    .video-card { margin: 0; }
+    .video-card figcaption { font-size: 14px; color: var(--ink-soft); margin-top: 10px; line-height: 20px; }
+    .yt-frame, .local-video { width: 100%; aspect-ratio: 16 / 9; border-radius: 12px; background: #000; display: block; overflow: hidden; }
+    .yt-frame :global(iframe) { width: 100%; height: 100%; border: 0; }
+    .yt-play { position: relative; width: 100%; height: 100%; padding: 0; border: 0; cursor: pointer; background: #000; }
+    .yt-play img { width: 100%; height: 100%; object-fit: cover; opacity: 0.85; }
+    .yt-icon { position: absolute; inset: 0; margin: auto; width: 64px; height: 64px; border-radius: 50%; background: rgba(255,255,255,0.92); color: #111; display: flex; align-items: center; justify-content: center; font-size: 22px; padding-left: 4px; }
+    .yt-play:hover .yt-icon { background: #fff; }
+    @media (max-width: 900px) { .videos-sec { padding: 32px 20px; } .videos-grid, .videos-grid.single { grid-template-columns: 1fr; } }
 </style>
 </Layout>

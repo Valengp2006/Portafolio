@@ -40,6 +40,15 @@ export interface GalleryItem {
   src: string;
   alt: L;
 }
+export interface Video {
+  title: L;
+  /** ID de YouTube (lo que va después de youtu.be/). Se carga solo al hacer clic. */
+  youtube?: string;
+  /** Archivo en public/ (ruta sin base), p. ej. "videos/mi-video.mp4". */
+  src?: string;
+  /** Imagen de portada del video (ruta sin base). */
+  poster?: string;
+}
 export interface Project {
   slug: string;
   tier: 1 | 2 | 3;
@@ -63,6 +72,7 @@ export interface Project {
   metrics?: Metric[];
   awards?: Award[];
   gallery?: GalleryItem[];
+  videos?: Video[];
   links?: { label: L; url: string }[];
   stack: string[];
   outcome: L;
@@ -88,8 +98,8 @@ export const projects: Project[] = [
       en: "Astronaut's view in Dissonance's virtual reality experience",
     },
     role: { es: "Dirección creativa · Diseño de experiencia", en: "Creative direction · Experience design" },
-    duration: { es: "2026 · Taller 6", en: "2026 · Workshop 6" },
-    team: { es: "Equipo interdisciplinar de 6 personas", en: "Interdisciplinary team of 6" },
+    duration: { es: "Julio – Noviembre 2026 · Taller 6", en: "July – November 2026 · Workshop 6" },
+    team: { es: "Proyecto en equipo", en: "Team project" },
     tools: "Unity · VR · HTML/CSS/JS · GitHub Pages",
     question: {
       es: "¿Cómo hacer que una persona experimente la incertidumbre desde adentro, en lugar de observarla desde afuera?",
@@ -211,6 +221,7 @@ export const projects: Project[] = [
     ],
     links: [
       { label: { es: "Sitio del proyecto y documentación", en: "Project site and documentation" }, url: "https://valengp2006.github.io/Dissonance/" },
+      { label: { es: "Repositorio en GitHub", en: "GitHub repository" }, url: "https://github.com/Valengp2006/Dissonance" },
     ],
     stack: ["Unity", "VR", "HTML/CSS/JS", "GitHub Pages"],
     outcome: {
@@ -225,15 +236,16 @@ export const projects: Project[] = [
     title: "Pasos de Tradición",
     tag: { es: "Patrimonio cultural · AR", en: "Cultural heritage · AR" },
     result: {
-      es: "Experiencia transmedia que preserva la memoria de quienes sostienen la Semana Santa desde el anonimato.",
-      en: "A transmedia experience that preserves the memory of the people who sustain Holy Week from anonymity.",
+      es: "Experiencia transmedia que preserva la memoria de quienes sostienen la Semana Santa desde el anonimato. Mejor proyecto del Taller 5: Experiencias.",
+      en: "A transmedia experience that preserves the memory of the people who sustain Holy Week from anonymity. Best project of Workshop 5: Experiences.",
     },
     color: "#B5651D",
     tint: "#F2E4D3",
     textColor: "#7A4718",
-    coverAlt: { es: "Pasos de Tradición", en: "Pasos de Tradición" },
+    cover: "images/projects/pasos-de-tradicion/cover.jpg",
+    coverAlt: { es: "Un libro antiguo, una vasija y una piedra con una huella de mano frente a la cúpula de una iglesia al atardecer", en: "An old book, a clay pot and a stone with a handprint in front of a church dome at sunset" },
     role: { es: "Narrativa interactiva · Arquitectura de información · Producción audiovisual", en: "Interactive narrative · Information architecture · Audiovisual production" },
-    duration: { es: "Enero – Mayo 2026", en: "January – May 2026" },
+    duration: { es: "Enero – Mayo 2026 · Taller 5", en: "January – May 2026 · Workshop 5" },
     team: { es: "Proyecto en equipo", en: "Team project" },
     tools: "Figma · Unity · Vuforia · Visual Studio Code · GitHub · Luma AI · CapCut",
     question: {
@@ -244,8 +256,8 @@ export const projects: Project[] = [
       {
         label: { es: "Contexto", en: "Context" },
         body: {
-          es: "Pasos de Tradición divulga el patrimonio de la Semana Santa de Santa Fe de Antioquia mediante un sitio web, experiencias de realidad aumentada y contenido audiovisual. Más que digitalizar la tradición, busca nuevas formas de acercarse a ella para que visitantes y habitantes exploren sus historias desde distintos medios y niveles de interacción.",
-          en: "Pasos de Tradición shares the heritage of Holy Week in Santa Fe de Antioquia through a website, augmented reality experiences and audiovisual content. Rather than simply digitizing the tradition, it looks for new ways to approach it so that visitors and locals can explore its stories through different media and levels of interaction.",
+          es: "Pasos de Tradición nació en el Taller 5 de Ingeniería en Diseño de Entretenimiento Digital. Divulga el patrimonio de la Semana Santa de Santa Fe de Antioquia mediante un sitio web, experiencias de realidad aumentada y contenido audiovisual. Plantea los oficios de la celebración como actos de transmisión, en los que unos cuerpos aprenden de otros. Más que digitalizar la tradición, busca nuevas formas de acercarse a ella para que visitantes y habitantes exploren sus historias desde distintos medios y niveles de interacción.",
+          en: "Pasos de Tradición was created in Workshop 5 of the Digital Entertainment Design Engineering program. It shares the heritage of Holy Week in Santa Fe de Antioquia through a website, augmented reality experiences and audiovisual content. It frames the trades of the celebration as acts of transmission, where some bodies learn from others. Rather than simply digitizing the tradition, it looks for new ways to approach it so that visitors and locals can explore its stories through different media and levels of interaction.",
         },
       },
       {
@@ -253,6 +265,13 @@ export const projects: Project[] = [
         body: {
           es: "Investigamos la historia, los oficios y las manifestaciones de la celebración y realizamos entrevistas semiestructuradas con cuatro personas que participan en sus distintos oficios. El hallazgo central, «quienes hacen posible la procesión rara vez aparecen en las fotografías», orientó la narrativa, la selección de contenidos y el diseño de las experiencias.",
           en: "We researched the history, trades and expressions of the celebration and held semi-structured interviews with four people who take part in its different trades. The core finding, “the people who make the procession possible rarely appear in the photographs”, guided the narrative, the content selection and the design of the experiences.",
+        },
+      },
+      {
+        label: { es: "Las tres experiencias", en: "The three experiences" },
+        body: {
+          es: "El archivo se organiza en cuatro etapas (investigación, inmersión, documental y autores) y en tres piezas narrativas complementarias: El Códice de los Pasos, La Cúpula y El Rastro de los Gestos. Cada una aborda la tradición desde un medio y un nivel de interacción distintos.",
+          en: "The archive is organized in four stages (research, immersion, documentary and authors) and three complementary narrative pieces: El Códice de los Pasos, La Cúpula and El Rastro de los Gestos. Each approaches the tradition through a different medium and level of interaction.",
         },
       },
       {
@@ -278,13 +297,37 @@ export const projects: Project[] = [
       { title: { es: "Procesamiento", en: "Processing" }, body: { es: "Vuforia reconoce los marcadores y activa contenidos audiovisuales y elementos narrativos integrados en Unity.", en: "Vuforia recognizes the markers and triggers audiovisual content and narrative elements integrated in Unity." } },
       { title: { es: "Salida", en: "Output" }, body: { es: "Experiencia transmedia: realidad aumentada, video y narrativa digital que complementan la exploración de la Semana Santa.", en: "A transmedia experience: augmented reality, video and digital narrative that complement the exploration of Holy Week." } },
     ],
+    metrics: [
+      { value: { es: "4", en: "4" }, label: { es: "entrevistas semiestructuradas a personas que sostienen los oficios", en: "semi-structured interviews with people who sustain the trades" } },
+      { value: { es: "3", en: "3" }, label: { es: "experiencias complementarias: Códice, Cúpula y Rastro de los Gestos", en: "complementary experiences: Códice, Cúpula and Rastro de los Gestos" } },
+      { value: { es: "4", en: "4" }, label: { es: "etapas del archivo: investigación, inmersión, documental y autores", en: "archive stages: research, immersion, documentary and authors" } },
+    ],
+    awards: [
+      {
+        title: { es: "Mejor proyecto del Taller 5: Experiencias", en: "Best project of Workshop 5: Experiences" },
+        detail: { es: "Reconocimiento · Taller 5, Ingeniería en Diseño de Entretenimiento Digital, UPB", en: "Recognition · Workshop 5, Digital Entertainment Design Engineering, UPB" },
+      },
+    ],
+    gallery: [
+      { src: "images/projects/pasos-de-tradicion/codice.jpg", alt: { es: "El Códice de los Pasos: bitácora de oficios con ilustraciones animadas", en: "El Códice de los Pasos: a logbook of trades with animated illustrations" } },
+      { src: "images/projects/pasos-de-tradicion/cupula.jpg", alt: { es: "La Cúpula: visualización de un domo inmersivo en la plaza", en: "La Cúpula: visualization of an immersive dome in the plaza" } },
+      { src: "images/projects/pasos-de-tradicion/sombras.jpg", alt: { es: "El Rastro de los Gestos: silueta en sombra de una persona en oración", en: "El Rastro de los Gestos: shadow silhouette of a person in prayer" } },
+      { src: "images/projects/pasos-de-tradicion/making-of.jpg", alt: { es: "Making of: el proceso creativo, técnico y humano del archivo", en: "Making of: the creative, technical and human process of the archive" } },
+      { src: "images/projects/pasos-de-tradicion/proyecto.jpg", alt: { es: "El proyecto: los oficios de la Semana Santa en Santa Fe de Antioquia", en: "The project: the trades of Holy Week in Santa Fe de Antioquia" } },
+    ],
+    videos: [
+      { title: { es: "El Códice de los Pasos: experiencia de realidad aumentada", en: "El Códice de los Pasos: augmented reality experience" }, youtube: "gtFGBEbhLYQ" },
+      { title: { es: "El Rastro de los Gestos: narrativa interactiva", en: "El Rastro de los Gestos: interactive narrative" }, youtube: "GzqdeB_yQgE" },
+      { title: { es: "Cúpula de Legados: instalación audiovisual inmersiva", en: "Cúpula de Legados: immersive audiovisual installation" }, youtube: "ZJIWKkEvlxY" },
+    ],
     links: [
-      { label: { es: "Ver la experiencia", en: "View the experience" }, url: "https://valengp2006.github.io/pasos-de-tradicion/experiencia/" },
+      { label: { es: "Sitio web del proyecto", en: "Project website" }, url: "https://valengp2006.github.io/pasos-de-tradicion/" },
+      { label: { es: "Repositorio en GitHub", en: "GitHub repository" }, url: "https://github.com/Valengp2006/pasos-de-tradicion" },
     ],
     stack: ["Unity", "Vuforia", "Figma", "Visual Studio Code", "GitHub", "Luma AI", "CapCut"],
     outcome: {
-      es: "El proyecto culminó como una experiencia transmedia de tres experiencias complementarias. Mi aporte principal fue El Códice de los Pasos, que integra audiovisual y realidad aumentada, además del sitio web: su arquitectura de información y la documentación del proceso.",
-      en: "The project ended as a transmedia experience made of three complementary experiences. My main contribution was El Códice de los Pasos, which combines audiovisual content and augmented reality, plus the website: its information architecture and the process documentation.",
+      es: "El proyecto culminó como una experiencia transmedia de tres experiencias complementarias y fue reconocido como el mejor proyecto del Taller 5: Experiencias. Mi aporte principal fue El Códice de los Pasos, que integra audiovisual y realidad aumentada, además del sitio web: su arquitectura de información y la documentación del proceso.",
+      en: "The project ended as a transmedia experience made of three complementary experiences and was recognized as the best project of Workshop 5: Experiences. My main contribution was El Códice de los Pasos, which combines audiovisual content and augmented reality, plus the website: its information architecture and the process documentation.",
     },
   },
 
@@ -294,13 +337,14 @@ export const projects: Project[] = [
     title: "MUSE",
     tag: { es: "App social · UX/UI", en: "Social app · UX/UI" },
     result: {
-      es: "Un espacio seguro donde artistas emergentes comparten procesos, descubren y construyen comunidad.",
-      en: "A safe space where emerging artists share their process, discover others and build community.",
+      es: "Un espacio digital seguro donde artistas emergentes comparten procesos, descubren a otros y construyen comunidad.",
+      en: "A safe digital space where emerging artists share their process, discover others and build community.",
     },
     color: "#8C2F52",
     tint: "#F7E4EC",
     textColor: "#6E2140",
-    coverAlt: { es: "Pantallas de la aplicación MUSE", en: "Screens from the MUSE app" },
+    cover: "images/projects/muse/cover.jpg",
+    coverAlt: { es: "Tres pantallas de la aplicación MUSE: concurso Artista de la Semana, galería de obras y eventos", en: "Three screens of the MUSE app: Artist of the Week contest, artwork gallery and events" },
     role: { es: "Investigación UX · Diseño UX/UI · Prototipado interactivo", en: "UX research · UX/UI design · Interactive prototyping" },
     duration: { es: "Marzo – Mayo 2026", en: "March – May 2026" },
     team: { es: "Proyecto en equipo", en: "Team project" },
@@ -311,24 +355,73 @@ export const projects: Project[] = [
     },
     sections: [
       {
+        label: { es: "Acerca del proyecto", en: "About the project" },
+        body: {
+          es: "MUSE es una propuesta de aplicación social para artistas emergentes, pensada para artistas jóvenes e ilustradores digitales. Busca ofrecer una experiencia de publicación más humana, enfocada en la exploración creativa, la conexión entre artistas y la construcción de una identidad visual auténtica. Es un proyecto académico de diseño UX/UI que combina investigación, diseño de interfaces y prototipado interactivo.",
+          en: "MUSE is a social app proposal for emerging artists, designed for young artists and digital illustrators. It aims to offer a more human publishing experience focused on creative exploration, connection between artists and the building of an authentic visual identity. It is an academic UX/UI design project that combines research, interface design and interactive prototyping.",
+        },
+      },
+      {
         label: { es: "Problema", en: "Problem" },
         body: {
-          es: "Muchos artistas jóvenes sienten que las plataformas actuales privilegian la viralidad sobre el proceso creativo, y eso les genera inseguridad al compartir su trabajo. MUSE propone una alternativa que prioriza la seguridad, la autenticidad artística y la comunidad.",
-          en: "Many young artists feel that today's platforms reward virality over the creative process, which makes sharing their work feel unsafe. MUSE proposes an alternative that prioritizes safety, artistic authenticity and community.",
+          es: "Compartir arte en plataformas digitales se ha vuelto una experiencia incómoda para muchos artistas emergentes por el miedo al juicio, el robo de contenido y la creciente saturación de contenido generado con IA. Eso abrió la oportunidad de diseñar un espacio enfocado en autenticidad artística, seguridad y comunidad.",
+          en: "Sharing art on digital platforms has become an uncomfortable experience for many emerging artists because of fear of judgment, content theft and the growing saturation of AI-generated content. That opened the opportunity to design a space focused on artistic authenticity, safety and community.",
         },
       },
       {
-        label: { es: "Investigación", en: "Research" },
+        label: { es: "Objetivos", en: "Goals" },
         body: {
-          es: "Con encuestas, entrevistas y actividades de análisis identificamos cuatro patrones: preocupación por el uso no autorizado de las obras, necesidad de retroalimentación constructiva, interés en plataformas que prioricen el trabajo humano frente al generado con IA, y valor de compartir procesos tanto como resultados. De ahí salieron el User Persona, el Point of View y parte del User Journey Map.",
-          en: "Through surveys, interviews and analysis activities we found four patterns: concern about unauthorized use of artwork, a need for constructive feedback, interest in platforms that put human work ahead of AI-generated work, and valuing process as much as final results. These led to the User Persona, the Point of View and part of the User Journey Map.",
+          es: "Cuatro objetivos: investigación UX para comprender las necesidades y preocupaciones de artistas jóvenes; una experiencia visual con una interfaz cómoda, intuitiva y creativa; comunidad, facilitando la interacción y la participación entre artistas; y un prototipo interactivo funcional.",
+          en: "Four goals: UX research to understand the needs and concerns of young artists; a visual experience with a comfortable, intuitive and creative interface; community, facilitating interaction and participation among artists; and a functional interactive prototype.",
         },
       },
       {
-        label: { es: "Proceso de diseño", en: "Design process" },
+        label: { es: "Mi rol", en: "My role" },
         body: {
-          es: "Definimos la arquitectura de información y los flujos principales, validamos la organización del contenido con wireframes de baja fidelidad y solo después construimos la identidad visual. Mi trabajo: investigación UX y organización de insights, flujo de eventos, la sección «Artista de la Semana», parte del UI Kit, la evolución de wireframes a alta fidelidad y el prototipo interactivo en Figma con componentes, variables e interacciones.",
-          en: "We defined the information architecture and main flows, validated the content structure with low-fidelity wireframes and only then built the visual identity. My work: UX research and insight organization, the events flow, the “Artist of the Week” section, part of the UI Kit, the evolution from wireframes to high fidelity and the interactive Figma prototype with components, variables and interactions.",
+          es: "UX Research: encuestas y análisis de usuarios, organización de insights, User Persona y Point of View, User Journey Map. UX Design: ideación de funcionalidades, wireframes iniciales y flujos de navegación. UI Design y prototipado: diseño visual, wireframes en alta fidelidad, UI Kit, componentes interactivos y prototipado en Figma. Mis aportes destacados: el flujo de eventos, la sección «Artista de la Semana», el UI Kit y la navegación.",
+          en: "UX Research: surveys and user analysis, insight organization, User Persona and Point of View, User Journey Map. UX Design: feature ideation, initial wireframes and navigation flows. UI Design and prototyping: visual design, high-fidelity wireframes, UI Kit, interactive components and prototyping in Figma. My highlighted contributions: the events flow, the “Artist of the Week” section, the UI Kit and navigation.",
+        },
+      },
+      {
+        label: { es: "Investigación UX", en: "UX research" },
+        body: {
+          es: "Con encuestas, entrevistas y pruebas con usuarios enfocadas en hábitos de publicación, percepción de seguridad y preferencias visuales identificamos tres hallazgos: preocupación por el robo o uso no autorizado de obras, valoración de comunidades con apoyo creativo y retroalimentación constructiva, e interés por plataformas que den la voz a contenido creado únicamente por humanos. El insight principal: los artistas no solo buscan plataformas para publicar, sino espacios donde sentirse seguros, valorados y representados visualmente.",
+          en: "Through surveys, interviews and user tests focused on publishing habits, perception of safety and visual preferences we found three findings: concern about theft or unauthorized use of artwork, appreciation for communities with creative support and constructive feedback, and interest in platforms that give voice to human-made content only. The key insight: artists don't just look for platforms to publish, but for spaces where they feel safe, valued and visually represented.",
+        },
+      },
+      {
+        label: { es: "Usuario objetivo", en: "Target user" },
+        body: {
+          es: "Oscar, 21 años, estudiante de Diseño Gráfico e ilustrador digital. «Quiero compartir mi arte sin sentir miedo al juicio o perder el control sobre mis obras». Motivaciones: comunidad creativa, descubrir artistas y recibir retroalimentación. Frustraciones: robo de obras, críticas destructivas y saturación de IA. Necesidades: espacios seguros, navegación intuitiva y obras humanas.",
+          en: "Oscar, 21, graphic design student and digital illustrator. “I want to share my art without fear of judgment or losing control over my work.” Motivations: creative community, discovering artists and getting feedback. Frustrations: stolen work, destructive criticism and AI saturation. Needs: safe spaces, intuitive navigation and human-made work.",
+        },
+      },
+      {
+        label: { es: "Sistema visual", en: "Visual system" },
+        body: {
+          es: "El UI Kit define una paleta oscura con acentos rosa, azul, menta, lima y naranja; dos tipografías (Boldosone para títulos y Fahkwang para texto); botones primarios y secundarios con estados estándar, hover, pressed y disabled; y componentes como selectores y menús desplegables de categorías.",
+          en: "The UI Kit defines a dark palette with pink, blue, mint, lime and orange accents; two typefaces (Boldosone for headings and Fahkwang for body text); primary and secondary buttons with standard, hover, pressed and disabled states; and components such as toggles and category dropdowns.",
+        },
+      },
+      {
+        label: { es: "De wireframes a alta fidelidad", en: "From wireframes to high fidelity" },
+        body: {
+          es: "El proceso empezó con wireframes enfocados en estructura y navegación, que luego evolucionaron hacia propuestas visuales finales. El flujo de postulación al concurso «Artista de la Semana» pasa de la bienvenida y la elección de modalidad a la galería, la carga de la obra, el resumen y la confirmación de envío.",
+          en: "The process started with wireframes focused on structure and navigation, which then evolved into final visual proposals. The “Artist of the Week” contest entry flow goes from welcome and category selection to the gallery, artwork upload, summary and submission confirmation.",
+        },
+      },
+      {
+        label: { es: "Prototipo interactivo", en: "Interactive prototype" },
+        body: {
+          es: "El prototipo se desarrolló en Figma para simular la navegación y las interacciones principales: navegación entre pantallas, exploración de artistas y obras, visualización de perfiles e interacciones en la comunidad.",
+          en: "The prototype was built in Figma to simulate navigation and the main interactions: moving between screens, exploring artists and artworks, viewing profiles and community interactions.",
+        },
+      },
+      {
+        label: { es: "Reflexión", en: "Reflection" },
+        body: {
+          es: "MUSE fue mi primer acercamiento completo a un proceso de diseño UX/UI aplicado a una experiencia real. Me permitió comprender la importancia de diseñar experiencias centradas en las emociones, necesidades y contextos de las personas usuarias; la investigación, la iteración y la exploración visual fueron fundamentales para una propuesta más humana, funcional y significativa.",
+          en: "MUSE was my first complete approach to a UX/UI design process applied to a real experience. It taught me the importance of designing experiences centered on the emotions, needs and contexts of users; research, iteration and visual exploration were essential to a more human, functional and meaningful proposal.",
         },
       },
     ],
@@ -338,11 +431,28 @@ export const projects: Project[] = [
         solution: { es: "Varias iteraciones de wireframes antes de la interfaz visual, ajustando jerarquías, composición y organización del contenido.", en: "Several wireframe iterations before the visual interface, adjusting hierarchy, composition and content organization." },
       },
       {
-        challenge: { es: "Acercar el prototipo al comportamiento de una app real.", en: "Bring the prototype closer to the behavior of a real app." },
-        solution: { es: "Aprendí por mi cuenta funciones avanzadas de Figma para construir dropdowns, componentes interactivos, transiciones y estados.", en: "I taught myself advanced Figma features to build dropdowns, interactive components, transitions and states." },
+        challenge: { es: "Adaptarme a nuevas herramientas (Figma y FigJam).", en: "Adapting to new tools (Figma and FigJam)." },
+        solution: { es: "Aprendizaje guiado y autónomo que fortaleció mi capacidad de adaptarme a nuevos entornos de diseño.", en: "Guided and self-directed learning that strengthened my ability to adapt to new design environments." },
+      },
+      {
+        challenge: { es: "Construir componentes interactivos que acercaran el prototipo a una app real.", en: "Build interactive components that bring the prototype closer to a real app." },
+        solution: { es: "Exploré prototipado y lógica de interacción (dropdowns, transiciones y estados) y comprendí la importancia de la iteración técnica para mejorar la experiencia de usuario.", en: "I explored prototyping and interaction logic (dropdowns, transitions and states) and learned the importance of technical iteration to improve the user experience." },
+      },
+      {
+        challenge: { es: "Lograr una dirección visual coherente.", en: "Achieve a coherent visual direction." },
+        solution: { es: "Construí una identidad gráfica a partir de la investigación visual y el análisis de referentes, que fueron clave para tomar decisiones de diseño.", en: "I built a graphic identity from visual research and reference analysis, which were key to making design decisions." },
       },
     ],
-    links: [],
+    gallery: [
+      { src: "images/projects/muse/cover.jpg", alt: { es: "Pantallas de MUSE: Artista de la Semana, galería y eventos", en: "MUSE screens: Artist of the Week, gallery and events" } },
+      { src: "images/projects/muse/wireframes.jpg", alt: { es: "De wireframes a diseño visual: flujo de postulación a Artista de la Semana", en: "From wireframes to visual design: Artist of the Week entry flow" } },
+      { src: "images/projects/muse/ui-kit.jpg", alt: { es: "UI Kit: colores, tipografías, botones y componentes", en: "UI Kit: colors, typography, buttons and components" } },
+      { src: "images/projects/muse/prototipo.jpg", alt: { es: "Mapa del prototipo interactivo en Figma", en: "Interactive prototype map in Figma" } },
+      { src: "images/projects/muse/reflexion.jpg", alt: { es: "Pantallas finales de la app", en: "Final app screens" } },
+    ],
+    links: [
+      { label: { es: "Ver el caso de estudio completo en Figma", en: "View the full case study in Figma" }, url: "https://www.figma.com/deck/D16IOQE3BsvhIg70jK0tMP/Portafolio-UX-UI" },
+    ],
     stack: ["Figma", "FigJam", "Notion", "Google Forms"],
     outcome: {
       es: "Un prototipo interactivo de alta fidelidad, validado con usuarios. Las pruebas destacaron la identidad visual, la facilidad de navegación, la claridad de los flujos principales y la propuesta de comunidad para artistas.",
@@ -367,7 +477,7 @@ export const projects: Project[] = [
     coverAlt: { es: "Portada de Jardín de Bruma con flores de acuarela", en: "Jardín de Bruma cover with watercolor flowers" },
     role: { es: "Planteamiento de la idea y presentación de la propuesta, en conjunto con el equipo", en: "Idea development and proposal presentation, jointly with the team" },
     duration: { es: "Octubre 2026", en: "October 2026" },
-    team: { es: "Equipo de 3 personas (con Miranda López Gómez y Nikki Ortiz Ospina)", en: "Team of 3 (with Miranda López Gómez and Nikki Ortiz Ospina)" },
+    team: { es: "Proyecto en equipo", en: "Team project" },
     tools: "Instagram · WhatsApp · Correo electrónico · Presentación de estrategia",
     question: {
       es: "¿Cómo construir una comunidad que compre, vuelva y recomiende una marca artesanal, con recompensas que cuesten poco pero impacten a las personas?",
@@ -487,10 +597,16 @@ export const projects: Project[] = [
     gallery: [
       { src: "images/projects/contemplar/05-nivel4-nebulosa.jpg", alt: { es: "Nivel 4 de revelación: nebulosa", en: "Revelation level 4: nebula" } },
       { src: "images/projects/contemplar/10-sistema-de-cuerpos.jpg", alt: { es: "Sistema de cuerpos en órbita", en: "System of orbiting bodies" } },
+      { src: "images/projects/contemplar/v-sistema.jpg", alt: { es: "Sistema: filamentos violetas durante el ensayo grabado", en: "System: violet filaments during the recorded rehearsal" } },
+      { src: "images/projects/contemplar/v-revelacion.jpg", alt: { es: "Revelación: materia que se reúne en el borde del campo", en: "Revelation: matter gathering at the edge of the field" } },
       { src: "images/projects/contemplar/07-revelacion-niveles.png", alt: { es: "Los cinco niveles de revelación", en: "The five revelation levels" } },
+    ],
+    videos: [
+      { title: { es: "Ensayo completo (6:39, con la música)", en: "Full rehearsal (6:39, with the music)" }, youtube: "ki0KPbzuUF4" },
     ],
     links: [
       { label: { es: "Abrir la pieza (Chrome o Edge con WebGPU)", en: "Open the piece (Chrome or Edge with WebGPU)" }, url: "https://valengp2006.github.io/contemplar-lo-infinito/" },
+      { label: { es: "Repositorio en GitHub", en: "GitHub repository" }, url: "https://github.com/Valengp2006/contemplar-lo-infinito" },
     ],
     stack: ["WebGPU", "JavaScript", "Vite", "GitHub Pages"],
     outcome: {
@@ -505,8 +621,8 @@ export const projects: Project[] = [
     title: "Cosmos",
     tag: { es: "Instalación audiovisual", en: "Audiovisual installation" },
     result: {
-      es: "Una experiencia donde público, performer y sistema comparten el control de la obra en tiempo real.",
-      en: "An experience where audience, performer and system share control of the piece in real time.",
+      es: "Un ecosistema vivo donde público, performer y sonido moldean la obra en tiempo real: cada espectador tiñe la Luna desde su teléfono.",
+      en: "A living ecosystem where audience, performer and sound shape the piece in real time: each spectator tints the Moon from their phone.",
     },
     color: "#6D4FE0",
     tint: "#EEE9FA",
@@ -515,7 +631,7 @@ export const projects: Project[] = [
     role: { es: "Diseño de interacción · Programación creativa · Diseño audiovisual", en: "Interaction design · Creative coding · Audiovisual design" },
     duration: { es: "Marzo – Mayo 2026", en: "March – May 2026" },
     team: { es: "Proyecto en equipo", en: "Team project" },
-    tools: "TouchDesigner · Strudel · Open Stage Control · GitHub",
+    tools: "TouchDesigner · Strudel · Open Stage Control · Node.js · Socket.io",
     question: {
       es: "¿Cómo diseñar una experiencia donde la interacción no solo controle una obra, sino que invite a las personas a construirla colectivamente?",
       en: "How can we design an experience where interaction doesn't just control a piece but invites people to build it together?",
@@ -524,8 +640,15 @@ export const projects: Project[] = [
       {
         label: { es: "Contexto", en: "Context" },
         body: {
-          es: "Cosmos es una instalación audiovisual interactiva que explora la relación entre cuerpo, sonido e imagen en tiempo real y convierte al público en participante activo de la obra.",
-          en: "Cosmos is an interactive audiovisual installation that explores the relationship between body, sound and image in real time and turns the audience into active participants.",
+          es: "Cosmos es una instalación audiovisual interactiva que se presenta como un ecosistema vivo, moldeado por la interacción colectiva entre público, performer y sonido. Es una conversación entre sonido, imagen y presencia humana: la obra cambia de color, colapsa hacia un vórtice o se expande en estrellas, y busca difuminar la barrera entre espectador y obra mediante interfaces web.",
+          en: "Cosmos is an interactive audiovisual installation presented as a living ecosystem, shaped by the collective interaction of audience, performer and sound. It is a conversation between sound, image and human presence: the piece changes color, collapses into a vortex or expands into stars, and aims to blur the line between spectator and artwork through web interfaces.",
+        },
+      },
+      {
+        label: { es: "Cómo funciona", en: "How it works" },
+        body: {
+          es: "Tres capas de participación: el pulso sonoro (música en vivo con Strudel cuyo bombo sincroniza el parpadeo de la Luna), el performer (dirige los estados visuales y la tensión narrativa desde un iPad con Open Stage Control) y el público (cada persona envía un color desde su teléfono, y el color lunar es colectivo). Un servidor Node.js con Socket.io traduce las conexiones web a OSC para TouchDesigner, en una red local con acceso por código QR.",
+          en: "Three layers of participation: the sound pulse (live-coded music in Strudel whose kick drum syncs the Moon's flicker), the performer (directs the visual states and narrative tension from an iPad with Open Stage Control) and the audience (each person sends a color from their phone, and the lunar color is collective). A Node.js server with Socket.io translates web connections into OSC for TouchDesigner, on a local network with QR-code access.",
         },
       },
       {
@@ -538,23 +661,27 @@ export const projects: Project[] = [
     ],
     decisions: [
       {
-        challenge: { es: "Sincronizar visuales, sonido e interacción sin perder fluidez.", en: "Keep visuals, sound and interaction in sync without losing fluidity." },
-        solution: { es: "Una arquitectura modular que comunica las herramientas mediante Open Stage Control.", en: "A modular architecture that connects the tools through Open Stage Control." },
+        challenge: { es: "Sincronizar visuales, sonido e interacción de decenas de teléfonos sin perder fluidez.", en: "Keep visuals, sound and the interaction of dozens of phones in sync without losing fluidity." },
+        solution: { es: "Una arquitectura modular: Socket.io recibe al público, Open Stage Control al performer y todo converge por OSC en TouchDesigner.", en: "A modular architecture: Socket.io receives the audience, Open Stage Control the performer and everything converges through OSC in TouchDesigner." },
       },
       {
         challenge: { es: "Que fuera intuitivo para personas sin conocimientos técnicos.", en: "Make it intuitive for people with no technical background." },
-        solution: { es: "Controles simplificados y retroalimentación visual clara para que la exploración surja sola, sin instrucciones.", en: "Simplified controls and clear visual feedback so exploration happens naturally, without instructions." },
+        solution: { es: "Acceso por código QR y una interfaz web mínima que solo pide elegir un color, con retroalimentación visual inmediata en la Luna.", en: "QR-code access and a minimal web interface that only asks for a color, with immediate visual feedback on the Moon." },
       },
     ],
     system: [
-      { title: { es: "Entrada", en: "Input" }, body: { es: "Open Stage Control: interfaz para controlar los parámetros de la instalación mediante mensajes OSC.", en: "Open Stage Control: the interface that controls the installation's parameters through OSC messages." } },
-      { title: { es: "Procesamiento", en: "Processing" }, body: { es: "TouchDesigner procesa lo visual y Strudel genera el paisaje sonoro a partir de los parámetros recibidos.", en: "TouchDesigner handles the visuals and Strudel generates the soundscape from the incoming parameters." } },
-      { title: { es: "Salida", en: "Output" }, body: { es: "Visuales generativos y sonido sincronizados que responden en tiempo real a la interacción.", en: "Generative visuals and sound in sync that respond to the interaction in real time." } },
+      { title: { es: "Entrada", en: "Input" }, body: { es: "Smartphones del público (colores RGB por web), iPad del performer (Open Stage Control) y el pulso del bombo de Strudel.", en: "Audience smartphones (RGB colors via web), the performer's iPad (Open Stage Control) and Strudel's kick-drum pulse." } },
+      { title: { es: "Procesamiento", en: "Processing" }, body: { es: "Un servidor Node.js con Socket.io convierte WebSocket a OSC; TouchDesigner recibe todo y genera los visuales.", en: "A Node.js server with Socket.io converts WebSocket to OSC; TouchDesigner receives everything and generates the visuals." } },
+      { title: { es: "Salida", en: "Output" }, body: { es: "Visuales generativos y sonido sincronizados: una Luna de color colectivo que parpadea con el pulso y cambia entre estrellas, vórtice y nebulosa.", en: "Synchronized generative visuals and sound: a Moon of collective color that flickers with the pulse and shifts between stars, vortex and nebula." } },
+    ],
+    videos: [
+      { title: { es: "Cosmos en funcionamiento", en: "Cosmos running live" }, youtube: "FiLLIV0uhI4" },
     ],
     links: [
       { label: { es: "Sitio del proyecto", en: "Project site" }, url: "https://valengp2006.github.io/Proyecto_Cosmos/" },
+      { label: { es: "Repositorio en GitHub", en: "GitHub repository" }, url: "https://github.com/Valengp2006/Proyecto_Cosmos" },
     ],
-    stack: ["TouchDesigner", "Strudel", "Open Stage Control", "GitHub"],
+    stack: ["TouchDesigner", "Strudel", "Open Stage Control", "Node.js", "Socket.io", "OSC"],
     outcome: {
       es: "Se presentó como instalación en la muestra de proyectos de la Universidad Pontificia Bolivariana, integrando investigación, programación creativa y diseño de interacción.",
       en: "It was presented as an installation at the Universidad Pontificia Bolivariana's project showcase, bringing together research, creative coding and interaction design.",
@@ -598,11 +725,48 @@ export const projects: Project[] = [
           en: "The screen mirrors where each section sits in a real orchestra (high strings on the left, woodwinds in the center, cellos on the right): pointing toward a section is calling it. Each gesture was justified by comparing what a real conductor does with what the system does.",
         },
       },
+      {
+        label: { es: "Implementación", en: "Implementation" },
+        body: {
+          es: "La cámara detecta 17 puntos del cuerpo con ml5.js BodyPose (MoveNet), con espejo activado y un filtro One Euro que suaviza la señal. El pulso se detecta como un golpe en el punto más bajo de la muñeca derecha, con histéresis y amplitud mínima relativa a los hombros; el tempo sale del promedio de los últimos golpes y se limita entre 0,5× y 1,5× del tempo escrito (80 BPM). La dinámica se calcula desde la postura (nariz y punto medio de hombros) con una línea base adaptativa, y el corte exige separar y luego cruzar los brazos durante 300 ms. El audio usa Tone.js con muestras reales, reverberación suave y un limitador.",
+          en: "The camera detects 17 body keypoints with ml5.js BodyPose (MoveNet), with mirroring on and a One Euro filter smoothing the signal. The pulse is detected as a stroke at the lowest point of the right wrist, with hysteresis and a minimum amplitude relative to shoulder width; tempo comes from the average of the last strokes and is limited between 0.5× and 1.5× of the written tempo (80 BPM). Dynamics are computed from posture (nose and shoulder midpoint) with an adaptive baseline, and the cut requires separating and then crossing the arms for 300 ms. Audio uses Tone.js with real samples, soft reverb and a limiter.",
+        },
+      },
+    ],
+    decisions: [
+      {
+        challenge: { es: "Un gesto de corte que fuera visible, intuitivo y no chocara con los otros gestos.", en: "A cut-off gesture that was visible, intuitive and didn't clash with the other gestures." },
+        solution: { es: "Pasé de manos juntas o dedos a brazos cruzados: se ve bien, se entiende sin explicación y no se confunde con señalar una sección.", en: "I moved from joined hands or fingers to crossed arms: it reads clearly, needs no explanation and isn't confused with pointing at a section." },
+      },
+      {
+        challenge: { es: "Controlar el volumen sin ocupar la mano que llama a las secciones.", en: "Control volume without using the hand that calls the sections." },
+        solution: { es: "El volumen pasó de la altura de la mano izquierda a la postura del cuerpo: libera esa mano y es más fácil de calibrar.", en: "Volume moved from the left hand's height to body posture: it frees that hand and is easier to calibrate." },
+      },
+      {
+        challenge: { es: "Evitar el cansancio al marcar el pulso durante toda la obra.", en: "Avoid fatigue from beating the pulse throughout the piece." },
+        solution: { es: "Un golpe equivale a dos pulsos en lugar de uno, lo que reduce el esfuerzo físico.", en: "One stroke now equals two beats instead of one, reducing physical effort." },
+      },
+      {
+        challenge: { es: "Que la obra se escuchara completa aunque la persona no dirigiera a todas las secciones.", en: "Make the piece sound complete even if the person doesn't conduct every section." },
+        solution: { es: "Siempre suena una base, las secciones no señaladas suenan suave, las llamadas suben al 60 % y la señalada al 100 %; el final se escucha con toda la orquesta.", en: "A base always plays, uncalled sections stay soft, called ones rise to 60% and the pointed one to 100%; the finale plays with the full orchestra." },
+      },
+    ],
+    metrics: [
+      { value: { es: "4", en: "4" }, label: { es: "gestos: pulso, entradas, dinámica y corte", en: "gestures: pulse, cues, dynamics and cut-off" } },
+      { value: { es: "6", en: "6" }, label: { es: "instrumentos reales: violín, flauta, clarinete, chelo, contrabajo y piano", en: "real instruments: violin, flute, clarinet, cello, double bass and piano" } },
+      { value: { es: "60 FPS", en: "60 FPS" }, label: { es: "estables durante casi todo el proyecto en las pruebas", en: "stable for almost the whole project in testing" } },
+      { value: { es: "148", en: "148" }, label: { es: "pulsos de partitura a 80 BPM", en: "beats of score at 80 BPM" } },
     ],
     gallery: [
+      { src: "images/projects/orquesta/historia.jpg", alt: { es: "Historia de apertura en el teatro", en: "Opening story at the theater" } },
+      { src: "images/projects/orquesta/tutorial-pulso.jpg", alt: { es: "Tutorial del gesto de pulso", en: "Pulse gesture tutorial" } },
+      { src: "images/projects/orquesta/gran-final.jpg", alt: { es: "Gran final con la orquesta completa", en: "Grand finale with the full orchestra" } },
       { src: "images/projects/orquesta/c-cuatro-gestos.png", alt: { es: "Los cuatro gestos: pulso, entradas, dinámica y corte", en: "The four gestures: pulse, cues, dynamics and cut-off" } },
       { src: "images/projects/orquesta/b-orquesta-real.png", alt: { es: "De la orquesta real a la distribución en pantalla", en: "From the real orchestra to the on-screen layout" } },
       { src: "images/projects/orquesta/j-arquitectura.png", alt: { es: "Arquitectura del sistema", en: "System architecture" } },
+    ],
+    links: [
+      { label: { es: "Documentación completa en Notion", en: "Full documentation on Notion" }, url: "https://app.notion.com/p/Orquesta-Corporal-401bd8838a788043a17ec992ffc8473c" },
     ],
     stack: ["p5.js", "ml5.js", "MoveNet", "Tone.js"],
     outcome: {
@@ -623,7 +787,8 @@ export const projects: Project[] = [
     color: "#2F7C8C",
     tint: "#E0F0F3",
     textColor: "#1D5561",
-    coverAlt: { es: "Cauce", en: "Cauce" },
+    cover: "images/projects/cauce/v-cover.jpg",
+    coverAlt: { es: "Trazos de luz dorada sobre un fondo azul oscuro y la frase «Ahora, una intención basta para ponerlo en movimiento»", en: "Golden light trails over a dark blue background and the phrase “Now, an intention is enough to set it in motion”" },
     role: { es: "Diseño de interacción · Sistemas generativos · Sonificación", en: "Interaction design · Generative systems · Sonification" },
     duration: { es: "Octubre 2026 · Unidad 8, Simulación", en: "October 2026 · Unit 8, Simulation" },
     tools: "p5.js · Tone.js · Vite · GitHub Pages",
@@ -640,8 +805,20 @@ export const projects: Project[] = [
         },
       },
     ],
+    gallery: [
+      { src: "images/projects/cauce/inicio.jpg", alt: { es: "Pantalla de inicio de Cauce", en: "Cauce start screen" } },
+      { src: "images/projects/cauce/v-verde.jpg", alt: { es: "Los primeros trazos: corrientes verdes que siguen la intención", en: "First strokes: green currents that follow the intention" } },
+      { src: "images/projects/cauce/v-dorado.jpg", alt: { es: "Lo dorado es lo tuyo: las trazas conservadas brillan en oro", en: "The golden is yours: preserved traces glow in gold" } },
+      { src: "images/projects/cauce/v-estela.jpg", alt: { es: "Pliegues dorados que se acumulan entre los desvíos", en: "Golden folds accumulating among the detours" } },
+      { src: "images/projects/cauce/v-cierre.jpg", alt: { es: "El agua corrió sola: cierre de la sesión", en: "The water ran on its own: end of the session" } },
+      { src: "images/projects/cauce/v-final.jpg", alt: { es: "Pantalla final: «Haz clic para volver a empezar»", en: "Final screen: “Click to start over”" } },
+    ],
+    videos: [
+      { title: { es: "Cauce: una sesión completa", en: "Cauce: a full session" }, youtube: "mbFWkJXmFDI" },
+    ],
     links: [
       { label: { es: "Abrir la obra", en: "Open the piece" }, url: "https://valengp2006.github.io/why-bother/" },
+      { label: { es: "Repositorio en GitHub", en: "GitHub repository" }, url: "https://github.com/Valengp2006/why-bother" },
     ],
     stack: ["p5.js", "Tone.js", "Vite"],
     outcome: {
@@ -662,7 +839,8 @@ export const projects: Project[] = [
     color: "#7A4FA3",
     tint: "#EFE7F6",
     textColor: "#52307A",
-    coverAlt: { es: "Encantar", en: "Encantar" },
+    cover: "images/projects/encantar/cover.jpg",
+    coverAlt: { es: "Una luz recorre una letra casi invisible sobre un cielo estrellado", en: "A light travels across a nearly invisible letter on a starry sky" },
     role: { es: "Diseño de juego · Diseño de interacción · Sistemas generativos", en: "Game design · Interaction design · Generative systems" },
     duration: { es: "Octubre 2026", en: "October 2026" },
     tools: "JavaScript · Vite · Audio web",
@@ -672,12 +850,29 @@ export const projects: Project[] = [
     },
     sections: [
       {
+        label: { es: "Contexto", en: "Context" },
+        body: {
+          es: "Encantar nació como un ejercicio académico de la unidad de Simulación: un sistema tipográfico jugable concebido para una pantalla interactiva en un evento de la marca Disney, con público familiar e intergeneracional. La misión era hacer feliz a la gente; el atributo explorado, la magia y la fantasía; y el verbo, encantar. Es un ejercicio conceptual: no tiene vínculo, patrocinio ni respaldo oficial de la marca.",
+          en: "Encantar began as an academic exercise for the Simulation course: a playable typographic system conceived for an interactive screen at a Disney event, for a family, multi-generational audience. The mission was to make people happy; the attribute explored, magic and fantasy; and the verb, to enchant. It is a conceptual exercise: it has no link to, sponsorship from or endorsement by the brand.",
+        },
+      },
+      {
         label: { es: "Idea y diseño", en: "Idea and design" },
         body: {
           es: "Diseñada para una pantalla interactiva en un evento, cada letra se descubre en tres tiempos: un gesto la abre, un minijuego corto la despierta y su hechizo es la recompensa. No hay fallo ni números: el progreso se ve en la propia luz. Si alguien se atasca, el reto se vuelve más permisivo y una guía lo acompaña, pero nunca se completa solo. Los hechizos se encadenan entre sí con reglas fijas.",
           en: "Designed for an interactive screen at an event, each letter is discovered in three beats: a gesture opens it, a short minigame wakes it up and its spell is the reward. There is no failure and no score: progress shows in the light itself. If someone gets stuck, the challenge becomes more forgiving and a guide helps, but it never completes itself. Spells chain together through fixed rules.",
         },
       },
+    ],
+    gallery: [
+      { src: "images/projects/encantar/inicio.jpg", alt: { es: "Pantalla de inicio: «Una aventura de luz»", en: "Start screen: “A light adventure”" } },
+      { src: "images/projects/encantar/palabra.jpg", alt: { es: "Frase inicial: una palabra dormida en la oscuridad", en: "Opening line: a word asleep in the dark" } },
+      { src: "images/projects/encantar/guia.jpg", alt: { es: "Guía de gestos: seis letras por despertar", en: "Gesture guide: six letters to wake up" } },
+      { src: "images/projects/encantar/cover.jpg", alt: { es: "La luz del cursor revela el contorno de una letra", en: "The cursor's light reveals the outline of a letter" } },
+    ],
+    links: [
+      { label: { es: "Probar Encantar", en: "Try Encantar" }, url: "https://valengp2006.github.io/encantar/" },
+      { label: { es: "Repositorio en GitHub", en: "GitHub repository" }, url: "https://github.com/Valengp2006/encantar" },
     ],
     stack: ["JavaScript", "Vite", "Web Audio"],
     outcome: {

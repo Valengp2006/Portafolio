@@ -6,7 +6,10 @@ import { projects } from "../data/projects";
 
 interface Props { lang: Lang }
 const { lang } = Astro.props;
-const awards = projects.find((p) => p.slug === "dissonance")?.awards ?? [];
+const awards = ["dissonance", "pasos-de-tradicion"].flatMap((slug) => {
+  const pr = projects.find((p) => p.slug === slug);
+  return (pr?.awards ?? []).map((a) => ({ ...a, project: pr!.title }));
+});
 ---
 <Layout
   lang={lang}
@@ -65,7 +68,7 @@ const awards = projects.find((p) => p.slug === "dissonance")?.awards ?? [];
         <h2 class="skill-title">{about.awardsTitle[lang]}</h2>
         <p class="award-note">{about.awardsNote[lang]}</p>
         <ul class="award-list">
-          {awards.map((a) => <li>★ {a.title[lang]}</li>)}
+          {awards.map((a) => <li>★ {a.title[lang]} <span style="color:var(--figma-muted)">· {a.project}</span></li>)}
         </ul>
       </div>
     </section>
