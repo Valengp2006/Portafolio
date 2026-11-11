@@ -1,0 +1,188 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { asset, pagePath, other, type Lang } from "../i18n";
+import { services } from "../i18n/copy";
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+---
+<Layout
+  lang={lang}
+  title={services.title[lang]}
+  description={services.body[lang]}
+  active="services"
+  selfHref={pagePath(lang, "services")}
+  altHref={pagePath(other(lang), "services")}
+>
+  <main>
+    <section class="hero">
+      <div class="wrap hero-wrap">
+        <p class="eyebrow reveal">{services.eyebrow[lang]}</p>
+        <h1 class="hero-title reveal">{services.h1[lang]}</h1>
+        <p class="hero-body reveal">{services.body[lang]}</p>
+      </div>
+    </section>
+    <div class="services-list">
+      {services.items.map((s, i) => (
+        <section class="service">
+          <div class={`wrap service-wrap ${i % 2 === 1 ? "reverse" : ""}`}>
+            <div class="service-info reveal">
+              <h2 class="service-title">{s.title[lang]}</h2>
+              <p class="service-tagline">{s.tagline[lang]}</p>
+              <p class="service-body">{s.body[lang]}</p>
+              {s.faqs.map((f) => (
+                <div class="faq">
+                  <p class="faq-q">→ {f.q[lang]}</p>
+                  <p class="faq-a">{f.a[lang]}</p>
+                </div>
+              ))}
+            </div>
+            <div class="service-image reveal">
+              {s.image
+                ? <img src={asset(s.image)} alt={s.title[lang]} loading="lazy" />
+                : <div class="service-ph" style={`background:${s.accent}`} role="img" aria-label={s.title[lang]}></div>}
+            </div>
+          </div>
+        </section>
+      ))}
+    </div>
+  </main>
+
+  <style>
+    /* VARIABLES EXACTAS DE FIGMA */
+    :root {
+      --figma-dark: #1F1B16;
+      --figma-bg: #E4DFD6;
+      --figma-muted: #8A837A;
+      --figma-soft: #57504A;
+      --font-fraunces: 'Fraunces', serif;
+      --font-inter: 'Inter', sans-serif;
+    }
+
+    /* CONTENEDOR GLOBAL RESPONSIVO */
+    .wrap {
+      max-width: 1513px;
+      margin: 0 auto;
+      padding: 45px 155px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    @media (max-width: 1000px) {
+      .wrap { padding: 40px 20px; }
+    }
+
+    .eyebrow {
+      font-family: var(--font-fraunces);
+      font-weight: 600;
+      font-size: 18px;
+      line-height: 26px;
+      color: var(--figma-muted);
+      margin: 0 0 16px 0;
+    }
+
+    /* --- HERO --- */
+    .hero { border-bottom: 1px solid var(--figma-bg); }
+    .hero-wrap { 
+      padding-top: 64px; 
+      padding-bottom: 64px; 
+      display: flex; 
+      flex-direction: column; 
+      gap: 24px; 
+    }
+    .hero-title { 
+      font-family: var(--font-fraunces); 
+      font-weight: 400; 
+      font-size: 56px; 
+      line-height: 60px; 
+      color: var(--figma-dark); 
+      margin: 0; 
+    }
+    .hero-body { 
+      font-family: var(--font-inter);
+      font-size: 18px; 
+      line-height: 30px; 
+      color: var(--figma-soft); 
+      margin: 0; 
+      max-width: 860px; 
+    }
+
+    @media (max-width: 1000px) {
+      .hero-title { font-size: 40px; line-height: 48px; }
+    }
+
+    /* --- SERVICIOS --- */
+    .service-wrap { 
+      display: flex; 
+      align-items: center; 
+      justify-content: space-between; 
+      gap: 48px; 
+    }
+    .service-wrap.reverse { flex-direction: row-reverse; }
+    
+    .service-info { 
+      max-width: 727px; 
+      flex: 1; 
+    }
+    .service-title { 
+      font-family: var(--font-fraunces); 
+      font-weight: 600; 
+      font-size: 20px; 
+      line-height: 30px;
+      color: var(--figma-muted); 
+      margin: 0 0 8px 0; 
+    }
+    .service-tagline { 
+      font-family: var(--font-fraunces); 
+      font-style: italic; 
+      font-weight: 400;
+      font-size: 18px; 
+      line-height: 26px;
+      color: var(--figma-muted); 
+      margin: 0 0 24px 0; 
+    }
+    .service-body { 
+      font-family: var(--font-inter);
+      font-size: 18px; 
+      line-height: 30px; 
+      color: var(--figma-soft); 
+      margin: 0 0 24px 0; 
+    }
+
+    .faq { margin-bottom: 24px; }
+    .faq:last-child { margin-bottom: 0; }
+    
+    .faq-q { 
+      font-family: var(--font-inter);
+      font-weight: 600; 
+      font-size: 18px; 
+      line-height: 30px;
+      color: var(--figma-soft); 
+      margin: 0; 
+    }
+    .faq-a { 
+      font-family: var(--font-inter);
+      font-weight: 400;
+      font-size: 18px; 
+      line-height: 30px; 
+      color: var(--figma-soft); 
+      margin: 0; 
+    }
+    
+    .service-image { 
+      width: 448px; 
+      height: 286px; 
+      border-radius: 16px; 
+      overflow: hidden; 
+      background: var(--figma-bg); 
+      flex-shrink: 0; 
+    }
+    .service-image img { width: 100%; height: 100%; object-fit: cover; }
+
+    @media (max-width: 1000px) {
+      .service-wrap, .service-wrap.reverse { flex-direction: column; align-items: flex-start; }
+      .service-image { width: 100%; height: auto; aspect-ratio: 448/286; }
+    }
+  
+    .service-ph { width: 100%; height: 100%; min-height: 286px; border-radius: inherit; }
+</style>
+</Layout>

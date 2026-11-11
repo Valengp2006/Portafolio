@@ -1,21 +1,36 @@
 ---
 import "../styles/global.css";
+import Nav from "../components/Nav.astro";
+import Footer from "../components/Footer.astro";
+import { asset, htmlLang, other, type Lang, type PageKey } from "../i18n";
+import { ui } from "../i18n/copy";
 
 interface Props {
+  lang: Lang;
   title: string;
-  description?: string;
+  description: string;
+  active?: PageKey | "";
+  /** Ruta de esta misma página en el otro idioma (para el selector y hreflang). */
+  altHref: string;
+  /** Ruta de esta página en su propio idioma (canonical). */
+  selfHref: string;
 }
-
-const { title, description = "Portafolio de Valentina — diseño de experiencias interactivas" } = Astro.props;
+const { lang, title, description, active = "", altHref, selfHref } = Astro.props;
+const origin = Astro.site ? Astro.site.origin : "";
 ---
-
 <!doctype html>
-<html lang="es">
+<html lang={htmlLang[lang]}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:locale" content={lang === "es" ? "es_CO" : "en_US"} />
+    <link rel="canonical" href={origin + selfHref} />
+    <link rel="alternate" hreflang={lang} href={origin + selfHref} />
+    <link rel="alternate" hreflang={other(lang)} href={origin + altHref} />
+    <link rel="icon" type="image/svg+xml" href={asset("favicon.svg")} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -25,7 +40,12 @@ const { title, description = "Portafolio de Valentina — diseño de experiencia
     <title>{title}</title>
   </head>
   <body>
-    <slot />
+    <a class="skip" href="#main">{ui.nav.skip[lang]}</a>
+    <Nav lang={lang} active={active} altHref={altHref} />
+    <div id="main">
+      <slot />
+    </div>
+    <Footer lang={lang} />
     <script>
       const items = document.querySelectorAll(".reveal");
       const io = new IntersectionObserver(
@@ -41,5 +61,9 @@ const { title, description = "Portafolio de Valentina — diseño de experiencia
       );
       items.forEach((el) => io.observe(el));
     </script>
+    <style is:global>
+      .skip { position: absolute; left: -9999px; top: 8px; background: var(--ink); color: var(--paper); padding: 8px 12px; border-radius: 8px; z-index: 50; }
+      .skip:focus { left: 8px; }
+    </style>
   </body>
 </html>

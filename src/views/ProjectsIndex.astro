@@ -1,0 +1,134 @@
+---
+import Layout from "../layouts/Layout.astro";
+import ProjectCard from "../components/ProjectCard.astro";
+import { byTier } from "../data/projects";
+import { pagePath, other, type Lang } from "../i18n";
+import { ui, meta } from "../i18n/copy";
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = ui.projectsPage;
+const tiers = [byTier(1), byTier(2), byTier(3)];
+---
+<Layout
+  lang={lang}
+  title={`${t.title[lang]} — Valentina Garzón`}
+  description={t.intro[lang]}
+  active="projects"
+  selfHref={pagePath(lang, "projects")}
+  altHref={pagePath(other(lang), "projects")}
+>
+  <main>
+    <section class="hero">
+      <div class="wrap hero-wrap">
+        <p class="eyebrow reveal">{t.eyebrow[lang]}</p>
+        <h1 class="hero-title reveal">{t.title[lang]}</h1>
+        <p class="hero-body reveal">{t.intro[lang]}</p>
+      </div>
+    </section>
+
+    <section class="grid-section">
+      <div class="wrap tier-wrap">
+        <h2 class="tier-title">{t.tier1[lang]}</h2>
+        <div class="grid-wrap" style="padding:0">
+          {tiers[0].map((p) => <div class="reveal"><ProjectCard project={p} layout="vertical" lang={lang} /></div>)}
+        </div>
+      </div>
+      {tiers[1].length > 0 && (
+        <div class="wrap tier-wrap">
+          <h2 class="tier-title">{t.tier2[lang]}</h2>
+          <div class="grid-wrap" style="padding:0">
+            {tiers[1].map((p) => <div class="reveal"><ProjectCard project={p} layout="vertical" lang={lang} /></div>)}
+          </div>
+        </div>
+      )}
+      {tiers[2].length > 0 && (
+        <div class="wrap tier-wrap">
+          <h2 class="tier-title">{t.tier3[lang]}</h2>
+          <p class="tier-intro">{t.tier3Intro[lang]}</p>
+          <div class="stack-list">
+            {tiers[2].map((p) => <div class="reveal"><ProjectCard project={p} layout="compact" lang={lang} /></div>)}
+          </div>
+        </div>
+      )}
+    </section>
+  </main>
+
+  <style>
+    /* VARIABLES EXACTAS DE FIGMA */
+    :root {
+      --figma-dark: #1F1B16;
+      --figma-muted: #8A837A;
+      --figma-soft: #57504A;
+      --font-fraunces: 'Fraunces', serif;
+      --font-inter: 'Inter', sans-serif;
+    }
+
+    /* CONTENEDOR GLOBAL RESPONSIVO */
+    .wrap {
+      max-width: 1513px;
+      margin: 0 auto;
+      padding: 45px 155px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    @media (max-width: 1000px) {
+      .wrap { padding: 40px 20px; }
+    }
+
+    .eyebrow {
+      font-family: var(--font-fraunces);
+      font-weight: 600;
+      font-size: 18px;
+      line-height: 26px;
+      color: var(--figma-muted);
+      margin: 0 0 16px 0;
+    }
+
+    /* --- HERO --- */
+    .hero-wrap { 
+      display: flex; 
+      flex-direction: column; 
+      align-items: flex-start;
+      padding-bottom: 24px; /* Ajuste para equilibrar el espacio con el grid */
+    }
+    .hero-title { 
+      font-family: var(--font-fraunces); 
+      font-weight: 400; 
+      font-size: 72px; 
+      line-height: 72px; 
+      color: var(--figma-dark);
+      margin: 0 0 42px 0; 
+    }
+    .hero-body { 
+      font-family: var(--font-inter);
+      font-size: 18px; 
+      line-height: 30px; 
+      color: var(--figma-soft); 
+      max-width: 860px; 
+      margin: 0; 
+    }
+    
+    @media (max-width: 1000px) {
+      .hero-title { font-size: 44px; line-height: 50px; margin: 0 0 24px 0; }
+    }
+
+    /* --- GRID DE PROYECTOS --- */
+    .grid-wrap { 
+      display: grid; 
+      grid-template-columns: repeat(2, 1fr); 
+      gap: 60px 40px; 
+      padding-top: 0; 
+      padding-bottom: 96px;
+    }
+    
+    @media (max-width: 1000px) {
+      .grid-wrap { grid-template-columns: 1fr; gap: 40px; padding-top: 24px; }
+    }
+  
+    .tier-title { font-family: var(--font-fraunces); font-weight: 600; font-size: 24px; color: var(--figma-muted); margin: 0 0 8px; }
+    .tier-intro { font-family: var(--font-inter); font-size: 16px; color: var(--figma-soft); margin: 0 0 24px; }
+    .tier-wrap { padding-top: 24px; padding-bottom: 24px; }
+    .stack-list { display: flex; flex-direction: column; gap: 12px; }
+</style>
+</Layout>

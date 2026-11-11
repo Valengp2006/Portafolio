@@ -1,0 +1,286 @@
+---
+import Layout from "../layouts/Layout.astro";
+import ProjectCard from "../components/ProjectCard.astro";
+import { asset, pagePath, other, type Lang } from "../i18n";
+import { ui } from "../i18n/copy";
+import { nextOf, type Project } from "../data/projects";
+
+interface Props { lang: Lang; project: Project }
+const { lang, project: p } = Astro.props;
+const next = nextOf(p.slug);
+const t = ui.project;
+---
+
+<Layout
+  lang={lang}
+  title={`${p.title} — Valentina Garzón`}
+  description={p.result[lang]}
+  active="projects"
+  selfHref={pagePath(lang, "projects", p.slug)}
+  altHref={pagePath(other(lang), "projects", p.slug)}
+>
+  <main>
+    <section class="hero">
+      {p.cover && <img src={asset(p.cover)} alt={p.coverAlt[lang]} class="hero-img" />}
+      <div class="hero-shade"></div>
+      <div class="hero-content">
+        <a href={pagePath(lang, "projects")} class="breadcrumb">{ui.common.back[lang]}</a>
+        <div class="hero-text">
+          <span class="tag-pill hero-tag" style={`background:${p.tint}; color:${p.textColor}; border:none;`}>{p.tag[lang]}</span>
+          <h1 class="hero-title">{p.title}</h1>
+        </div>
+      </div>
+    </section>
+
+    <section class="info-row wrap reveal">
+      <div class="info-item">
+        <p class="info-label">{t.role[lang]}</p>
+        <p class="info-body">{p.role[lang]}</p>
+      </div>
+      <div class="info-item info-item-sm">
+        <p class="info-label">{t.duration[lang]}</p>
+        <p class="info-body">{p.duration[lang]}</p>
+      </div>
+      {p.team && (
+        <div class="info-item info-item-sm">
+          <p class="info-label">{t.team[lang]}</p>
+          <p class="info-body">{p.team[lang]}</p>
+        </div>
+      )}
+      <div class="info-item">
+        <p class="info-label">{t.tools[lang]}</p>
+        <p class="info-body">{p.tools}</p>
+      </div>
+      <div class="info-item info-item-lg">
+        <p class="info-label">{t.result[lang]}</p>
+        <p class="info-body">{p.result[lang]}</p>
+      </div>
+    </section>
+
+    {p.question && (
+      <section class="question" style="background:var(--surface-tag)">
+        <div class="wrap question-inner reveal">
+          <p class="section-label question-label">{t.question[lang]}</p>
+          <blockquote class="question-quote" style={`border-color:${p.color}`}>{p.question[lang]}</blockquote>
+        </div>
+      </section>
+    )}
+
+    {p.sections.map((s) => (
+      <section class="labeled-row wrap reveal">
+        <h2 class="section-label labeled-row-label">{s.label[lang]}</h2>
+        <p class="labeled-row-body">{s.body[lang]}</p>
+      </section>
+    ))}
+
+    {p.metrics && (
+      <section class="wrap reveal metrics">
+        <p class="section-label">{t.metrics[lang]}</p>
+        <div class="metrics-grid">
+          {p.metrics.map((m) => (
+            <div>
+              <p class="metric-v">{m.value[lang]}</p>
+              <p class="metric-l">{m.label[lang]}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+    )}
+
+    {p.decisions && p.decisions.length > 0 && (
+      <section class="wrap reveal iteraciones">
+        <p class="section-label">{t.decisions[lang]}</p>
+        <div class="iteraciones-grid">
+          {p.decisions.map((d) => (
+            <div class="iteracion-card">
+              <p class="section-label">{t.challenge[lang]}</p>
+              <p class="iteracion-body">{d.challenge[lang]}</p>
+              <p class="section-label" style="margin-top:24px">{t.solution[lang]}</p>
+              <p class="iteracion-body">{d.solution[lang]}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+    )}
+
+    {(p.system || p.stack.length > 0) && (
+      <section class="wrap reveal implementacion">
+        <div class="accordions" style="max-width:none; flex:1">
+          {p.system && (
+            <details class="accordion" open>
+              <summary class="section-label">{t.system[lang]}</summary>
+              <div class="steps">
+                {p.system.map((s, i) => (
+                  <div class="step">
+                    <span class="step-n">{i + 1}</span>
+                    <div>
+                      <p class="step-title">{s.title[lang]}</p>
+                      <p class="step-body">{s.body[lang]}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </details>
+          )}
+          {p.stack.length > 0 && (
+            <details class="accordion" open>
+              <summary class="section-label">{t.stack[lang]}</summary>
+              <div class="stack-tags">
+                {p.stack.map((s) => <span class="stack-tag">{s}</span>)}
+              </div>
+            </details>
+          )}
+        </div>
+      </section>
+    )}
+
+    {p.awards && (
+      <section class="wrap reveal awards-sec">
+        <p class="section-label">{t.awards[lang]}</p>
+        <div class="awards-grid">
+          {p.awards.map((a) => (
+            <div class="award-card">
+              {a.image && (
+                <a href={asset(a.image)} target="_blank" rel="noopener" class="award-img-link">
+                  <img src={asset(a.image)} alt={`${lang === "es" ? "Certificado" : "Certificate"}: ${a.title[lang]}`} class="award-img" loading="lazy" />
+                </a>
+              )}
+              <p class="award-title">★ {a.title[lang]}</p>
+              <p class="award-detail">{a.detail[lang]}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+    )}
+
+    {p.gallery && p.gallery.length > 0 && (
+      <section class="wrap reveal gallery-sec">
+        <p class="section-label">{t.gallery[lang]}</p>
+        <div class="gallery-grid">
+          {p.gallery.map((g) => (
+            <figure>
+              <img src={asset(g.src)} alt={g.alt[lang]} loading="lazy" />
+              <figcaption>{g.alt[lang]}</figcaption>
+            </figure>
+          ))}
+        </div>
+      </section>
+    )}
+
+    <section class="wrap reveal resultado">
+      <p class="section-label">{t.outcome[lang]}</p>
+      <p class="resultado-body">{p.outcome[lang]}</p>
+    </section>
+
+    {p.links && p.links.length > 0 && (
+      <section class="links-sec reveal">
+        {p.links.map((l) => (
+          <a href={l.url} target="_blank" rel="noopener" class="link-underline">{l.label[lang]} ↗</a>
+        ))}
+      </section>
+    )}
+
+    <section class="wrap reveal next-project">
+      <p class="section-label">{t.next[lang]}</p>
+      <ProjectCard project={next} layout="horizontal" lang={lang} />
+    </section>
+  </main>
+
+  <style define:vars={{ accent: p.color }}>
+    /* CLASE WRAP PARA CENTRAR Y LIMITAR EL ANCHO DE LA PÁGINA */
+    .wrap {
+      max-width: 1513px;
+      margin: 0 auto;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .hero { position: relative; height: 526px; overflow: hidden; }
+    .hero-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+    .hero-shade { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(87,80,74,0) 0%, rgba(0,0,0,0.75) 90%); }
+    .hero-content { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: space-between; padding: 32px 54px; }
+    .breadcrumb { align-self: flex-start; background: rgba(250,247,242,0.85); padding: 8px 12px; border-radius: 10px; font-size: 14px; color: var(--ink-soft); text-decoration: none; }
+    .hero-text { display: flex; flex-direction: column; gap: 16px; align-items: flex-start; }
+    .hero-tag { font-size: 14px; padding: 5px 10px; }
+    .hero-title { font-family: var(--font-display); font-weight: 400; font-size: 72px; line-height: 1; color: var(--paper); margin: 0; letter-spacing: -1.44px; font-variation-settings: "SOFT" 0, "WONK" 1; }
+    @media (max-width: 700px) { .hero-title { font-size: 40px; } .hero { height: 360px; } }
+
+    .info-row { display: flex; gap: 40px; padding: 45px 98px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); flex-wrap: wrap; }
+    .info-item { flex: 1; min-width: 160px; }
+    .info-item-lg { flex: 1.6; }
+    .info-label { font-family: var(--font-display); font-weight: 600; font-size: 20px; color: var(--ink-muted); margin: 0 0 8px; font-variation-settings: "SOFT" 0, "WONK" 1; }
+    .info-body { font-size: 16px; color: var(--ink); margin: 0; line-height: 1.75; }
+
+    .labeled-row { display: flex; gap: 60px; padding: 45px 155px; align-items: flex-start; }
+    .labeled-row-label { min-width: 230px; flex-shrink: 0; }
+    .labeled-row-body { font-size: 18px; color: var(--ink-soft); line-height: 1.65; margin: 0; max-width: 900px; }
+    @media (max-width: 900px) { .labeled-row { flex-direction: column; gap: 12px; padding: 32px 20px; } }
+
+    .question-inner { padding: 45px 155px; display: flex; gap: 60px; }
+    .question-label { min-width: 230px; flex-shrink: 0; }
+    .question-quote { border-left: 2px solid var(--accent); padding-left: 26px; margin: 0; font-size: 18px; color: var(--ink); line-height: 1.65; font-style: normal; }
+    @media (max-width: 900px) { .question-inner { flex-direction: column; gap: 16px; padding: 32px 20px; } }
+
+    .iteraciones { padding: 45px 155px; }
+    .iteraciones-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 24px; }
+    .iteracion-card { background: var(--surface-warm); border: 1px solid var(--line); border-radius: 16px; padding: 29px 41px; }
+    .iteracion-body { font-size: 16px; color: var(--ink); line-height: 1.75; margin: 8px 0 0; }
+    @media (max-width: 900px) { .iteraciones { padding: 32px 20px; } .iteraciones-grid { grid-template-columns: 1fr; gap: 20px; } }
+
+    .implementacion { display: flex; gap: 60px; padding: 45px 155px; align-items: flex-start; }
+    .implementacion-text { flex: 1; max-width: 595px; }
+    .accordions { flex: 1; max-width: 400px; }
+    .accordion { border-bottom: 1px solid var(--line); padding: 16px 0; }
+    .accordion summary { cursor: pointer; list-style: none; margin-bottom: 12px; }
+    .accordion summary::-webkit-details-marker { display: none; }
+    .steps { display: flex; flex-direction: column; gap: 8px; }
+    .step { display: flex; gap: 24px; padding: 8px 0; }
+    .step-n { width: 32px; height: 32px; background: var(--surface-tag); border-radius: 999px; display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-weight: 600; font-size: 14px; flex-shrink: 0; }
+    .step-title { font-family: var(--font-display); font-weight: 600; font-size: 18px; margin: 0 0 4px; font-variation-settings: "SOFT" 0, "WONK" 1; }
+    .step-body { font-size: 16px; color: var(--ink-soft); line-height: 1.75; margin: 0; }
+    .stack-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+    .stack-tag { background: var(--paper); border: 1px solid var(--line); border-radius: 999px; padding: 5px 13px; font-size: 12px; color: var(--ink-soft); }
+    @media (max-width: 900px) { .implementacion { flex-direction: column; padding: 32px 20px; gap: 32px; } .accordions { max-width: none; } }
+
+    .resultado { padding: 45px 155px; display: flex; flex-direction: column; gap: 24px; }
+    .resultado-img { height: 536px; border-radius: 16px; background: var(--line); }
+    /* NUEVO ESTILO: El texto del resultado ahora no tiene límite de 900px */
+    .resultado-body { font-size: 18px; color: var(--ink-soft); line-height: 1.65; margin: 0; }
+    @media (max-width: 900px) { .resultado { padding: 32px 20px; } .resultado-img { height: 260px; } }
+
+    .next-project { padding: 45px 155px; display: flex; flex-direction: column; gap: 24px; }
+    @media (max-width: 900px) { .next-project { padding: 32px 20px; } }
+  
+    .hero { background: var(--accent); }
+    .metrics { padding: 45px 155px; }
+    .metrics-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-top: 20px; }
+    .metric-v { font-family: var(--font-display); font-weight: 400; font-size: 48px; line-height: 1; color: var(--accent); margin: 0 0 8px; }
+    .metric-l { font-size: 15px; line-height: 22px; color: var(--ink-soft); margin: 0; }
+    @media (max-width: 900px) { .metrics { padding: 32px 20px; } .metrics-grid { grid-template-columns: 1fr 1fr; } }
+
+    .awards-sec { padding: 45px 155px; }
+    .awards-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 20px; }
+    .award-card { background: var(--surface-warm); border: 1px solid var(--line); border-left: 4px solid var(--accent); border-radius: 12px; padding: 20px 24px; }
+    .award-img-link { display: block; margin-bottom: 14px; }
+    .award-img { width: 100%; height: auto; border-radius: 8px; border: 1px solid var(--line); }
+    .award-title { font-family: var(--font-display); font-weight: 600; font-size: 20px; margin: 0 0 6px; color: var(--ink); }
+    .award-detail { font-size: 14px; color: var(--ink-soft); margin: 0; }
+    @media (max-width: 900px) { .awards-sec { padding: 32px 20px; } .awards-grid { grid-template-columns: 1fr; } }
+
+    .gallery-sec { padding: 45px 155px; }
+    .gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 20px; }
+    .gallery-grid figure { margin: 0; }
+    .gallery-grid img { width: 100%; aspect-ratio: 16/10; object-fit: cover; border-radius: 12px; background: var(--line); }
+    .gallery-grid figcaption { font-size: 13px; color: var(--ink-muted); margin-top: 8px; line-height: 18px; }
+    @media (max-width: 900px) { .gallery-sec { padding: 32px 20px; } .gallery-grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 560px) { .gallery-grid { grid-template-columns: 1fr; } }
+
+    .links-sec { padding: 24px 155px 0; display: flex; flex-wrap: wrap; gap: 24px; align-items: center; }
+    @media (max-width: 900px) { .links-sec { padding: 16px 20px 0; } }
+    .resultado { padding-top: 24px; }
+    .info-row { padding: 45px 155px; }
+    @media (max-width: 900px) { .info-row { padding: 32px 20px; gap: 24px; } }
+    .implementacion { padding: 45px 155px; }
+    .implementacion-text { max-width: 595px; }
+</style>
+</Layout>

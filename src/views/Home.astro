@@ -1,0 +1,368 @@
+---
+import Layout from "../layouts/Layout.astro";
+import ProjectCard from "../components/ProjectCard.astro";
+import { byTier } from "../data/projects";
+import { site } from "../data/site";
+import { asset, pagePath, other, type Lang } from "../i18n";
+import { home, meta, ui } from "../i18n/copy";
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const [first, ...pair] = byTier(1);
+const more = byTier(2).slice(0, 2);
+---
+<Layout
+  lang={lang}
+  title={home.title[lang]}
+  description={meta.description[lang]}
+  active=""
+  selfHref={pagePath(lang, "home")}
+  altHref={pagePath(other(lang), "home")}
+>
+  <main>
+    <section class="hero">
+      <div class="wrap hero-wrap">
+        <div class="hero-info">
+          <p class="eyebrow reveal">{home.eyebrow[lang]}</p>
+          <h1 class="hero-title reveal">{home.h1[lang]}</h1>
+          <div class="hero-personal reveal">
+            <p class="hero-badge">{home.badge[lang]}</p>
+            <p class="hero-name">{home.name}</p>
+            <p class="hero-role">{home.role[lang]}</p>
+            <p class="hero-bio">{home.bio[lang]}</p>
+            <div class="hero-links">
+              <a href={pagePath(lang, "projects")} class="cta-primary">{home.ctaProjects[lang]}</a>
+              <a href={pagePath(lang, "contact")} class="link-underline">{home.ctaContact[lang]} ↗</a>
+              <a href={pagePath(lang, "about")} class="link-underline">{lang === "es" ? "Sobre mí" : "About me"} ↗</a>
+            </div>
+          </div>
+        </div>
+        <div class="hero-photo reveal">
+          <img src={asset("images/valentina.jpg")} alt={home.portraitAlt[lang]} />
+        </div>
+      </div>
+    </section>
+
+    <section class="featured">
+      <div class="wrap">
+        <div class="featured-head">
+          <div class="featured-head-text">
+            <p class="eyebrow reveal">{home.featuredEyebrow[lang]}</p>
+            <h2 class="featured-heading reveal">{home.featuredTitle[lang]}</h2>
+          </div>
+          <a href={pagePath(lang, "projects")} class="link-underline featured-all">{ui.common.viewAll[lang]} ↗</a>
+        </div>
+        <div class="featured-cards">
+          <div class="reveal"><ProjectCard project={first} layout="hero" lang={lang} /></div>
+          <div class="featured-pair">
+            {pair.map((p) => <div class="reveal"><ProjectCard project={p} layout="vertical" lang={lang} /></div>)}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="awards reveal">
+      <div class="wrap">
+        <p class="eyebrow">{home.awardsEyebrow[lang]}</p>
+        <h2 class="awards-title">{home.awardsTitle[lang]}</h2>
+        <ul class="awards-list">
+          {home.awardsList[lang].map((a) => <li>{a}</li>)}
+        </ul>
+        <a href={pagePath(lang, "projects", "dissonance")}>{home.awardsLink[lang]} ↗</a>
+      </div>
+    </section>
+
+    <section class="way-of-designing section-bg">
+      <div class="wrap">
+        <h2 class="way-title">{home.wayTitle[lang]}</h2>
+        <p class="way-body">{home.wayIntro[lang]}</p>
+        <div class="steps-grid">
+          {home.steps.map((s) => (
+            <div class="reveal">
+              <p class="step-n">{s.n}</p>
+              <h3 class="step-t">{s.title[lang]}</h3>
+              <p class="step-b">{s.body[lang]}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    {more.length > 0 && (
+      <section class="featured">
+        <div class="wrap">
+          <div class="more-grid">
+            {more.map((p) => <div class="reveal"><ProjectCard project={p} layout="vertical" lang={lang} /></div>)}
+          </div>
+        </div>
+      </section>
+    )}
+
+    <section class="areas section-bg">
+      <div class="wrap">
+        <p class="eyebrow reveal">{home.areasEyebrow[lang]}</p>
+        <div class="areas-grid reveal">
+          {home.areas.map((a) => (
+            <div class="area">
+              <p class="area-n">{a.n}</p>
+              <h3 class="area-title">{a.title[lang]}</h3>
+              <p class="area-body">{a.body[lang]}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="contact">
+      <div class="wrap contact-wrap">
+        <h2 class="contact-title reveal">{home.contactTitle[lang]}</h2>
+        <p class="contact-body reveal">{home.contactBody[lang]}</p>
+        <a href={`mailto:${site.email}`} class="link-underline contact-email reveal">{site.email} ↗</a>
+      </div>
+    </section>
+  </main>
+
+  <style>
+    /* ==========================================================
+       VARIABLES EXACTAS DE FIGMA (Tipografía y colores base)
+       ========================================================== */
+    :root {
+      --figma-dark: #1F1B16;
+      --figma-light: #FAF7F2;
+      --figma-bg: #E4DFD6;
+      --figma-muted: #8A837A;
+      --figma-soft: #57504A;
+      --font-fraunces: 'Fraunces', serif;
+      --font-inter: 'Inter', sans-serif;
+    }
+
+    /* 1. CONTENEDOR GLOBAL (Responsivo con márgenes de Figma) */
+    .wrap {
+      max-width: 1513px; /* El ancho total que tenía tu exportación */
+      margin: 0 auto;
+      padding: 45px 155px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    @media (max-width: 1000px) {
+      .wrap { padding: 40px 20px; }
+    }
+
+    /* 2. ESTILOS DE SECCIÓN */
+    .section-bg { background: var(--figma-bg); }
+    
+    .eyebrow {
+      font-family: var(--font-fraunces);
+      font-weight: 600;
+      font-size: 18px;
+      line-height: 26px;
+      color: var(--figma-muted);
+      margin: 0 0 16px 0;
+    }
+
+    /* --- HERO --- */
+    .hero-wrap { 
+      display: flex; 
+      align-items: flex-end; 
+      justify-content: space-between; 
+      gap: 40px; 
+    }
+    .hero-info { max-width: 860px; }
+    .hero-title { 
+      font-family: var(--font-fraunces); 
+      font-weight: 400; 
+      font-size: 72px; 
+      line-height: 72px; 
+      color: var(--figma-dark); 
+      margin: 0 0 42px 0; 
+    }
+    .hero-personal { display: flex; flex-direction: column; gap: 6px; }
+    .hero-name { 
+      font-family: var(--font-fraunces); 
+      font-weight: 600; 
+      font-size: 24px; 
+      line-height: 32px;
+      color: var(--figma-dark);
+      margin: 0; 
+    }
+    .hero-role { 
+      font-family: var(--font-inter);
+      font-size: 16px; 
+      line-height: 28px;
+      color: var(--figma-muted); 
+      margin: 0; 
+    }
+    .hero-bio { 
+      font-family: var(--font-inter);
+      font-size: 18px; 
+      line-height: 30px;
+      color: var(--figma-soft); 
+      margin: 0 0 10px 0; 
+      max-width: 100%; 
+    }
+    .hero-links { display: flex; gap: 24px; }
+    .link-underline {
+      font-family: var(--font-inter);
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--figma-dark);
+      text-decoration: underline;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .hero-photo { 
+      width: 204px; 
+      height: 254px; 
+      border-radius: 16px; 
+      overflow: hidden; 
+      background: var(--figma-bg); 
+      flex-shrink: 0; 
+    }
+    .hero-photo img { width: 100%; height: 100%; object-fit: cover; }
+    
+    @media (max-width: 1000px) {
+      .hero-wrap { flex-direction: column; align-items: flex-start; }
+      .hero-title { font-size: 44px; line-height: 50px; }
+      .hero-photo { order: -1; margin-bottom: 24px; }
+    }
+
+    /* --- QUOTE --- */
+    .quote { background: var(--figma-dark); }
+    .quote-wrap { padding-top: 77px; padding-bottom: 77px; }
+    .quote-text { 
+      font-family: var(--font-fraunces); 
+      font-weight: 400; 
+      font-size: 42px; 
+      line-height: 48px; 
+      color: var(--figma-light); 
+      margin: 0 0 32px 0; 
+    }
+    .quote-footer { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+    .quote-source { 
+      font-family: var(--font-inter);
+      font-size: 12px; 
+      line-height: 18px;
+      color: var(--figma-muted); 
+      margin: 0; 
+    }
+    .quote-link {
+      font-family: var(--font-inter);
+      font-size: 16px;
+      font-weight: 500;
+      color: #B5651D; /* Color exacto de Pasos de Tradición en Figma */
+      text-decoration: underline;
+    }
+
+    /* --- WAY OF DESIGNING --- */
+    .way-title { 
+      font-family: var(--font-fraunces); 
+      font-weight: 400; 
+      font-size: 32px; 
+      line-height: 40px;
+      color: var(--figma-dark);
+      margin: 0 0 21px 0; 
+    }
+    .way-body { 
+      font-family: var(--font-inter);
+      font-size: 18px; 
+      line-height: 30px;
+      color: var(--figma-soft); 
+      margin: 0 0 14px 0; 
+    }
+    .way-body em { 
+      font-style: italic; 
+      font-weight: 600; 
+    }
+
+    /* --- FEATURED --- */
+    .featured-head { 
+      display: flex; 
+      align-items: flex-end; 
+      justify-content: space-between; 
+      gap: 24px; 
+      margin-bottom: 32px; 
+    }
+    .featured-head-text { display: flex; flex-direction: column; gap: 12px; }
+    .featured-heading { 
+      font-family: var(--font-fraunces); 
+      font-weight: 400; 
+      font-size: 32px; 
+      line-height: 40px;
+      color: var(--figma-dark);
+      margin: 0; 
+    }
+    .featured-cards { display: flex; flex-direction: column; gap: 31px; }
+    .featured-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    
+    @media (max-width: 900px) {
+      .featured-pair { grid-template-columns: 1fr; }
+      .featured-head { flex-direction: column; align-items: flex-start; }
+    }
+
+    /* --- AREAS --- */
+    .areas-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; margin-top: 38px; }
+    .area-n { 
+      font-family: var(--font-inter);
+      font-size: 12px; 
+      line-height: 18px;
+      color: var(--figma-muted); 
+      margin: 0 0 16px 0; 
+    }
+    .area-title { 
+      font-family: var(--font-fraunces); 
+      font-weight: 600; 
+      font-size: 24px; 
+      line-height: 32px;
+      color: var(--figma-dark);
+      margin: 0 0 16px 0; 
+    }
+    .area-body { 
+      font-family: var(--font-inter);
+      font-size: 16px; 
+      line-height: 28px;
+      color: var(--figma-soft); 
+      margin: 0; 
+    }
+    
+    @media (max-width: 900px) {
+      .areas-grid { grid-template-columns: 1fr; gap: 28px; }
+    }
+
+    /* --- CONTACT --- */
+    .contact-wrap { padding-bottom: 96px; display: flex; flex-direction: column; gap: 20px; }
+    .contact-title { 
+      font-family: var(--font-fraunces); 
+      font-weight: 400; 
+      font-size: 42px; 
+      line-height: 48px;
+      color: var(--figma-dark);
+      margin: 0; 
+    }
+    .contact-body { 
+      font-family: var(--font-inter);
+      font-size: 18px; 
+      line-height: 30px;
+      color: var(--figma-soft); 
+      margin: 0; 
+    }
+
+    .hero-badge { display: inline-flex; align-items: center; gap: 8px; margin: 0 0 20px; padding: 6px 14px; border-radius: 999px; background: #E3F3EC; color: #1E5A44; font-size: 14px; font-weight: 600; width: fit-content; }
+    .hero-badge::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: #2E9B6F; }
+    .hero-links { flex-wrap: wrap; }
+    .cta-primary { display: inline-block; background: var(--ink); color: var(--paper); padding: 10px 20px; border-radius: 999px; font-weight: 500; font-size: 15px; }
+    .awards { background: #1F2B52; color: #F4F1EA; padding: 56px 0; }
+    .awards .eyebrow { color: #B9C3E6; margin: 0 0 12px; }
+    .awards-title { font-family: var(--font-display); font-weight: 400; font-size: 36px; line-height: 44px; margin: 0 0 24px; max-width: 760px; }
+    .awards-list { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 10px; margin: 0 0 24px; }
+    .awards-list li { margin: 0; padding: 8px 16px; border: 1px solid rgba(244,241,234,0.35); border-radius: 999px; font-size: 14px; }
+    .awards a { color: #F3D98B; font-weight: 500; text-decoration: underline; text-underline-offset: 3px; }
+    .steps-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px; margin-top: 36px; }
+    .step-n { font-family: var(--font-display); font-weight: 600; font-size: 14px; color: var(--ink-muted); margin: 0 0 8px; }
+    .step-t { font-family: var(--font-display); font-weight: 600; font-size: 22px; margin: 0 0 8px; }
+    .step-b { font-size: 15px; line-height: 24px; color: var(--ink-soft); margin: 0; }
+    .more-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 31px; }
+    @media (max-width: 900px) { .steps-grid { grid-template-columns: 1fr 1fr; } .more-grid { grid-template-columns: 1fr; } .awards-title { font-size: 28px; line-height: 36px; } }
+    @media (max-width: 560px) { .steps-grid { grid-template-columns: 1fr; } }
+  </style>
+</Layout>

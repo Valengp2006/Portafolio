@@ -1,0 +1,203 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { asset, pagePath, other, type Lang } from "../i18n";
+import { about } from "../i18n/copy";
+import { projects } from "../data/projects";
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const awards = projects.find((p) => p.slug === "dissonance")?.awards ?? [];
+---
+<Layout
+  lang={lang}
+  title={about.title[lang]}
+  description={about.body[lang][0]}
+  active="about"
+  selfHref={pagePath(lang, "about")}
+  altHref={pagePath(other(lang), "about")}
+>
+  <main>
+    <section class="hero">
+      <div class="wrap hero-wrap">
+        <div class="hero-info">
+          <p class="eyebrow reveal">{about.eyebrow[lang]}</p>
+          <h1 class="hero-title reveal">{about.h1[lang]}</h1>
+          <div class="hero-body reveal">
+            {about.body[lang].map((para) => <p>{para}</p>)}
+            <a href={pagePath(lang, "contact")} class="link-underline">{about.contactLink[lang]} ↗</a>
+          </div>
+        </div>
+        <div class="hero-photo reveal">
+          <img src={asset("images/valentina.jpg")} alt={about.portraitAlt[lang]} />
+        </div>
+      </div>
+    </section>
+
+    <section class="skills">
+      <div class="wrap skills-wrap">
+        <p class="eyebrow reveal">{about.skillsEyebrow[lang]}</p>
+        <div class="skills-grid reveal">
+          <div class="skill-col">
+            <h3 class="skill-title">{about.toolsTitle[lang]}</h3>
+            {about.tools.map((row) => (
+              <div class="skill-row">{row.map((t) => <span class="tag-pill">{t}</span>)}</div>
+            ))}
+          </div>
+          <div class="skill-col">
+            <h3 class="skill-title">{about.skillsTitle[lang]}</h3>
+            {about.skills[lang].map((row) => (
+              <div class="skill-row">{row.map((t) => <span class="tag-pill">{t}</span>)}</div>
+            ))}
+          </div>
+          <div class="skill-col skill-col-narrow">
+            <h3 class="skill-title">{about.langsTitle[lang]}</h3>
+            {about.languages[lang].map((t) => (
+              <div class="skill-row"><span class="tag-pill">{t}</span></div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="skills">
+      <div class="wrap awards-block reveal">
+        <p class="eyebrow">{about.awardsEyebrow[lang]}</p>
+        <h2 class="skill-title">{about.awardsTitle[lang]}</h2>
+        <p class="award-note">{about.awardsNote[lang]}</p>
+        <ul class="award-list">
+          {awards.map((a) => <li>★ {a.title[lang]}</li>)}
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <style>
+    /* VARIABLES EXACTAS DE FIGMA */
+    :root {
+      --figma-dark: #1F1B16;
+      --figma-bg: #E4DFD6;
+      --figma-neutral-100: #F5F1EA;
+      --figma-muted: #8A837A;
+      --figma-soft: #57504A;
+      --font-fraunces: 'Fraunces', serif;
+      --font-inter: 'Inter', sans-serif;
+    }
+
+    /* CONTENEDOR GLOBAL RESPONSIVO */
+    .wrap {
+      max-width: 1513px;
+      margin: 0 auto;
+      padding: 45px 155px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    @media (max-width: 1000px) {
+      .wrap { padding: 40px 20px; }
+    }
+
+    .eyebrow {
+      font-family: var(--font-fraunces);
+      font-weight: 600;
+      font-size: 18px;
+      line-height: 26px;
+      color: var(--figma-muted);
+      margin: 0 0 16px 0;
+    }
+
+    /* --- HERO --- */
+    .hero { border-bottom: 1px solid var(--figma-bg); }
+    .hero-wrap { 
+      display: flex; 
+      align-items: center; 
+      justify-content: space-between; 
+      gap: 40px; 
+    }
+    .hero-info { max-width: 860px; }
+    .hero-title { 
+      font-family: var(--font-fraunces); 
+      font-weight: 400; 
+      font-size: 56px; 
+      line-height: 60px; 
+      color: var(--figma-dark);
+      margin: 0 0 24px 0; 
+    }
+    .hero-body p { 
+      font-family: var(--font-inter);
+      font-size: 18px; 
+      line-height: 30px; 
+      color: var(--figma-soft); 
+      margin: 0 0 24px 0; 
+    }
+    .link-underline {
+      font-family: var(--font-inter);
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--figma-dark);
+      text-decoration: underline;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 8px;
+    }
+    .hero-photo { 
+      width: 268px; 
+      height: 333px; 
+      border-radius: 16px; 
+      overflow: hidden; 
+      background: var(--figma-bg); 
+      flex-shrink: 0; 
+    }
+    .hero-photo img { width: 100%; height: 100%; object-fit: cover; }
+    
+    @media (max-width: 1000px) {
+      .hero-wrap { flex-direction: column; align-items: flex-start; }
+      .hero-title { font-size: 40px; line-height: 48px; }
+      .hero-photo { order: -1; margin-bottom: 24px; width: 100%; max-width: 268px; }
+    }
+
+    /* --- SKILLS --- */
+    .skills-wrap { padding-top: 45px; padding-bottom: 90px; }
+    .skills-grid { 
+      display: grid; 
+      grid-template-columns: 2fr 2fr 1fr; 
+      gap: 40px; 
+      margin-top: 51px; 
+    }
+    .skill-title { 
+      font-family: var(--font-fraunces); 
+      font-weight: 600; 
+      font-size: 24px; 
+      line-height: 32px;
+      color: var(--figma-dark);
+      margin: 0 0 29px 0; 
+    }
+    .skill-row { 
+      display: flex; 
+      gap: 8px; 
+      margin-bottom: 16px; 
+      flex-wrap: wrap; 
+    }
+    
+    /* ESTILOS EXACTOS DE LOS TAGS DE FIGMA */
+    .tag-pill {
+      font-family: var(--font-inter);
+      font-size: 16px;
+      line-height: 28px;
+      color: var(--figma-soft);
+      background-color: var(--figma-neutral-100);
+      border: 1px solid var(--figma-bg);
+      border-radius: 100px;
+      padding: 4px 24px;
+      display: inline-block;
+    }
+
+    @media (max-width: 900px) {
+      .skills-grid { grid-template-columns: 1fr; gap: 40px; margin-top: 32px; }
+    }
+  
+    .awards-block { padding-top: 0; padding-bottom: 90px; }
+    .award-list { list-style: none; padding: 0; margin: 20px 0 0; display: grid; gap: 12px; max-width: 760px; }
+    .award-list li { margin: 0; padding: 16px 20px; background: #F5F1EA; border: 1px solid #E4DFD6; border-radius: 12px; font-family: var(--font-inter); font-size: 16px; color: var(--figma-dark); }
+    .award-note { font-family: var(--font-inter); color: var(--figma-soft); margin: 8px 0 0; }
+</style>
+</Layout>

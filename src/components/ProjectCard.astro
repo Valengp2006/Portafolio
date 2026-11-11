@@ -1,31 +1,30 @@
 ---
 import type { Project } from "../data/projects";
+import { asset, pagePath, type Lang } from "../i18n";
+import { ui } from "../i18n/copy";
 
 interface Props {
   project: Project;
-  layout: "hero" | "vertical" | "horizontal";
+  layout: "hero" | "vertical" | "horizontal" | "compact";
+  lang: Lang;
 }
-const { project: p, layout } = Astro.props;
-
-// 1. Obtenemos la ruta base configurada
-const base = import.meta.env.BASE_URL;
-
-// 2. Creamos la función auxiliar para limpiar las barras duplicadas
-const getUrl = (path: string) => {
-  return `${base}${path}`.replace(/\/\/+/g, '/');
-};
+const { project: p, layout, lang } = Astro.props;
+const href = pagePath(lang, "projects", p.slug);
+const cover = p.cover ? asset(p.cover) : null;
+const alt = p.coverAlt[lang];
 ---
 
 {layout === "hero" && (
-  <a href={getUrl(`/proyectos/${p.slug}/`)} class="card card-hero">
-    <img src={p.cover} alt={p.title} class="card-hero-img" loading="lazy" />
+  <a href={href} class="card card-hero" style={`background:${p.color};`}>
+    {cover && <img src={cover} alt={alt} class="card-hero-img" loading="lazy" />}
     <div class="card-hero-shade"></div>
     <div class="card-hero-content">
-      <span class="card-tag" style={`background:${p.tint}; color:${p.textColor};`}>{p.tag}</span>
+      <span class="card-tag" style={`background:${p.tint}; color:${p.textColor};`}>{p.tag[lang]}</span>
       <div class="card-hero-text-wrap">
         <div class="card-hero-text">
           <h3 class="card-hero-title">{p.title}</h3>
-          <p class="card-hero-desc">{p.result}</p>
+          <p class="card-hero-desc">{p.result[lang]}</p>
+          {p.awards && <p class="card-badge">★ {p.awards.length} {lang === "es" ? "reconocimientos DEX 2026" : "DEX 2026 recognitions"}</p>}
         </div>
         <div class="card-hero-icon" aria-hidden="true">↗</div>
       </div>
@@ -34,26 +33,37 @@ const getUrl = (path: string) => {
 )}
 
 {layout === "vertical" && (
-  <a href={getUrl(`/proyectos/${p.slug}/`)} class="card card-vertical">
-    <img src={p.cover} alt={p.title} class="card-vertical-img" loading="lazy" />
+  <a href={href} class="card card-vertical">
+    {cover ? <img src={cover} alt={alt} class="card-vertical-img" loading="lazy" /> : <div class="card-vertical-img ph" style={`background:${p.color};`} role="img" aria-label={alt}><span>{p.title.charAt(0)}</span></div>}
     <div class="card-vertical-body">
-      <span class="card-tag" style={`background:${p.tint}; color:${p.textColor};`}>{p.tag}</span>
+      <span class="card-tag" style={`background:${p.tint}; color:${p.textColor};`}>{p.tag[lang]}</span>
       <h3 class="card-vertical-title">{p.title}</h3>
-      <p class="card-vertical-desc">{p.result}</p>
-      <span class="card-link" style={`color:${p.color}`}>Ver proyecto <span aria-hidden="true">↗</span></span>
+      <p class="card-vertical-desc">{p.result[lang]}</p>
+      <span class="card-link" style={`color:${p.color}`}>{ui.common.viewProject[lang]} <span aria-hidden="true">↗</span></span>
     </div>
   </a>
 )}
 
 {layout === "horizontal" && (
-  <a href={getUrl(`/proyectos/${p.slug}/`)} class="card card-horizontal">
-    <img src={p.cover} alt={p.title} class="card-horizontal-img" loading="lazy" />
+  <a href={href} class="card card-horizontal">
+    {cover ? <img src={cover} alt={alt} class="card-horizontal-img" loading="lazy" /> : <div class="card-horizontal-img ph" style={`background:${p.color};`} role="img" aria-label={alt}><span>{p.title.charAt(0)}</span></div>}
     <div class="card-horizontal-body">
-      <span class="card-tag" style={`background:${p.tint}; color:${p.textColor};`}>{p.tag}</span>
+      <span class="card-tag" style={`background:${p.tint}; color:${p.textColor};`}>{p.tag[lang]}</span>
       <h3 class="card-horizontal-title">{p.title}</h3>
-      <p class="card-horizontal-desc">{p.result}</p>
-      <span class="card-link" style={`color:${p.color}`}>Ver proyecto <span aria-hidden="true">↗</span></span>
+      <p class="card-horizontal-desc">{p.result[lang]}</p>
+      <span class="card-link" style={`color:${p.color}`}>{ui.common.viewProject[lang]} <span aria-hidden="true">↗</span></span>
     </div>
+  </a>
+)}
+
+{layout === "compact" && (
+  <a href={href} class="card card-compact">
+    <div class="card-compact-main">
+      <h3 class="card-compact-title">{p.title}</h3>
+      <p class="card-compact-desc">{p.result[lang]}</p>
+    </div>
+    <span class="card-tag" style={`background:${p.tint}; color:${p.textColor};`}>{p.tag[lang]}</span>
+    <span class="card-link" style={`color:${p.color}`} aria-hidden="true">↗</span>
   </a>
 )}
 
@@ -75,7 +85,7 @@ const getUrl = (path: string) => {
   }
 
   /* Hero (MUSE-style full-width dark card) */
-  .card-hero { height: 483px; }
+  .card-hero { min-height: 483px; }
   .card-hero-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
   .card-hero-shade { 
     position: absolute; 
@@ -192,4 +202,16 @@ const getUrl = (path: string) => {
     .card-horizontal-img { border-radius: 16px 16px 0 0; height: 200px; }
     .card-horizontal-body { border-radius: 0 0 16px 16px; padding: 24px; }
   }
+  .card-hero { min-height: 483px; }
+  .ph { display: flex; align-items: center; justify-content: center; }
+  .ph span { font-family: 'Fraunces', serif; font-size: 96px; color: rgba(255,255,255,0.35); line-height: 1; }
+  .card-horizontal-img.ph { border-radius: 16px 0 0 16px; }
+  .card-badge { margin: 0; font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600; color: #F3D98B; }
+
+  /* Compact (laboratorio de experimentos) */
+  .card-compact { display: grid; grid-template-columns: 1fr auto auto; align-items: center; gap: 24px; padding: 24px 28px; background: #F5F1EA; }
+  .card-compact:hover { background: #F0ECE4; }
+  .card-compact-title { font-family: 'Fraunces', serif; font-weight: 400; font-size: 24px; line-height: 30px; color: #1F1B16; margin: 0 0 4px; }
+  .card-compact-desc { font-family: 'Inter', sans-serif; font-size: 14px; line-height: 22px; color: #57504A; margin: 0; max-width: 640px; }
+  @media (max-width: 900px) { .card-compact { grid-template-columns: 1fr auto; } .card-compact .card-tag { grid-column: 1; grid-row: 2; } .card-horizontal-img.ph { border-radius: 16px 16px 0 0; height: 200px; } }
 </style>
