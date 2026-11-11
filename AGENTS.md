@@ -51,7 +51,7 @@ Cada vez que un agente cambie contenido, estructura, textos o tome una decisión
 - **Jardín de Bruma** ya está publicado: es un proyecto real para la marca Bruma (emprendimiento de Medellín), en equipo de 3 (Miranda López Gómez, Nikki Ortiz Ospina y Valentina), octubre 2026. El contenido sale de su presentación "BRUMA X GAMIFICACIÓN"; su rol (confirmado por ella): planteamiento de la idea y presentación de la propuesta, en conjunto con sus compañeras. La portada es una captura de la diapositiva de portada y se queda así por ahora.
 - **Fechas:** Dissonance, julio a noviembre 2026; Contemplar lo infinito, septiembre 2026; Orquesta Corporal, Cauce, Encantar y Jardín de Bruma, octubre 2026.
 - **Equipos:** no se nombran integrantes en ningún proyecto; solo se indica "Proyecto en equipo" (Dissonance, Pasos de Tradición, MUSE, Jardín de Bruma, Cosmos). Orquesta Corporal, Contemplar lo infinito, Cauce y Encantar se presentan como trabajo individual.
-- **Pasos de Tradición** (taller 5): reconocimiento al mejor proyecto del Taller 5: Experiencias (sin imagen de certificado por ahora); sitio https://valengp2006.github.io/pasos-de-tradicion/; galería con imágenes de su propio sitio.
+- **Pasos de Tradición** (taller 5): reconocimiento al mejor proyecto del Taller 5: Experiencias (sin imagen de certificado por ahora); sitio https://valengp2006.github.io/pasos-de-tradicion/; portada: la página del Códice (cover.webp, aportada por Valentina); galería con imágenes de su propio sitio.
 - **MUSE** se amplió con el contenido de su deck de Figma (https://www.figma.com/deck/D16IOQE3BsvhIg70jK0tMP/Portafolio-UX-UI): rol, problema, investigación, usuario objetivo, UI Kit, wireframes, prototipo y reflexión. Las imágenes de la galería son capturas de las diapositivas (800×600): reemplazar por exportaciones de Figma cuando se pueda.
 - **Orquesta Corporal** se amplió con la implementación técnica y las decisiones de diseño; documentación completa en Notion (enlace en el proyecto).
 - **Cosmos** corrige su stack: público desde el teléfono (Node.js + Socket.io), performer en iPad (Open Stage Control), Strudel y TouchDesigner.
@@ -60,7 +60,7 @@ Cada vez que un agente cambie contenido, estructura, textos o tome una decisión
 - **Videos:** cada proyecto puede tener `videos` en `projects.ts`: `youtube` (ID; se carga solo al hacer clic, vía youtube-nocookie) o `src` (MP4 en `public/videos/`, con `poster`). Todos los videos actuales están en YouTube: Cosmos, Pasos de Tradición (3: Códice, Rastro de los Gestos y Cúpula de Legados), Cauce (mbFWkJXmFDI) y Contemplar lo infinito (ki0KPbzuUF4). No se guardan videos pesados en el repo (límite de GitHub y peso en el historial); `public/videos/` quedó sin uso.
 - **Cauce:** su portada y galería salen de fotogramas de su grabación (los de la captura en vivo se descartaron por oscuros). Contemplar sumó dos fotogramas del ensayo.
 - **node_modules** salió del repositorio (se agregó `.gitignore`).
-- **Retrato:** `public/images/valentina.jpg` (foto nueva de Valentina). Las portadas de Dissonance, Contemplar lo infinito y Orquesta Corporal siguen siendo provisionales (salen de su propio material).
+- **Retrato:** `public/images/valentina.jpg` (foto nueva de Valentina). La portada de Dissonance es la terminal de ATLAS-NET (aportada por Valentina); las de Contemplar lo infinito y Orquesta Corporal siguen siendo provisionales (salen de su propio material).
 
 ## Estado actual
 
@@ -74,7 +74,7 @@ Cada vez que un agente cambie contenido, estructura, textos o tome una decisión
 - Galería de Cosmos (fotos o video de la instalación en buena calidad; Valentina las buscará).
 - Actualizar el remoto local de la carpeta `hechizos-disney` al repo `encantar` (GitHub redirige mientras tanto).
 - Repo de Orquesta Corporal (si existe) para enlazarlo.
-- Portadas finales de los proyectos: **se dejan para después** (decisión de Valentina). Pendientes: MUSE, Pasos de Tradición, Cosmos, Cauce y Encantar; galerías; imágenes de servicios; portadas definitivas de Dissonance, Contemplar y Orquesta; otra imagen para Jardín de Bruma.
+- Portadas finales de los proyectos: **se dejan para después** (decisión de Valentina). Pendientes: MUSE, Pasos de Tradición, Cosmos, Cauce y Encantar; galerías; imágenes de servicios; portadas definitivas de Contemplar y Orquesta; otra imagen para Jardín de Bruma.
 - CV: está en Canva y hay que actualizarlo antes de subirlo; luego poner el archivo en `public/` y su nombre en `cv` de `src/data/site.ts`. Además, el perfil de LinkedIn también debe actualizarse (el enlace ya está en el sitio).
 - Verificar herramientas del stack de Contemplar lo infinito, Orquesta Corporal, Cauce y Encantar, y revisar las traducciones al inglés.
 
