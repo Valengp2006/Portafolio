@@ -69,7 +69,7 @@ Cada vez que un agente cambie contenido, estructura, textos o tome una decisión
 
 - 29 páginas generadas (es/en); build sin errores y sin enlaces ni imágenes rotas.
 - README real, `.gitignore` y esta guía actualizados.
-- Primer despliegue publicado en `main` (commit 310bf1b, aprobado por Valentina el 11-nov-2026). Cambios posteriores (correo, fechas de Dissonance, MUSE, Pasos, Cosmos, Orquesta, galerías, enlaces a repos, sin nombres de equipo) siguen locales hasta su aprobación.
+- Todo publicado en `main` y desplegado (nov 2026). El despliegue en GitHub Pages estuvo atascado ~24 h (ejecuciones #22, #23 y #25 en cola sin iniciar); se recuperó solo y el 12-nov un commit de prueba desplegó bien. Esas 3 ejecuciones fantasma pueden seguir apareciendo en cola. Para subir cambios sin desplegar, usar `[skip ci]` en el mensaje del commit. El workflow usa el grupo de concurrencia `pages-2`.
 - Galerías con imágenes en todos los proyectos. Cosmos usa recortes de fotogramas de su video (visuales de TouchDesigner, terminal de Strudel y controlador), aportados por Valentina; puede reemplazarlos por fotos de la instalación de mejor calidad. Encantar usa capturas de su sitio en vivo (https://valengp2006.github.io/encantar/); el repo ya fue renombrado a `encantar` en GitHub.
 
 ## Pendientes
