@@ -42,21 +42,20 @@ const awards = ["dissonance", "pasos-de-tradicion"].flatMap((slug) => {
         <div class="skills-grid reveal">
           <div class="skill-col">
             <h3 class="skill-title">{about.toolsTitle[lang]}</h3>
-            {about.tools.map((row) => (
-              <div class="skill-row">{row.map((t) => <span class="tag-pill">{t}</span>)}</div>
+            {about.toolGroups.map((g) => (
+              <div class="tool-group">
+                <p class="tool-group-t">{g.title[lang]}</p>
+                <div class="pills">{g.items.map((t) => <span class="tag-pill">{t}</span>)}</div>
+              </div>
             ))}
           </div>
           <div class="skill-col">
             <h3 class="skill-title">{about.skillsTitle[lang]}</h3>
-            {about.skills[lang].map((row) => (
-              <div class="skill-row">{row.map((t) => <span class="tag-pill">{t}</span>)}</div>
-            ))}
+            <div class="pills">{about.skills[lang].map((t) => <span class="tag-pill">{t}</span>)}</div>
           </div>
           <div class="skill-col skill-col-narrow">
             <h3 class="skill-title">{about.langsTitle[lang]}</h3>
-            {about.languages[lang].map((t) => (
-              <div class="skill-row"><span class="tag-pill">{t}</span></div>
-            ))}
+            <div class="pills">{about.languages[lang].map((t) => <span class="tag-pill">{t}</span>)}</div>
           </div>
         </div>
       </div>
@@ -162,7 +161,7 @@ const awards = ["dissonance", "pasos-de-tradicion"].flatMap((slug) => {
     .skills-wrap { padding-top: 45px; padding-bottom: 90px; }
     .skills-grid { 
       display: grid; 
-      grid-template-columns: 2fr 2fr 1fr; 
+      grid-template-columns: 5fr 4fr 2fr; 
       gap: 40px; 
       margin-top: 51px; 
     }
@@ -174,23 +173,20 @@ const awards = ["dissonance", "pasos-de-tradicion"].flatMap((slug) => {
       color: var(--figma-dark);
       margin: 0 0 29px 0; 
     }
-    .skill-row { 
-      display: flex; 
-      gap: 8px; 
-      margin-bottom: 16px; 
-      flex-wrap: wrap; 
-    }
+    .pills { display: flex; flex-wrap: wrap; gap: 10px; }
+    .tool-group { margin-bottom: 26px; }
+    .tool-group-t { font-family: var(--font-inter); font-size: 13px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--figma-muted); margin: 0 0 10px; }
     
     /* ESTILOS EXACTOS DE LOS TAGS DE FIGMA */
     .tag-pill {
       font-family: var(--font-inter);
-      font-size: 16px;
-      line-height: 28px;
+      font-size: 15px;
+      line-height: 26px;
       color: var(--figma-soft);
       background-color: var(--figma-neutral-100);
       border: 1px solid var(--figma-bg);
       border-radius: 100px;
-      padding: 4px 24px;
+      padding: 4px 18px;
       display: inline-block;
     }
 

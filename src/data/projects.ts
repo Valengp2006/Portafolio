@@ -261,8 +261,8 @@ export const projects: Project[] = [
     title: "Pasos de Tradición",
     tag: { es: "Patrimonio cultural · AR", en: "Cultural heritage · AR" },
     result: {
-      es: "Experiencia transmedia que preserva la memoria de quienes sostienen la Semana Santa desde el anonimato. Mejor proyecto del Taller 5: Experiencias.",
-      en: "A transmedia experience that preserves the memory of the people who sustain Holy Week from anonymity. Best project of Workshop 5: Experiences.",
+      es: "Experiencia transmedia que preserva la memoria de quienes sostienen la Semana Santa desde el anonimato. Mejor proyecto del Taller 5: Experiencias Interactivas.",
+      en: "A transmedia experience that preserves the memory of the people who sustain Holy Week from anonymity. Best project of Workshop 5: Interactive Experiences.",
     },
     color: "#B5651D",
     tint: "#F2E4D3",
@@ -329,7 +329,7 @@ export const projects: Project[] = [
     ],
     awards: [
       {
-        title: { es: "Mejor proyecto del Taller 5: Experiencias", en: "Best project of Workshop 5: Experiences" },
+        title: { es: "Mejor proyecto del Taller 5: Experiencias Interactivas", en: "Best project of Workshop 5: Interactive Experiences" },
         detail: { es: "Reconocimiento · Taller 5, Ingeniería en Diseño de Entretenimiento Digital, UPB", en: "Recognition · Workshop 5, Digital Entertainment Design Engineering, UPB" },
       },
     ],
@@ -350,8 +350,8 @@ export const projects: Project[] = [
     ],
     stack: ["Unity", "Vuforia", "Figma", "Visual Studio Code", "GitHub", "Luma AI", "CapCut"],
     outcome: {
-      es: "El proyecto culminó como una experiencia transmedia de tres experiencias complementarias y fue reconocido como el mejor proyecto del Taller 5: Experiencias. Mi aporte principal fue El Códice de los Pasos, que integra audiovisual y realidad aumentada, además del sitio web: su arquitectura de información y la documentación del proceso.",
-      en: "The project ended as a transmedia experience made of three complementary experiences and was recognized as the best project of Workshop 5: Experiences. My main contribution was El Códice de los Pasos, which combines audiovisual content and augmented reality, plus the website: its information architecture and the process documentation.",
+      es: "El proyecto culminó como una experiencia transmedia de tres experiencias complementarias y fue reconocido como el mejor proyecto del Taller 5: Experiencias Interactivas. Mi aporte principal fue El Códice de los Pasos, que integra audiovisual y realidad aumentada, además del sitio web: su arquitectura de información y la documentación del proceso.",
+      en: "The project ended as a transmedia experience made of three complementary experiences and was recognized as the best project of Workshop 5: Interactive Experiences. My main contribution was El Códice de los Pasos, which combines audiovisual content and augmented reality, plus the website: its information architecture and the process documentation.",
     },
   },
 

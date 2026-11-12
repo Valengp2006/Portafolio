@@ -55,6 +55,7 @@ export const ui = {
     outcome: { es: "Resultado final", en: "Final outcome" },
     next: { es: "Siguiente proyecto", en: "Next project" },
     prev: { es: "Proyecto anterior", en: "Previous project" },
+    all: { es: "Todos los proyectos", en: "All projects" },
   },
   projectsPage: {
     eyebrow: { es: "Trabajo", en: "Work" },
@@ -195,17 +196,22 @@ export const about = {
   toolsTitle: { es: "Herramientas", en: "Tools" },
   skillsTitle: { es: "Habilidades", en: "Skills" },
   langsTitle: { es: "Idiomas", en: "Languages" },
-  tools: [["Figma", "FigJam", "Notion"], ["Unity", "TouchDesigner", "p5.js"], ["GitHub", "Reaper", "CapCut"]],
+  // Basado en los proyectos publicados (ver src/data/projects.ts).
+  toolGroups: [
+    { title: { es: "Diseño e investigación", en: "Design and research" }, items: ["Figma", "FigJam", "Notion", "Google Forms"] },
+    { title: { es: "Experiencias interactivas", en: "Interactive experiences" }, items: ["Unity", "Vuforia", "TouchDesigner", "p5.js", "ml5.js", "Tone.js", "Strudel", "Open Stage Control", "WebGPU"] },
+    { title: { es: "Desarrollo y producción", en: "Development and production" }, items: ["GitHub", "Node.js", "Socket.io", "Luma AI", "CapCut"] },
+  ],
   skills: {
-    es: [["Investigación UX", "Prototipado"], ["Diseño de interfaces", "Diseño de interacción"], ["Arquitectura de información", "Diseño de experiencias"], ["Narrativa digital", "Investigación cultural"]],
-    en: [["UX research", "Prototyping"], ["Interface design", "Interaction design"], ["Information architecture", "Experience design"], ["Digital storytelling", "Cultural research"]],
+    es: ["Investigación UX", "Pruebas con usuarios", "Diseño de interfaces y UI Kit", "Prototipado interactivo", "Arquitectura de información", "Diseño de interacción", "Experiencias inmersivas (VR y AR)", "Gamificación", "Narrativa interactiva", "Dirección creativa", "Programación creativa", "Investigación cultural"],
+    en: ["UX research", "User testing", "Interface design and UI kits", "Interactive prototyping", "Information architecture", "Interaction design", "Immersive experiences (VR and AR)", "Gamification", "Interactive storytelling", "Creative direction", "Creative coding", "Cultural research"],
   },
   languages: { es: ["Español (nativo)", "Inglés (B2)"], en: ["Spanish (native)", "English (B2)"] },
   awardsEyebrow: { es: "Reconocimientos", en: "Recognitions" },
   awardsTitle: { es: "Reconocimientos de la UPB", en: "UPB recognitions" },
   awardsNote: {
-    es: "Cuatro distinciones para Dissonance en la muestra DEX 2026 (Medellín, 10 de noviembre de 2026) y el reconocimiento al mejor proyecto del Taller 5 para Pasos de Tradición.",
-    en: "Four distinctions for Dissonance at the DEX 2026 showcase (Medellín, November 10, 2026) and the best project of Workshop 5 recognition for Pasos de Tradición.",
+    es: "Cuatro distinciones para Dissonance en la muestra DEX 2026 (Medellín, 10 de noviembre de 2026) y el reconocimiento «Mejor proyecto del Taller 5: Experiencias Interactivas» para Pasos de Tradición.",
+    en: "Four distinctions for Dissonance at the DEX 2026 showcase (Medellín, November 10, 2026) and the “Best project of Workshop 5: Interactive Experiences” recognition for Pasos de Tradición.",
   },
 } as const;
 
