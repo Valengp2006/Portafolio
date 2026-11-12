@@ -49,6 +49,18 @@ export interface Video {
   /** Imagen de portada del video (ruta sin base). */
   poster?: string;
 }
+export type Block =
+  | { type: "facts"; label: L; body?: L; items: { label: L; value: L }[] }
+  | { type: "statement"; label: L; body: L; tags?: { text: L; color: string }[] }
+  | { type: "cards"; label: L; body?: L; items: { title: L; body: L; color: string }[] }
+  | { type: "columns"; label: L; body?: L; items: { title: L; color: string; bullets: L[] }[] }
+  | { type: "insight"; label: L; body?: L; items: { title: L; body: L; color: string }[]; insight: L }
+  | { type: "persona"; label: L; name: string; age: L; role: L; quote: L; groups: { title: L; color: string; items: L[] }[] }
+  | { type: "palette"; label: L; body?: L; colors: { name: L; hex: string }[]; fonts: { name: string; note: L }[]; states: L[] }
+  | { type: "flow"; label: L; body?: L; steps: L[] }
+  | { type: "chips"; label: L; body?: L; items: L[] }
+  | { type: "quote"; label: L; body: L };
+
 export interface Project {
   slug: string;
   tier: 1 | 2 | 3;
@@ -67,6 +79,8 @@ export interface Project {
   tools: string;
   question?: L;
   sections: Section[];
+  /** Bloques visuales: si existen, reemplazan a `sections` en la página del proyecto. */
+  blocks?: Block[];
   decisions?: Decision[];
   system?: SystemStep[];
   metrics?: Metric[];
@@ -315,10 +329,9 @@ export const projects: Project[] = [
       { src: "images/projects/pasos-de-tradicion/codice.jpg", alt: { es: "El Códice de los Pasos: bitácora de oficios con ilustraciones animadas", en: "El Códice de los Pasos: a logbook of trades with animated illustrations" } },
       { src: "images/projects/pasos-de-tradicion/cupula.jpg", alt: { es: "La Cúpula: visualización de un domo inmersivo en la plaza", en: "La Cúpula: visualization of an immersive dome in the plaza" } },
       { src: "images/projects/pasos-de-tradicion/sombras.jpg", alt: { es: "El Rastro de los Gestos: silueta en sombra de una persona en oración", en: "El Rastro de los Gestos: shadow silhouette of a person in prayer" } },
-      { src: "images/projects/pasos-de-tradicion/making-of.jpg", alt: { es: "Making of: el proceso creativo, técnico y humano del archivo", en: "Making of: the creative, technical and human process of the archive" } },
-      { src: "images/projects/pasos-de-tradicion/proyecto.jpg", alt: { es: "El proyecto: los oficios de la Semana Santa en Santa Fe de Antioquia", en: "The project: the trades of Holy Week in Santa Fe de Antioquia" } },
     ],
     videos: [
+      { title: { es: "Making of: el proceso creativo, técnico y humano del proyecto", en: "Making of: the project's creative, technical and human process" }, youtube: "1RO1sUt3OM8" },
       { title: { es: "El Códice de los Pasos: experiencia de realidad aumentada", en: "El Códice de los Pasos: augmented reality experience" }, youtube: "gtFGBEbhLYQ" },
       { title: { es: "El Rastro de los Gestos: narrativa interactiva", en: "El Rastro de los Gestos: interactive narrative" }, youtube: "GzqdeB_yQgE" },
       { title: { es: "Cúpula de Legados: instalación audiovisual inmersiva", en: "Cúpula de Legados: immersive audiovisual installation" }, youtube: "ZJIWKkEvlxY" },
@@ -356,75 +369,181 @@ export const projects: Project[] = [
       es: "¿Cómo diseñar una plataforma donde artistas compartan su obra y su proceso sintiéndose seguros y parte de una comunidad, sin sacrificar una experiencia de uso atractiva e intuitiva?",
       en: "How might we design a platform where artists share their work and process feeling safe and part of a community, without giving up an appealing, intuitive experience?",
     },
-    sections: [
+    sections: [],
+    blocks: [
       {
+        type: "facts",
         label: { es: "Acerca del proyecto", en: "About the project" },
         body: {
-          es: "MUSE es una propuesta de aplicación social para artistas emergentes, pensada para artistas jóvenes e ilustradores digitales. Busca ofrecer una experiencia de publicación más humana, enfocada en la exploración creativa, la conexión entre artistas y la construcción de una identidad visual auténtica. Es un proyecto académico de diseño UX/UI que combina investigación, diseño de interfaces y prototipado interactivo.",
-          en: "MUSE is a social app proposal for emerging artists, designed for young artists and digital illustrators. It aims to offer a more human publishing experience focused on creative exploration, connection between artists and the building of an authentic visual identity. It is an academic UX/UI design project that combines research, interface design and interactive prototyping.",
+          es: "MUSE busca ofrecer una experiencia de publicación más humana, enfocada en la exploración creativa, la conexión entre artistas y la construcción de una identidad visual auténtica. Combina investigación UX, diseño de interfaces y prototipado interactivo.",
+          en: "MUSE aims to offer a more human publishing experience focused on creative exploration, connection between artists and the building of an authentic visual identity. It combines UX research, interface design and interactive prototyping.",
         },
+        items: [
+          { label: { es: "Tipo", en: "Type" }, value: { es: "Aplicación social para artistas emergentes", en: "Social app for emerging artists" } },
+          { label: { es: "Público", en: "Audience" }, value: { es: "Artistas jóvenes e ilustradores digitales", en: "Young artists and digital illustrators" } },
+          { label: { es: "Herramientas", en: "Tools" }, value: { es: "Figma · FigJam · Notion", en: "Figma · FigJam · Notion" } },
+          { label: { es: "Contexto", en: "Context" }, value: { es: "Proyecto académico de diseño UX/UI", en: "Academic UX/UI design project" } },
+        ],
       },
       {
+        type: "statement",
         label: { es: "Problema", en: "Problem" },
         body: {
-          es: "Compartir arte en plataformas digitales se ha vuelto una experiencia incómoda para muchos artistas emergentes por el miedo al juicio, el robo de contenido y la creciente saturación de contenido generado con IA. Eso abrió la oportunidad de diseñar un espacio enfocado en autenticidad artística, seguridad y comunidad.",
-          en: "Sharing art on digital platforms has become an uncomfortable experience for many emerging artists because of fear of judgment, content theft and the growing saturation of AI-generated content. That opened the opportunity to design a space focused on artistic authenticity, safety and community.",
+          es: "Compartir arte en plataformas digitales se volvió una experiencia incómoda para muchos artistas emergentes: miedo al juicio, robo de contenido y saturación de contenido generado con IA. Eso abrió la oportunidad de diseñar un espacio enfocado en cuatro ejes.",
+          en: "Sharing art on digital platforms has become an uncomfortable experience for many emerging artists: fear of judgment, content theft and saturation of AI-generated content. That opened the opportunity to design a space built around four pillars.",
         },
+        tags: [
+          { text: { es: "Seguridad", en: "Safety" }, color: "#E03F6C" },
+          { text: { es: "Comunidad", en: "Community" }, color: "#373CE9" },
+          { text: { es: "Autenticidad", en: "Authenticity" }, color: "#5FB3A6" },
+          { text: { es: "IA", en: "AI" }, color: "#8C7BD8" },
+        ],
       },
       {
+        type: "cards",
         label: { es: "Objetivos", en: "Goals" },
-        body: {
-          es: "Cuatro objetivos: investigación UX para comprender las necesidades y preocupaciones de artistas jóvenes; una experiencia visual con una interfaz cómoda, intuitiva y creativa; comunidad, facilitando la interacción y la participación entre artistas; y un prototipo interactivo funcional.",
-          en: "Four goals: UX research to understand the needs and concerns of young artists; a visual experience with a comfortable, intuitive and creative interface; community, facilitating interaction and participation among artists; and a functional interactive prototype.",
-        },
+        items: [
+          { title: { es: "Investigación UX", en: "UX research" }, body: { es: "Comprender las necesidades y preocupaciones de artistas jóvenes.", en: "Understand the needs and concerns of young artists." }, color: "#E03F6C" },
+          { title: { es: "Experiencia visual", en: "Visual experience" }, body: { es: "Diseñar una interfaz cómoda, intuitiva y creativa.", en: "Design a comfortable, intuitive and creative interface." }, color: "#373CE9" },
+          { title: { es: "Comunidad", en: "Community" }, body: { es: "Facilitar la interacción y la participación entre artistas.", en: "Facilitate interaction and participation among artists." }, color: "#5FB3A6" },
+          { title: { es: "Prototipado", en: "Prototyping" }, body: { es: "Desarrollar un prototipo interactivo funcional.", en: "Build a functional interactive prototype." }, color: "#FD7E57" },
+        ],
       },
       {
+        type: "columns",
         label: { es: "Mi rol", en: "My role" },
         body: {
-          es: "UX Research: encuestas y análisis de usuarios, organización de insights, User Persona y Point of View, User Journey Map. UX Design: ideación de funcionalidades, wireframes iniciales y flujos de navegación. UI Design y prototipado: diseño visual, wireframes en alta fidelidad, UI Kit, componentes interactivos y prototipado en Figma. Mis aportes destacados: el flujo de eventos, la sección «Artista de la Semana», el UI Kit y la navegación.",
-          en: "UX Research: surveys and user analysis, insight organization, User Persona and Point of View, User Journey Map. UX Design: feature ideation, initial wireframes and navigation flows. UI Design and prototyping: visual design, high-fidelity wireframes, UI Kit, interactive components and prototyping in Figma. My highlighted contributions: the events flow, the “Artist of the Week” section, the UI Kit and navigation.",
+          es: "Mis aportes destacados: el flujo de eventos, la sección «Artista de la Semana», el UI Kit y la navegación.",
+          en: "My highlighted contributions: the events flow, the “Artist of the Week” section, the UI Kit and navigation.",
         },
+        items: [
+          {
+            title: { es: "UX Research", en: "UX Research" },
+            color: "#E03F6C",
+            bullets: [
+              { es: "Encuestas y análisis de usuarios", en: "Surveys and user analysis" },
+              { es: "Organización de insights", en: "Insight organization" },
+              { es: "User Persona y Point of View", en: "User Persona and Point of View" },
+              { es: "User Journey Map", en: "User Journey Map" },
+            ],
+          },
+          {
+            title: { es: "UX Design", en: "UX Design" },
+            color: "#373CE9",
+            bullets: [
+              { es: "Ideación de funcionalidades", en: "Feature ideation" },
+              { es: "Wireframes iniciales", en: "Initial wireframes" },
+              { es: "Flujos de navegación", en: "Navigation flows" },
+            ],
+          },
+          {
+            title: { es: "UI Design y prototipado", en: "UI Design and prototyping" },
+            color: "#5FB3A6",
+            bullets: [
+              { es: "Diseño visual", en: "Visual design" },
+              { es: "Wireframes en alta fidelidad", en: "High-fidelity wireframes" },
+              { es: "UI Kit", en: "UI Kit" },
+              { es: "Componentes interactivos", en: "Interactive components" },
+              { es: "Prototipado en Figma", en: "Prototyping in Figma" },
+            ],
+          },
+        ],
       },
       {
+        type: "insight",
         label: { es: "Investigación UX", en: "UX research" },
         body: {
-          es: "Con encuestas, entrevistas y pruebas con usuarios enfocadas en hábitos de publicación, percepción de seguridad y preferencias visuales identificamos tres hallazgos: preocupación por el robo o uso no autorizado de obras, valoración de comunidades con apoyo creativo y retroalimentación constructiva, e interés por plataformas que den la voz a contenido creado únicamente por humanos. El insight principal: los artistas no solo buscan plataformas para publicar, sino espacios donde sentirse seguros, valorados y representados visualmente.",
-          en: "Through surveys, interviews and user tests focused on publishing habits, perception of safety and visual preferences we found three findings: concern about theft or unauthorized use of artwork, appreciation for communities with creative support and constructive feedback, and interest in platforms that give voice to human-made content only. The key insight: artists don't just look for platforms to publish, but for spaces where they feel safe, valued and visually represented.",
+          es: "Encuestas, entrevistas y pruebas con usuarios sobre hábitos de publicación, percepción de seguridad y preferencias visuales.",
+          en: "Surveys, interviews and user tests about publishing habits, perception of safety and visual preferences.",
+        },
+        items: [
+          { title: { es: "Seguridad del contenido", en: "Content safety" }, body: { es: "Preocupación por el robo o uso no autorizado de obras.", en: "Concern about theft or unauthorized use of artwork." }, color: "#E65271" },
+          { title: { es: "Comunidad con apoyo", en: "A supportive community" }, body: { es: "Valoración de comunidades con apoyo creativo y retroalimentación constructiva.", en: "Appreciation for communities with creative support and constructive feedback." }, color: "#4B45BC" },
+          { title: { es: "Interés por el arte humano", en: "Interest in human-made art" }, body: { es: "Deseo de plataformas que den voz únicamente a contenido creado por humanos.", en: "Desire for platforms that give voice only to human-made content." }, color: "#62ADA2" },
+        ],
+        insight: {
+          es: "Los artistas no solo buscan plataformas para publicar contenido, sino espacios donde sentirse seguros, valorados y representados visualmente.",
+          en: "Artists don't just look for platforms to publish content, but for spaces where they feel safe, valued and visually represented.",
         },
       },
       {
+        type: "persona",
         label: { es: "Usuario objetivo", en: "Target user" },
-        body: {
-          es: "Oscar, 21 años, estudiante de Diseño Gráfico e ilustrador digital. «Quiero compartir mi arte sin sentir miedo al juicio o perder el control sobre mis obras». Motivaciones: comunidad creativa, descubrir artistas y recibir retroalimentación. Frustraciones: robo de obras, críticas destructivas y saturación de IA. Necesidades: espacios seguros, navegación intuitiva y obras humanas.",
-          en: "Oscar, 21, graphic design student and digital illustrator. “I want to share my art without fear of judgment or losing control over my work.” Motivations: creative community, discovering artists and getting feedback. Frustrations: stolen work, destructive criticism and AI saturation. Needs: safe spaces, intuitive navigation and human-made work.",
-        },
+        name: "Oscar",
+        age: { es: "21 años", en: "21 years old" },
+        role: { es: "Estudiante de Diseño Gráfico · Ilustrador digital", en: "Graphic design student · Digital illustrator" },
+        quote: { es: "«Quiero compartir mi arte sin sentir miedo al juicio o perder el control sobre mis obras»", en: "“I want to share my art without fear of judgment or losing control over my work”" },
+        groups: [
+          { title: { es: "Motivaciones", en: "Motivations" }, color: "#E65271", items: [{ es: "Comunidad creativa", en: "Creative community" }, { es: "Descubrir artistas", en: "Discovering artists" }, { es: "Retroalimentación", en: "Feedback" }] },
+          { title: { es: "Frustraciones", en: "Frustrations" }, color: "#4B45BC", items: [{ es: "Robo de obras", en: "Stolen work" }, { es: "Críticas destructivas", en: "Destructive criticism" }, { es: "Saturación de IA", en: "AI saturation" }] },
+          { title: { es: "Necesidades", en: "Needs" }, color: "#62ADA2", items: [{ es: "Espacios seguros", en: "Safe spaces" }, { es: "Navegación intuitiva", en: "Intuitive navigation" }, { es: "Obras humanas", en: "Human-made work" }] },
+        ],
       },
       {
-        label: { es: "Sistema visual", en: "Visual system" },
+        type: "palette",
+        label: { es: "Sistema visual (UI Kit)", en: "Visual system (UI Kit)" },
         body: {
-          es: "El UI Kit define una paleta oscura con acentos rosa, azul, menta, lima y naranja; dos tipografías (Boldosone para títulos y Fahkwang para texto); botones primarios y secundarios con estados estándar, hover, pressed y disabled; y componentes como selectores y menús desplegables de categorías.",
-          en: "The UI Kit defines a dark palette with pink, blue, mint, lime and orange accents; two typefaces (Boldosone for headings and Fahkwang for body text); primary and secondary buttons with standard, hover, pressed and disabled states; and components such as toggles and category dropdowns.",
+          es: "Una paleta oscura con acentos vivos, dos tipografías, botones con cuatro estados y componentes como selectores y menús desplegables de categorías.",
+          en: "A dark palette with vivid accents, two typefaces, buttons with four states and components such as toggles and category dropdowns.",
         },
+        colors: [
+          { name: { es: "Noche", en: "Night" }, hex: "#080911" },
+          { name: { es: "Rosa", en: "Pink" }, hex: "#E03F6C" },
+          { name: { es: "Azul", en: "Blue" }, hex: "#373CE9" },
+          { name: { es: "Menta", en: "Mint" }, hex: "#92E4D3" },
+          { name: { es: "Lima", en: "Lime" }, hex: "#B7DA5A" },
+          { name: { es: "Naranja", en: "Orange" }, hex: "#FD7E57" },
+          { name: { es: "Blanco", en: "White" }, hex: "#FDFDFD" },
+        ],
+        fonts: [
+          { name: "Boldosone", note: { es: "Títulos y acentos de marca", en: "Headings and brand accents" } },
+          { name: "Fahkwang", note: { es: "Texto y apoyo", en: "Body text and support" } },
+        ],
+        states: [
+          { es: "Standard", en: "Standard" },
+          { es: "Hover", en: "Hover" },
+          { es: "Pressed", en: "Pressed" },
+          { es: "Disabled", en: "Disabled" },
+        ],
       },
       {
+        type: "flow",
         label: { es: "De wireframes a alta fidelidad", en: "From wireframes to high fidelity" },
         body: {
-          es: "El proceso empezó con wireframes enfocados en estructura y navegación, que luego evolucionaron hacia propuestas visuales finales. El flujo de postulación al concurso «Artista de la Semana» pasa de la bienvenida y la elección de modalidad a la galería, la carga de la obra, el resumen y la confirmación de envío.",
-          en: "The process started with wireframes focused on structure and navigation, which then evolved into final visual proposals. The “Artist of the Week” contest entry flow goes from welcome and category selection to the gallery, artwork upload, summary and submission confirmation.",
+          es: "El proceso empezó con wireframes de estructura y navegación que luego evolucionaron a propuestas visuales finales. Así se recorre la postulación al concurso «Artista de la Semana»:",
+          en: "The process started with structure and navigation wireframes that later evolved into final visual proposals. This is the “Artist of the Week” contest entry flow:",
         },
+        steps: [
+          { es: "Bienvenida e inicio de sesión", en: "Welcome and sign in" },
+          { es: "Elegir cómo subir la obra", en: "Choose how to upload the work" },
+          { es: "Galería de recientes", en: "Recents gallery" },
+          { es: "Verificar la obra seleccionada", en: "Check the selected work" },
+          { es: "Título, historia y categoría", en: "Title, story and category" },
+          { es: "Resumen y confirmar envío", en: "Summary and confirm submission" },
+          { es: "Postulación enviada con éxito", en: "Entry sent successfully" },
+        ],
       },
       {
+        type: "chips",
         label: { es: "Prototipo interactivo", en: "Interactive prototype" },
         body: {
-          es: "El prototipo se desarrolló en Figma para simular la navegación y las interacciones principales: navegación entre pantallas, exploración de artistas y obras, visualización de perfiles e interacciones en la comunidad.",
-          en: "The prototype was built in Figma to simulate navigation and the main interactions: moving between screens, exploring artists and artworks, viewing profiles and community interactions.",
+          es: "Desarrollado en Figma para simular la navegación y las interacciones principales de la app:",
+          en: "Built in Figma to simulate the app's navigation and main interactions:",
         },
+        items: [
+          { es: "Navegación entre pantallas", en: "Navigation between screens" },
+          { es: "Exploración de artistas y obras", en: "Exploring artists and artworks" },
+          { es: "Visualización de perfiles", en: "Viewing profiles" },
+          { es: "Interacciones en la comunidad", en: "Community interactions" },
+          { es: "Dropdowns, estados y transiciones", en: "Dropdowns, states and transitions" },
+        ],
       },
       {
+        type: "quote",
         label: { es: "Reflexión", en: "Reflection" },
         body: {
-          es: "MUSE fue mi primer acercamiento completo a un proceso de diseño UX/UI aplicado a una experiencia real. Me permitió comprender la importancia de diseñar experiencias centradas en las emociones, necesidades y contextos de las personas usuarias; la investigación, la iteración y la exploración visual fueron fundamentales para una propuesta más humana, funcional y significativa.",
-          en: "MUSE was my first complete approach to a UX/UI design process applied to a real experience. It taught me the importance of designing experiences centered on the emotions, needs and contexts of users; research, iteration and visual exploration were essential to a more human, functional and meaningful proposal.",
+          es: "MUSE fue mi primer acercamiento completo a un proceso de diseño UX/UI aplicado a una experiencia real: la investigación, la iteración y la exploración visual fueron fundamentales para una propuesta más humana, funcional y significativa.",
+          en: "MUSE was my first complete approach to a UX/UI design process applied to a real experience: research, iteration and visual exploration were essential to a more human, functional and meaningful proposal.",
         },
       },
     ],

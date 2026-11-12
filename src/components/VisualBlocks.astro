@@ -1,0 +1,224 @@
+---
+import type { Block } from "../data/projects";
+import type { Lang } from "../i18n";
+
+interface Props {
+  blocks: Block[];
+  lang: Lang;
+}
+const { blocks, lang } = Astro.props;
+const tr = (x: Record<Lang, string>) => x[lang];
+const soft = (c: string) => `color-mix(in srgb, ${c} 13%, #ffffff)`;
+---
+{blocks.map((b) => (
+  <section class="vb wrap reveal">
+    <h2 class="section-label vb-label">{tr(b.label)}</h2>
+    {"body" in b && b.body && <p class="vb-body">{tr(b.body)}</p>}
+
+    {b.type === "facts" && (
+      <div class="grid facts">
+        {b.items.map((i) => (
+          <div class="fact">
+            <p class="fact-l">{tr(i.label)}</p>
+            <p class="fact-v">{tr(i.value)}</p>
+          </div>
+        ))}
+      </div>
+    )}
+
+    {b.type === "statement" && (
+      <>
+        <p class="statement">{tr(b.body)}</p>
+        {b.tags && (
+          <div class="tags">
+            {b.tags.map((g) => (
+              <span class="tag" style={`background:${g.color}`}>{tr(g.text)}</span>
+            ))}
+          </div>
+        )}
+      </>
+    )}
+
+    {b.type === "cards" && (
+      <div class="grid cards">
+        {b.items.map((c, i) => (
+          <div class="card" style={`--c:${c.color}; background:${soft(c.color)}`}>
+            <span class="card-n" style={`background:${c.color}`}>{i + 1}</span>
+            <h3 class="card-t">{tr(c.title)}</h3>
+            <p class="card-b">{tr(c.body)}</p>
+          </div>
+        ))}
+      </div>
+    )}
+
+    {b.type === "columns" && (
+      <div class="grid cols">
+        {b.items.map((c) => (
+          <div class="col">
+            <h3 class="col-h" style={`background:${c.color}`}>{tr(c.title)}</h3>
+            <ul class="col-ul">
+              {c.bullets.map((x) => <li>{tr(x)}</li>)}
+            </ul>
+          </div>
+        ))}
+      </div>
+    )}
+
+    {b.type === "insight" && (
+      <>
+        <div class="grid cards three">
+          {b.items.map((c) => (
+            <div class="card" style={`background:${soft(c.color)}`}>
+              <span class="bar" style={`background:${c.color}`}></span>
+              <h3 class="card-t">{tr(c.title)}</h3>
+              <p class="card-b">{tr(c.body)}</p>
+            </div>
+          ))}
+        </div>
+        <div class="insight">
+          <p class="insight-l">{lang === "es" ? "Insight principal" : "Key insight"}</p>
+          <p class="insight-t">{tr(b.insight)}</p>
+        </div>
+      </>
+    )}
+
+    {b.type === "persona" && (
+      <div class="persona">
+        <div class="persona-top">
+          <div class="persona-id">
+            <p class="persona-name">{b.name}</p>
+            <p class="persona-meta">{tr(b.age)}</p>
+            <p class="persona-meta">{tr(b.role)}</p>
+          </div>
+          <blockquote class="persona-quote">{tr(b.quote)}</blockquote>
+        </div>
+        <div class="grid cols">
+          {b.groups.map((g) => (
+            <div class="col">
+              <h3 class="col-h" style={`background:${g.color}`}>{tr(g.title)}</h3>
+              <ul class="col-ul">
+                {g.items.map((x) => <li>{tr(x)}</li>)}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </div>
+    )}
+
+    {b.type === "palette" && (
+      <div class="palette">
+        <div class="swatches">
+          {b.colors.map((c) => (
+            <div class="sw">
+              <span class="sw-dot" style={`background:${c.hex}`}></span>
+              <span class="sw-n">{tr(c.name)}</span>
+              <span class="sw-h">{c.hex}</span>
+            </div>
+          ))}
+        </div>
+        <div class="grid fonts">
+          {b.fonts.map((f) => (
+            <div class="font">
+              <p class="font-n">{f.name}</p>
+              <p class="font-d">{tr(f.note)}</p>
+            </div>
+          ))}
+        </div>
+        <div class="states">
+          {b.states.map((s, i) => (
+            <span class={`state s${i}`}>{tr(s)}</span>
+          ))}
+        </div>
+      </div>
+    )}
+
+    {b.type === "flow" && (
+      <ol class="flow">
+        {b.steps.map((s, i) => (
+          <li class="flow-s">
+            <span class="flow-n">{i + 1}</span>
+            <span class="flow-t">{tr(s)}</span>
+          </li>
+        ))}
+      </ol>
+    )}
+
+    {b.type === "chips" && (
+      <div class="tags">
+        {b.items.map((c) => <span class="chip">{tr(c)}</span>)}
+      </div>
+    )}
+
+    {b.type === "quote" && <blockquote class="big-quote">{tr(b.body)}</blockquote>}
+  </section>
+))}
+
+<style>
+  .vb { padding-top: 40px; padding-bottom: 40px; }
+  .vb-label { margin: 0 0 14px; }
+  .vb-body { font-size: 18px; line-height: 1.65; color: var(--ink-soft); margin: 0 0 22px; max-width: 900px; }
+  .grid { display: grid; gap: 18px; }
+
+  .facts { grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); }
+  .fact { background: var(--surface-warm); border: 1px solid var(--line); border-radius: 14px; padding: 18px 20px; }
+  .fact-l { font-size: 13px; letter-spacing: 0.04em; text-transform: uppercase; color: var(--ink-muted); margin: 0 0 6px; }
+  .fact-v { font-size: 17px; line-height: 1.45; color: var(--ink); margin: 0; }
+
+  .statement { font-family: var(--font-display); font-size: 28px; line-height: 1.4; color: var(--ink); margin: 0 0 18px; max-width: 900px; font-variation-settings: "SOFT" 0, "WONK" 1; }
+  .tags { display: flex; flex-wrap: wrap; gap: 10px; }
+  .tag { color: #fff; font-weight: 600; font-size: 15px; padding: 8px 18px; border-radius: 999px; }
+  .chip { background: var(--surface-warm); border: 1px solid var(--line); color: var(--ink); font-size: 15px; padding: 9px 18px; border-radius: 999px; }
+
+  .cards { grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); }
+  .cards.three { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+  .card { position: relative; border-radius: 16px; padding: 24px 22px 22px; border: 1px solid var(--line); }
+  .card-n { display: inline-flex; width: 30px; height: 30px; align-items: center; justify-content: center; border-radius: 50%; color: #fff; font-weight: 700; font-size: 14px; margin-bottom: 12px; }
+  .bar { display: block; width: 44px; height: 5px; border-radius: 3px; margin-bottom: 14px; }
+  .card-t { font-family: var(--font-display); font-weight: 600; font-size: 20px; margin: 0 0 8px; color: var(--ink); }
+  .card-b { font-size: 15px; line-height: 1.6; color: var(--ink-soft); margin: 0; }
+
+  .cols { grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); }
+  .col { border: 1px solid var(--line); border-radius: 16px; overflow: hidden; background: #fff; }
+  .col-h { margin: 0; padding: 14px 20px; color: #fff; font-family: var(--font-display); font-weight: 600; font-size: 19px; }
+  .col-ul { margin: 0; padding: 18px 20px 14px 38px; }
+  .col-ul li { font-size: 15px; line-height: 1.5; color: var(--ink-soft); margin-bottom: 8px; }
+
+  .insight { margin-top: 18px; background: #191946; color: #fff; border-radius: 16px; padding: 22px 26px; }
+  .insight-l { font-size: 13px; letter-spacing: 0.06em; text-transform: uppercase; color: #B9C3FF; margin: 0 0 6px; }
+  .insight-t { font-family: var(--font-display); font-size: 22px; line-height: 1.45; margin: 0; }
+
+  .persona-top { display: grid; grid-template-columns: minmax(200px, 280px) 1fr; gap: 22px; align-items: stretch; margin-bottom: 18px; }
+  .persona-id { background: var(--surface-warm); border: 1px solid var(--line); border-radius: 16px; padding: 22px; }
+  .persona-name { font-family: var(--font-display); font-size: 34px; margin: 0 0 6px; color: var(--ink); }
+  .persona-meta { margin: 0 0 4px; font-size: 15px; color: var(--ink-soft); }
+  .persona-quote { margin: 0; background: #191946; color: #fff; border-radius: 16px; padding: 26px 30px; font-family: var(--font-display); font-size: 24px; line-height: 1.45; display: flex; align-items: center; }
+  @media (max-width: 800px) { .persona-top { grid-template-columns: 1fr; } }
+
+  .palette { display: grid; gap: 22px; }
+  .swatches { display: flex; flex-wrap: wrap; gap: 18px; }
+  .sw { display: flex; flex-direction: column; align-items: center; gap: 4px; min-width: 92px; }
+  .sw-dot { width: 64px; height: 64px; border-radius: 16px; border: 1px solid rgba(0,0,0,0.15); }
+  .sw-n { font-size: 13px; color: var(--ink); }
+  .sw-h { font-size: 12px; color: var(--ink-muted); font-variant-numeric: tabular-nums; }
+  .fonts { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+  .font { background: #0b0b1a; border-radius: 16px; padding: 22px; }
+  .font-n { font-size: 26px; color: #fff; margin: 0 0 6px; font-weight: 700; }
+  .font-d { font-size: 14px; color: #b9b9d6; margin: 0; line-height: 1.5; }
+  .states { display: flex; flex-wrap: wrap; gap: 10px; }
+  .state { font-size: 14px; font-weight: 600; padding: 8px 18px; border-radius: 999px; color: #fff; background: #E03F6C; }
+  .state.s1 { background: #A92F55; }
+  .state.s2 { background: #8A2646; }
+  .state.s3 { background: #F2C0CF; color: #fff; }
+
+  .flow { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 14px; counter-reset: s; }
+  .flow-s { background: var(--surface-warm); border: 1px solid var(--line); border-radius: 14px; padding: 16px; display: flex; flex-direction: column; gap: 10px; position: relative; }
+  .flow-n { width: 28px; height: 28px; border-radius: 50%; background: var(--ink); color: var(--paper); display: inline-flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; }
+  .flow-t { font-size: 14.5px; line-height: 1.45; color: var(--ink); }
+
+  .big-quote { margin: 0; font-family: var(--font-display); font-size: 28px; line-height: 1.45; color: var(--ink); border-left: 4px solid var(--accent, #8C2F52); padding-left: 24px; max-width: 900px; }
+
+  @media (max-width: 900px) {
+    .vb { padding-top: 28px; padding-bottom: 28px; }
+    .statement, .big-quote { font-size: 22px; }
+  }
+</style>

@@ -1,6 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import ProjectCard from "../components/ProjectCard.astro";
+import VisualBlocks from "../components/VisualBlocks.astro";
 import { asset, pagePath, other, type Lang } from "../i18n";
 import { ui } from "../i18n/copy";
 import { nextOf, type Project } from "../data/projects";
@@ -66,7 +67,9 @@ const t = ui.project;
       </section>
     )}
 
-    {p.sections.map((s) => (
+    {p.blocks && <VisualBlocks blocks={p.blocks} lang={lang} />}
+
+    {!p.blocks && p.sections.map((s) => (
       <section class="labeled-row wrap reveal">
         <h2 class="section-label labeled-row-label">{s.label[lang]}</h2>
         <p class="labeled-row-body">{s.body[lang]}</p>
