@@ -54,6 +54,7 @@ export const ui = {
     links: { es: "Enlaces", en: "Links" },
     outcome: { es: "Resultado final", en: "Final outcome" },
     next: { es: "Siguiente proyecto", en: "Next project" },
+    prev: { es: "Proyecto anterior", en: "Previous project" },
   },
   projectsPage: {
     eyebrow: { es: "Trabajo", en: "Work" },

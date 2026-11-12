@@ -4,11 +4,19 @@ import ProjectCard from "../components/ProjectCard.astro";
 import VisualBlocks from "../components/VisualBlocks.astro";
 import { asset, pagePath, other, type Lang } from "../i18n";
 import { ui } from "../i18n/copy";
-import { nextOf, type Project } from "../data/projects";
+import { nextOf, prevOf, type Block, type Project } from "../data/projects";
 
 interface Props { lang: Lang; project: Project }
 const { lang, project: p } = Astro.props;
 const next = nextOf(p.slug);
+const prev = prevOf(p.slug);
+// Todos los proyectos se muestran con la misma organización visual:
+// si tienen `blocks` se usan; si no, sus secciones de texto se convierten en tarjetas.
+const topBlocks: Block[] = p.blocks ?? (p.sections.length > 0 ? [{ type: "sections", items: p.sections }] : []);
+const techBlocks: Block[] = [
+  ...(p.system ? [{ type: "steps", label: ui.project.system, items: p.system } as Block] : []),
+  ...(p.stack.length > 0 ? [{ type: "chips", label: ui.project.stack, items: p.stack.map((x) => ({ es: x, en: x })) } as Block] : []),
+];
 const t = ui.project;
 ---
 
@@ -67,14 +75,7 @@ const t = ui.project;
       </section>
     )}
 
-    {p.blocks && <VisualBlocks blocks={p.blocks} lang={lang} />}
-
-    {!p.blocks && p.sections.map((s) => (
-      <section class="labeled-row wrap reveal">
-        <h2 class="section-label labeled-row-label">{s.label[lang]}</h2>
-        <p class="labeled-row-body">{s.body[lang]}</p>
-      </section>
-    ))}
+    {topBlocks.length > 0 && <VisualBlocks blocks={topBlocks} lang={lang} accent={p.color} />}
 
     {p.metrics && (
       <section class="wrap reveal metrics">
@@ -106,36 +107,7 @@ const t = ui.project;
       </section>
     )}
 
-    {(p.system || p.stack.length > 0) && (
-      <section class="wrap reveal implementacion">
-        <div class="accordions" style="max-width:none; flex:1">
-          {p.system && (
-            <details class="accordion" open>
-              <summary class="section-label">{t.system[lang]}</summary>
-              <div class="steps">
-                {p.system.map((s, i) => (
-                  <div class="step">
-                    <span class="step-n">{i + 1}</span>
-                    <div>
-                      <p class="step-title">{s.title[lang]}</p>
-                      <p class="step-body">{s.body[lang]}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </details>
-          )}
-          {p.stack.length > 0 && (
-            <details class="accordion" open>
-              <summary class="section-label">{t.stack[lang]}</summary>
-              <div class="stack-tags">
-                {p.stack.map((s) => <span class="stack-tag">{s}</span>)}
-              </div>
-            </details>
-          )}
-        </div>
-      </section>
-    )}
+    {techBlocks.length > 0 && <VisualBlocks blocks={techBlocks} lang={lang} accent={p.color} />}
 
     {p.awards && (
       <section class="wrap reveal awards-sec">
@@ -173,7 +145,7 @@ const t = ui.project;
     {p.videos && p.videos.length > 0 && (
       <section class="wrap reveal videos-sec">
         <p class="section-label">{t.videos[lang]}</p>
-        <div class={`videos-grid ${p.videos.length === 1 ? "single" : ""}`}>
+        <div class={`videos-grid ${p.videos.length === 1 ? "single" : p.videos.length % 2 === 1 ? "odd" : ""}`}>
           {p.videos.map((vd) => (
             <figure class="video-card">
               {vd.youtube ? (
@@ -207,8 +179,16 @@ const t = ui.project;
     )}
 
     <section class="wrap reveal next-project">
-      <p class="section-label">{t.next[lang]}</p>
-      <ProjectCard project={next} layout="horizontal" lang={lang} />
+      <div class="pn-grid">
+        <div class="pn-col">
+          <p class="section-label">← {t.prev[lang]}</p>
+          <ProjectCard project={prev} layout="vertical" lang={lang} />
+        </div>
+        <div class="pn-col">
+          <p class="section-label pn-right">{t.next[lang]} →</p>
+          <ProjectCard project={next} layout="vertical" lang={lang} />
+        </div>
+      </div>
     </section>
   </main>
 
@@ -295,7 +275,7 @@ const t = ui.project;
     .hero { background: var(--accent); }
     .metrics { padding: 45px 155px; }
     .metrics-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-top: 20px; }
-    .metric-v { font-family: var(--font-display); font-weight: 400; font-size: 48px; line-height: 1; color: var(--accent); margin: 0 0 8px; }
+    .metric-v { font-family: var(--font-display); font-weight: 400; font-size: 48px; line-height: 1; color: var(--ink); margin: 0 0 8px; }
     .metric-l { font-size: 15px; line-height: 22px; color: var(--ink-soft); margin: 0; }
     @media (max-width: 900px) { .metrics { padding: 32px 20px; } .metrics-grid { grid-template-columns: 1fr 1fr; } }
 
@@ -325,16 +305,21 @@ const t = ui.project;
     .implementacion-text { max-width: 595px; }
 
     .videos-sec { padding: 45px 155px; }
-    .videos-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 20px; }
-    .videos-grid.single { grid-template-columns: minmax(0, 900px); }
+    .videos-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; margin: 20px auto 0; justify-content: center; max-width: 1100px; }
+    .videos-grid.odd .video-card:last-child { grid-column: 1 / -1; width: calc(50% - 12px); justify-self: center; }
+    .videos-grid.single { grid-template-columns: minmax(0, 900px); max-width: 900px; }
     .video-card { margin: 0; }
-    .video-card figcaption { font-size: 14px; color: var(--ink-soft); margin-top: 10px; line-height: 20px; }
+    .video-card figcaption { font-size: 14px; color: var(--ink-soft); margin-top: 10px; line-height: 20px; text-align: center; }
     .yt-frame, .local-video { width: 100%; aspect-ratio: 16 / 9; border-radius: 12px; background: #000; display: block; overflow: hidden; }
     .yt-frame :global(iframe) { width: 100%; height: 100%; border: 0; }
     .yt-play { position: relative; width: 100%; height: 100%; padding: 0; border: 0; cursor: pointer; background: #000; }
     .yt-play img { width: 100%; height: 100%; object-fit: cover; opacity: 0.85; }
     .yt-icon { position: absolute; inset: 0; margin: auto; width: 64px; height: 64px; border-radius: 50%; background: rgba(255,255,255,0.92); color: #111; display: flex; align-items: center; justify-content: center; font-size: 22px; padding-left: 4px; }
     .yt-play:hover .yt-icon { background: #fff; }
-    @media (max-width: 900px) { .videos-sec { padding: 32px 20px; } .videos-grid, .videos-grid.single { grid-template-columns: 1fr; } }
+    @media (max-width: 900px) { .videos-sec { padding: 32px 20px; } .videos-grid, .videos-grid.single { grid-template-columns: 1fr; } .videos-grid.odd .video-card:last-child { width: 100%; } }
+    .pn-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    .pn-col { display: flex; flex-direction: column; gap: 14px; }
+    .pn-right { text-align: right; }
+    @media (max-width: 900px) { .pn-grid { grid-template-columns: 1fr; } .pn-right { text-align: left; } }
 </style>
 </Layout>

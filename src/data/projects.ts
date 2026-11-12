@@ -52,6 +52,8 @@ export interface Video {
 export type Block =
   | { type: "facts"; label: L; body?: L; items: { label: L; value: L }[] }
   | { type: "statement"; label: L; body: L; tags?: { text: L; color: string }[] }
+  | { type: "sections"; label?: L; items: Section[] }
+  | { type: "steps"; label: L; body?: L; items: { title: L; body: L }[] }
   | { type: "cards"; label: L; body?: L; items: { title: L; body: L; color: string }[] }
   | { type: "columns"; label: L; body?: L; items: { title: L; color: string; bullets: L[] }[] }
   | { type: "insight"; label: L; body?: L; items: { title: L; body: L; color: string }[]; insight: L }
@@ -1024,6 +1026,12 @@ export function getProject(slug: string): Project | undefined {
 export function nextOf(slug: string): Project {
   const i = published.findIndex((p) => p.slug === slug);
   return published[(i + 1) % published.length];
+}
+
+/** Proyecto anterior en el orden del sitio (vuelve al último desde el primero). */
+export function prevOf(slug: string): Project {
+  const i = published.findIndex((p) => p.slug === slug);
+  return published[(i - 1 + published.length) % published.length];
 }
 
 export const byTier = (tier: 1 | 2 | 3) => published.filter((p) => p.tier === tier);
