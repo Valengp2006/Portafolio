@@ -447,6 +447,7 @@ export const projects: Project[] = [
       },
     ],
     gallery: [
+      { src: "images/projects/muse/persona.webp", alt: { es: "Usuario objetivo: Oscar, estudiante de Diseño Gráfico e ilustrador digital, con sus motivaciones, frustraciones y necesidades", en: "Target user: Oscar, graphic design student and digital illustrator, with his motivations, frustrations and needs" } },
       { src: "images/projects/muse/wireframes.webp", alt: { es: "De wireframes a diseño visual: flujo de postulación a Artista de la Semana", en: "From wireframes to visual design: Artist of the Week entry flow" } },
       { src: "images/projects/muse/ui-kit.webp", alt: { es: "UI Kit: colores, tipografías, botones y componentes", en: "UI Kit: colors, typography, buttons and components" } },
       { src: "images/projects/muse/prototipo.webp", alt: { es: "Mapa del prototipo interactivo en Figma", en: "Interactive prototype map in Figma" } },
