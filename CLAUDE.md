@@ -52,13 +52,16 @@ Cada vez que un agente cambie contenido, estructura, textos o tome una decisión
 - **Fechas:** Dissonance, julio a noviembre 2026; Contemplar lo infinito, septiembre 2026; Orquesta Corporal, Cauce, Encantar y Jardín de Bruma, octubre 2026.
 - **Equipos:** no se nombran integrantes en ningún proyecto; solo se indica "Proyecto en equipo" (Dissonance, Pasos de Tradición, MUSE, Jardín de Bruma, Cosmos). Orquesta Corporal, Contemplar lo infinito, Cauce y Encantar se presentan como trabajo individual.
 - **Pasos de Tradición** (taller 5): reconocimiento al mejor proyecto del Taller 5: Experiencias (sin imagen de certificado por ahora); sitio https://valengp2006.github.io/pasos-de-tradicion/; portada: la página del Códice (cover.webp, aportada por Valentina); galería con imágenes de su propio sitio.
-- **MUSE** se amplió con el contenido de su deck de Figma (https://www.figma.com/deck/D16IOQE3BsvhIg70jK0tMP/Portafolio-UX-UI): rol, problema, investigación, usuario objetivo, UI Kit, wireframes, prototipo y reflexión. Las imágenes de la galería son capturas de las diapositivas (800×600): reemplazar por exportaciones de Figma cuando se pueda.
-- **Orquesta Corporal** se amplió con la implementación técnica y las decisiones de diseño; documentación completa en Notion (enlace en el proyecto).
+- **MUSE** se amplió con el contenido de su deck de Figma (https://www.figma.com/deck/D16IOQE3BsvhIg70jK0tMP/Portafolio-UX-UI): rol, problema, investigación, usuario objetivo, UI Kit, wireframes, prototipo y reflexión. La galería y la portada salen de diapositivas exportadas en 2000×1299 aportadas por Valentina (wireframes, UI Kit y prototipo; la portada es un recorte de los teléfonos sobre fondo negro). La diapositiva del usuario objetivo NO se publicó: la foto de "Oscar" es de stock con marca de agua visible (Vecteezy); usar una imagen con licencia o generada antes de mostrarla. Enlace a la presentación completa: https://www.figma.com/deck/D16IOQE3BsvhIg70jK0tMP.
+- **Orquesta Corporal** se amplió con la implementación técnica y las decisiones de diseño; documentación completa en Notion y versión funcionando en el navegador (p5.js Web Editor, requiere cámara); ambos enlaces están en el proyecto.
+- **Dissonance** tiene su video "Recorrido completo (versión acelerada)" en YouTube (5wiIbKju99w).
+- **Jardín de Bruma** es un proyecto solo conceptual: no tiene videos ni prototipo funcional y no se prevé agregarlos.
 - **Cosmos** corrige su stack: público desde el teléfono (Node.js + Socket.io), performer en iPad (Open Stage Control), Strudel y TouchDesigner.
 - **Enlaces a repositorios** (`links` con "Repositorio en GitHub"): Dissonance, Contemplar lo infinito, Cauce (why-bother), Encantar, Cosmos (Proyecto_Cosmos) y Pasos de Tradición. Orquesta Corporal, MUSE y Jardín de Bruma no tienen repo enlazado.
 - **Repo de Hechizos → `encantar`:** el enlace del sitio ya apunta a `Valengp2006/encantar`. Ya está renombrado (nov 2026) y su sitio vive en valengp2006.github.io/encantar/. La carpeta local y su remoto siguen con el nombre viejo.
 - **Videos:** cada proyecto puede tener `videos` en `projects.ts`: `youtube` (ID; se carga solo al hacer clic, vía youtube-nocookie) o `src` (MP4 en `public/videos/`, con `poster`). Todos los videos actuales están en YouTube: Cosmos, Pasos de Tradición (3: Códice, Rastro de los Gestos y Cúpula de Legados), Cauce (mbFWkJXmFDI) y Contemplar lo infinito (ki0KPbzuUF4). No se guardan videos pesados en el repo (límite de GitHub y peso en el historial); `public/videos/` quedó sin uso.
 - **Cauce:** su portada y galería salen de fotogramas de su grabación (los de la captura en vivo se descartaron por oscuros). Contemplar sumó dos fotogramas del ensayo.
+- **Favicon:** reemplazado el de Astro por un monograma "V" (fondo tinta #1F1B16, letra papel #FAF7F2): `public/favicon.svg`, `favicon.ico` y `apple-touch-icon.png`, enlazados en `Layout.astro`. Provisional; Valentina puede dar otro diseño.
 - **node_modules** salió del repositorio (se agregó `.gitignore`).
 - **Retrato:** `public/images/valentina.jpg` (foto nueva de Valentina). La portada de Dissonance es la terminal de ATLAS-NET (aportada por Valentina); las de Contemplar lo infinito y Orquesta Corporal siguen siendo provisionales (salen de su propio material).
 
@@ -67,11 +70,11 @@ Cada vez que un agente cambie contenido, estructura, textos o tome una decisión
 - 29 páginas generadas (es/en); build sin errores y sin enlaces ni imágenes rotas.
 - README real, `.gitignore` y esta guía actualizados.
 - Primer despliegue publicado en `main` (commit 310bf1b, aprobado por Valentina el 11-nov-2026). Cambios posteriores (correo, fechas de Dissonance, MUSE, Pasos, Cosmos, Orquesta, galerías, enlaces a repos, sin nombres de equipo) siguen locales hasta su aprobación.
-- Galerías con imágenes: todos menos Cosmos (Valentina buscará fotos de mejor calidad). Encantar usa capturas de su sitio en vivo (https://valengp2006.github.io/encantar/); el repo ya fue renombrado a `encantar` en GitHub.
+- Galerías con imágenes en todos los proyectos. Cosmos usa recortes de fotogramas de su video (visuales de TouchDesigner, terminal de Strudel y controlador), aportados por Valentina; puede reemplazarlos por fotos de la instalación de mejor calidad. Encantar usa capturas de su sitio en vivo (https://valengp2006.github.io/encantar/); el repo ya fue renombrado a `encantar` en GitHub.
 
 ## Pendientes
 
-- Galería de Cosmos (fotos o video de la instalación en buena calidad; Valentina las buscará).
+- Fotos de la instalación de Cosmos en mejor calidad (las actuales son recortes de video).
 - Actualizar el remoto local de la carpeta `hechizos-disney` al repo `encantar` (GitHub redirige mientras tanto).
 - Repo de Orquesta Corporal (si existe) para enlazarlo.
 - Portadas finales de los proyectos: **se dejan para después** (decisión de Valentina). Pendientes: MUSE, Pasos de Tradición, Cosmos, Cauce y Encantar; galerías; imágenes de servicios; portadas definitivas de Contemplar y Orquesta; otra imagen para Jardín de Bruma.

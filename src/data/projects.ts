@@ -219,6 +219,9 @@ export const projects: Project[] = [
       { src: "images/projects/dissonance/estacion-control.webp", alt: { es: "Monitor de señal en la estación de control", en: "Signal monitor at the control station" } },
       { src: "images/projects/dissonance/pruebas-vr.webp", alt: { es: "Prueba de la experiencia con visor de VR", en: "Testing the experience with a VR headset" } },
     ],
+    videos: [
+      { title: { es: "Recorrido completo (versión acelerada)", en: "Full walkthrough (sped-up version)" }, youtube: "5wiIbKju99w" },
+    ],
     links: [
       { label: { es: "Sitio del proyecto y documentación", en: "Project site and documentation" }, url: "https://valengp2006.github.io/Dissonance/" },
       { label: { es: "Repositorio en GitHub", en: "GitHub repository" }, url: "https://github.com/Valengp2006/Dissonance" },
@@ -444,14 +447,12 @@ export const projects: Project[] = [
       },
     ],
     gallery: [
-      { src: "images/projects/muse/cover.jpg", alt: { es: "Pantallas de MUSE: Artista de la Semana, galería y eventos", en: "MUSE screens: Artist of the Week, gallery and events" } },
-      { src: "images/projects/muse/wireframes.jpg", alt: { es: "De wireframes a diseño visual: flujo de postulación a Artista de la Semana", en: "From wireframes to visual design: Artist of the Week entry flow" } },
-      { src: "images/projects/muse/ui-kit.jpg", alt: { es: "UI Kit: colores, tipografías, botones y componentes", en: "UI Kit: colors, typography, buttons and components" } },
-      { src: "images/projects/muse/prototipo.jpg", alt: { es: "Mapa del prototipo interactivo en Figma", en: "Interactive prototype map in Figma" } },
-      { src: "images/projects/muse/reflexion.jpg", alt: { es: "Pantallas finales de la app", en: "Final app screens" } },
+      { src: "images/projects/muse/wireframes.webp", alt: { es: "De wireframes a diseño visual: flujo de postulación a Artista de la Semana", en: "From wireframes to visual design: Artist of the Week entry flow" } },
+      { src: "images/projects/muse/ui-kit.webp", alt: { es: "UI Kit: colores, tipografías, botones y componentes", en: "UI Kit: colors, typography, buttons and components" } },
+      { src: "images/projects/muse/prototipo.webp", alt: { es: "Mapa del prototipo interactivo en Figma", en: "Interactive prototype map in Figma" } },
     ],
     links: [
-      { label: { es: "Ver el caso de estudio completo en Figma", en: "View the full case study in Figma" }, url: "https://www.figma.com/deck/D16IOQE3BsvhIg70jK0tMP/Portafolio-UX-UI" },
+      { label: { es: "Presentación completa del caso de estudio en Figma", en: "Full case study presentation on Figma" }, url: "https://www.figma.com/deck/D16IOQE3BsvhIg70jK0tMP" },
     ],
     stack: ["Figma", "FigJam", "Notion", "Google Forms"],
     outcome: {
@@ -627,7 +628,8 @@ export const projects: Project[] = [
     color: "#6D4FE0",
     tint: "#EEE9FA",
     textColor: "#4B3A9E",
-    coverAlt: { es: "Cosmos", en: "Cosmos" },
+    cover: "images/projects/cosmos/cover.jpg",
+    coverAlt: { es: "La Luna de Cosmos: una esfera generativa de textura viva sobre fondo negro", en: "Cosmos' Moon: a generative sphere with a living texture on a black background" },
     role: { es: "Diseño de interacción · Programación creativa · Diseño audiovisual", en: "Interaction design · Creative coding · Audiovisual design" },
     duration: { es: "Marzo – Mayo 2026", en: "March – May 2026" },
     team: { es: "Proyecto en equipo", en: "Team project" },
@@ -673,6 +675,14 @@ export const projects: Project[] = [
       { title: { es: "Entrada", en: "Input" }, body: { es: "Smartphones del público (colores RGB por web), iPad del performer (Open Stage Control) y el pulso del bombo de Strudel.", en: "Audience smartphones (RGB colors via web), the performer's iPad (Open Stage Control) and Strudel's kick-drum pulse." } },
       { title: { es: "Procesamiento", en: "Processing" }, body: { es: "Un servidor Node.js con Socket.io convierte WebSocket a OSC; TouchDesigner recibe todo y genera los visuales.", en: "A Node.js server with Socket.io converts WebSocket to OSC; TouchDesigner receives everything and generates the visuals." } },
       { title: { es: "Salida", en: "Output" }, body: { es: "Visuales generativos y sonido sincronizados: una Luna de color colectivo que parpadea con el pulso y cambia entre estrellas, vórtice y nebulosa.", en: "Synchronized generative visuals and sound: a Moon of collective color that flickers with the pulse and shifts between stars, vortex and nebula." } },
+    ],
+    gallery: [
+      { src: "images/projects/cosmos/luna.jpg", alt: { es: "TouchDesigner: la Luna generativa, una esfera de textura viva", en: "TouchDesigner: the generative Moon, a sphere with a living texture" } },
+      { src: "images/projects/cosmos/filamentos.jpg", alt: { es: "TouchDesigner: la esfera se deshace en filamentos", en: "TouchDesigner: the sphere breaks into filaments" } },
+      { src: "images/projects/cosmos/vortice.jpg", alt: { es: "TouchDesigner: la obra colapsa hacia un vórtice", en: "TouchDesigner: the piece collapses into a vortex" } },
+      { src: "images/projects/cosmos/estrellas.jpg", alt: { es: "TouchDesigner: la obra se expande en estrellas", en: "TouchDesigner: the piece expands into stars" } },
+      { src: "images/projects/cosmos/strudel.jpg", alt: { es: "Strudel: el código que genera el paisaje sonoro en vivo", en: "Strudel: the live-coded sound landscape" } },
+      { src: "images/projects/cosmos/controlador.jpg", alt: { es: "El controlador del performer: botón de reinicio y deslizadores", en: "The performer's controller: reset button and sliders" } },
     ],
     videos: [
       { title: { es: "Cosmos en funcionamiento", en: "Cosmos running live" }, youtube: "FiLLIV0uhI4" },
@@ -766,6 +776,7 @@ export const projects: Project[] = [
       { src: "images/projects/orquesta/j-arquitectura.png", alt: { es: "Arquitectura del sistema", en: "System architecture" } },
     ],
     links: [
+      { label: { es: "Probar la experiencia en el navegador (requiere cámara)", en: "Try it in the browser (camera required)" }, url: "https://editor.p5js.org/Valengp2006/full/GMBJ7kILg" },
       { label: { es: "Documentación completa en Notion", en: "Full documentation on Notion" }, url: "https://app.notion.com/p/Orquesta-Corporal-401bd8838a788043a17ec992ffc8473c" },
     ],
     stack: ["p5.js", "ml5.js", "MoveNet", "Tone.js"],
