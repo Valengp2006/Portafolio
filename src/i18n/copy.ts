@@ -66,6 +66,15 @@ export const ui = {
     tier1: { es: "Casos principales", en: "Featured case studies" },
     tier2: { es: "También", en: "More work" },
     tier3: { es: "Laboratorio de experimentos", en: "Experiment lab" },
+    filterLabel: { es: "Filtrar proyectos por categoría", en: "Filter projects by category" },
+    filterAll: { es: "Todos", en: "All" },
+    cats: {
+      ux: { es: "UX/UI y producto", en: "UX/UI & product" },
+      interactive: { es: "Experiencias interactivas", en: "Interactive experiences" },
+      heritage: { es: "Patrimonio cultural", en: "Cultural heritage" },
+    },
+    countOne: { es: "1 proyecto", en: "1 project" },
+    countMany: { es: "proyectos", en: "projects" },
     tier3Intro: {
       es: "Exploraciones de interacción, visión artificial y sistemas generativos.",
       en: "Explorations in interaction, computer vision and generative systems.",
@@ -213,7 +222,7 @@ export const services = {
       title: { es: "Investigación UX y diseño UI de producto", en: "UX research and product UI design" },
       tagline: { es: "Interfaces claras que nacen de entender a las personas.", en: "Clear interfaces born from understanding people." },
       body: { es: "Investigación con usuarios, arquitectura de información, wireframes, UI kit y prototipos interactivos de alta fidelidad.", en: "User research, information architecture, wireframes, UI kits and high-fidelity interactive prototypes." },
-      image: null as string | null,
+      image: "images/servicios/ux-ui.webp" as string | null,
       accent: "#8C2F52",
       faqs: [
         { q: { es: "¿Cómo es el proceso?", en: "What does the process look like?" }, a: { es: "Investigo para entender al usuario, defino el problema, valido la estructura con wireframes de baja fidelidad y construyo un prototipo interactivo en Figma que podemos probar.", en: "I research to understand the user, define the problem, validate the structure with low-fidelity wireframes and build an interactive Figma prototype we can test." } },
@@ -224,7 +233,7 @@ export const services = {
       title: { es: "Experiencias interactivas y medios generativos", en: "Interactive experiences and generative media" },
       tagline: { es: "Experiencias donde la audiencia se vuelve parte de la obra.", en: "Experiences where the audience becomes part of the piece." },
       body: { es: "Instalaciones, experiencias inmersivas y sistemas en tiempo real que combinan interacción, sonido e imagen para marcas, eventos y espacios culturales.", en: "Installations, immersive experiences and real-time systems that combine interaction, sound and visuals for brands, events and cultural venues." },
-      image: "images/projects/dissonance/vr-operador.webp" as string | null,
+      image: "images/servicios/experiencias-interactivas.webp" as string | null,
       accent: "#2B3A67",
       faqs: [
         { q: { es: "¿Qué tipo de proyectos haces?", en: "What kinds of projects do you do?" }, a: { es: "Experiencias de VR, instalaciones audiovisuales, interfaces para performances en vivo y experiencias con visión artificial.", en: "VR experiences, audiovisual installations, live-performance interfaces and computer-vision experiences." } },
@@ -235,7 +244,7 @@ export const services = {
       title: { es: "Patrimonio cultural e impacto social", en: "Cultural heritage and social impact" },
       tagline: { es: "Llevar la memoria y las comunidades a experiencias digitales.", en: "Bringing memory and communities into digital experiences." },
       body: { es: "Investigación de campo, narrativa y producción digital para documentar tradiciones y crear espacios seguros y participativos.", en: "Field research, storytelling and digital production to document traditions and create safe, participatory spaces." },
-      image: null as string | null,
+      image: "images/servicios/patrimonio-impacto.webp" as string | null,
       accent: "#B5651D",
       faqs: [
         { q: { es: "¿Combinas investigación y producción?", en: "Do you combine research and production?" }, a: { es: "Sí: la investigación documental y de campo es la base de lo que se diseña y se produce.", en: "Yes: documentary and field research is the base of what gets designed and produced." } },

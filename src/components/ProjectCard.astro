@@ -5,7 +5,7 @@ import { ui } from "../i18n/copy";
 
 interface Props {
   project: Project;
-  layout: "hero" | "vertical" | "horizontal" | "compact";
+  layout: "hero" | "vertical" | "horizontal" | "compact" | "tile";
   lang: Lang;
 }
 const { project: p, layout, lang } = Astro.props;
@@ -56,8 +56,21 @@ const alt = p.coverAlt[lang];
   </a>
 )}
 
+{layout === "tile" && (
+  <a href={href} class="card card-tile">
+    {cover ? <img src={cover} alt={alt} class="card-tile-img" loading="lazy" /> : <div class="card-tile-img ph" style={`background:${p.color};`} role="img" aria-label={alt}><span>{p.title.charAt(0)}</span></div>}
+    <div class="card-tile-body">
+      <span class="card-tag" style={`background:${p.tint}; color:${p.textColor};`}>{p.tag[lang]}</span>
+      <h3 class="card-tile-title">{p.title}</h3>
+      <p class="card-tile-desc">{p.result[lang]}</p>
+      <span class="card-link" style={`color:${p.color}`}>{ui.common.viewProject[lang]} <span aria-hidden="true">↗</span></span>
+    </div>
+  </a>
+)}
+
 {layout === "compact" && (
   <a href={href} class="card card-compact">
+    {cover ? <img src={cover} alt="" class="card-compact-thumb" loading="lazy" /> : <div class="card-compact-thumb ph" style={`background:${p.color};`} aria-hidden="true"><span>{p.title.charAt(0)}</span></div>}
     <div class="card-compact-main">
       <h3 class="card-compact-title">{p.title}</h3>
       <p class="card-compact-desc">{p.result[lang]}</p>
@@ -209,9 +222,20 @@ const alt = p.coverAlt[lang];
   .card-badge { margin: 0; font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600; color: #F3D98B; }
 
   /* Compact (laboratorio de experimentos) */
-  .card-compact { display: grid; grid-template-columns: 1fr auto auto; align-items: center; gap: 24px; padding: 24px 28px; background: #F5F1EA; }
+  .card-compact { display: grid; grid-template-columns: 132px 1fr auto auto; align-items: center; gap: 24px; padding: 14px 28px 14px 14px; background: #F5F1EA; }
+  .card-compact-thumb { width: 132px; height: 88px; border-radius: 10px; object-fit: cover; display: block; }
+  .card-compact-thumb.ph span { font-size: 40px; }
   .card-compact:hover { background: #F0ECE4; }
   .card-compact-title { font-family: 'Fraunces', serif; font-weight: 400; font-size: 24px; line-height: 30px; color: #1F1B16; margin: 0 0 4px; }
   .card-compact-desc { font-family: 'Inter', sans-serif; font-size: 14px; line-height: 22px; color: #57504A; margin: 0; max-width: 640px; }
-  @media (max-width: 900px) { .card-compact { grid-template-columns: 1fr auto; } .card-compact .card-tag { grid-column: 1; grid-row: 2; } .card-horizontal-img.ph { border-radius: 16px 16px 0 0; height: 200px; } }
+  @media (max-width: 900px) { .card-compact { grid-template-columns: 96px 1fr; padding: 12px; gap: 14px; } .card-compact-thumb { width: 96px; height: 72px; } .card-compact .card-tag { grid-column: 2; } .card-compact > .card-link { display: none; } .card-horizontal-img.ph { border-radius: 16px 16px 0 0; height: 200px; } }
+
+  /* Tile (segundo nivel, 3 columnas) */
+  .card-tile { background: #F5F1EA; height: 100%; display: flex; flex-direction: column; }
+  .card-tile-img { width: 100%; height: 190px; object-fit: cover; display: block; }
+  .card-tile-img.ph span { font-size: 72px; }
+  .card-tile-body { padding: 22px 24px 24px; display: flex; flex-direction: column; align-items: flex-start; gap: 12px; flex: 1; }
+  .card-tile-title { font-family: 'Fraunces', serif; font-weight: 400; font-size: 26px; line-height: 32px; color: #1F1B16; margin: 0; }
+  .card-tile-desc { font-family: 'Inter', sans-serif; font-size: 14px; line-height: 22px; color: #57504A; margin: 0; display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden; }
+  .card-tile .card-link { margin-top: auto; }
 </style>

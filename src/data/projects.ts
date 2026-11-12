@@ -63,9 +63,13 @@ export type Block =
   | { type: "chips"; label: L; body?: L; items: L[] }
   | { type: "quote"; label: L; body: L };
 
+export type Category = "ux" | "interactive" | "heritage";
+
 export interface Project {
   slug: string;
   tier: 1 | 2 | 3;
+  /** Categorías para los filtros de /proyectos (puede tener varias). */
+  categories: Category[];
   draft?: boolean;
   title: string;
   tag: L;
@@ -99,6 +103,7 @@ export const projects: Project[] = [
   {
     slug: "dissonance",
     tier: 1,
+    categories: ["interactive"],
     title: "Dissonance",
     tag: { es: "Experiencia inmersiva · VR", en: "Immersive experience · VR" },
     result: {
@@ -252,6 +257,7 @@ export const projects: Project[] = [
   {
     slug: "pasos-de-tradicion",
     tier: 1,
+    categories: ["heritage", "interactive"],
     title: "Pasos de Tradición",
     tag: { es: "Patrimonio cultural · AR", en: "Cultural heritage · AR" },
     result: {
@@ -352,6 +358,7 @@ export const projects: Project[] = [
   {
     slug: "muse",
     tier: 1,
+    categories: ["ux"],
     title: "MUSE",
     tag: { es: "App social · UX/UI", en: "Social app · UX/UI" },
     result: {
@@ -587,6 +594,7 @@ export const projects: Project[] = [
   {
     slug: "jardin-de-bruma",
     tier: 2,
+    categories: ["ux"],
     title: "Jardín de Bruma",
     tag: { es: "Gamificación · Estrategia para marca", en: "Gamification · Brand strategy" },
     result: {
@@ -673,6 +681,7 @@ export const projects: Project[] = [
   {
     slug: "contemplar-lo-infinito",
     tier: 2,
+    categories: ["interactive"],
     title: "Contemplar lo infinito",
     tag: { es: "Instrumento visual en tiempo real", en: "Real-time visual instrument" },
     result: {
@@ -741,6 +750,7 @@ export const projects: Project[] = [
   {
     slug: "cosmos",
     tier: 2,
+    categories: ["interactive"],
     title: "Cosmos",
     tag: { es: "Instalación audiovisual", en: "Audiovisual installation" },
     result: {
@@ -824,6 +834,7 @@ export const projects: Project[] = [
   {
     slug: "orquesta-corporal",
     tier: 3,
+    categories: ["interactive"],
     title: "Orquesta Corporal",
     tag: { es: "Visión artificial · Interacción con el cuerpo", en: "Computer vision · Body interaction" },
     result: {
@@ -911,6 +922,7 @@ export const projects: Project[] = [
   {
     slug: "cauce",
     tier: 3,
+    categories: ["interactive"],
     title: "Cauce",
     tag: { es: "Obra computacional", en: "Computational artwork" },
     result: {
@@ -963,6 +975,7 @@ export const projects: Project[] = [
   {
     slug: "encantar",
     tier: 3,
+    categories: ["interactive"],
     title: "Encantar", // Nombre nuevo (sin marca de terceros). Para cambiarlo: aquí y el slug de arriba.
     tag: { es: "Sistema tipográfico jugable", en: "Playable typographic system" },
     result: {
