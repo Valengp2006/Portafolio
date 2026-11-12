@@ -1016,6 +1016,9 @@ export const projects: Project[] = [
       { src: "images/projects/encantar/guia.jpg", alt: { es: "Guía de gestos: seis letras por despertar", en: "Gesture guide: six letters to wake up" } },
       { src: "images/projects/encantar/cover.jpg", alt: { es: "La luz del cursor revela el contorno de una letra", en: "The cursor's light reveals the outline of a letter" } },
     ],
+    videos: [
+      { title: { es: "Encantar en juego: despertando las letras", en: "Encantar in play: waking up the letters" }, youtube: "CHbMVxdAO8U" },
+    ],
     links: [
       { label: { es: "Probar Encantar", en: "Try Encantar" }, url: "https://valengp2006.github.io/encantar/" },
       { label: { es: "Repositorio en GitHub", en: "GitHub repository" }, url: "https://github.com/Valengp2006/encantar" },
