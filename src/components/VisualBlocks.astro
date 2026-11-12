@@ -16,7 +16,7 @@ const pad = (n: number) => String(n).padStart(2, "0");
 {blocks.map((b) => (
   <section class="vb wrap reveal">
     {"label" in b && b.label && <h2 class="section-label vb-label">{tr(b.label)}</h2>}
-    {"body" in b && b.body && <p class="vb-body">{tr(b.body)}</p>}
+    {"body" in b && b.body && b.type !== "statement" && b.type !== "quote" && <p class="vb-body">{tr(b.body)}</p>}
 
     {b.type === "facts" && (
       <div class="grid facts">
@@ -212,15 +212,16 @@ const pad = (n: number) => String(n).padStart(2, "0");
   .col-ul { margin: 0; padding: 18px 20px 14px 38px; }
   .col-ul li { font-size: 15px; line-height: 1.5; color: var(--ink-soft); margin-bottom: 8px; }
 
-  .insight { margin-top: 16px; background: var(--ink); color: var(--paper); border-radius: 16px; padding: 24px 28px; border-left: 5px solid var(--accent); }
-  .insight-l { font-size: 12.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-muted); margin: 0 0 6px; }
-  .insight-t { font-family: var(--font-display); font-size: 22px; line-height: 1.45; margin: 0; }
+  .insight { margin-top: 26px; padding: 26px 0 24px; border-top: 2px solid var(--ink); border-bottom: 1px solid var(--line); position: relative; }
+  .insight::before { content: ""; position: absolute; top: -2px; left: 0; width: 64px; height: 4px; background: var(--accent); }
+  .insight-l { font-size: 12.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-muted); margin: 0 0 8px; }
+  .insight-t { font-family: var(--font-display); font-size: 26px; line-height: 1.4; color: var(--ink); margin: 0; max-width: 900px; }
 
   .persona-top { display: grid; grid-template-columns: minmax(200px, 290px) 1fr; gap: 16px; align-items: stretch; margin-bottom: 16px; }
   .persona-id { background: var(--surface-warm); border: 1px solid var(--line); border-radius: 16px; padding: 22px; }
   .persona-name { font-family: var(--font-display); font-size: 34px; margin: 0 0 6px; color: var(--ink); }
   .persona-meta { margin: 0 0 4px; font-size: 15px; color: var(--ink-soft); }
-  .persona-quote { margin: 0; background: var(--ink); color: var(--paper); border-radius: 16px; padding: 26px 30px; border-left: 5px solid var(--accent); font-family: var(--font-display); font-size: 23px; line-height: 1.45; display: flex; align-items: center; }
+  .persona-quote { margin: 0; padding: 22px 4px 22px 0; border-top: 2px solid var(--ink); font-family: var(--font-display); font-size: 23px; line-height: 1.45; color: var(--ink); display: flex; align-items: center; }
   @media (max-width: 800px) { .persona-top { grid-template-columns: 1fr; } }
 
   .palette { display: grid; gap: 20px; }
@@ -230,9 +231,9 @@ const pad = (n: number) => String(n).padStart(2, "0");
   .sw-n { font-size: 13px; color: var(--ink); }
   .sw-h { font-size: 12px; color: var(--ink-muted); font-variant-numeric: tabular-nums; }
   .fonts { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
-  .font { background: var(--ink); border-radius: 16px; padding: 22px; }
-  .font-n { font-size: 26px; color: var(--paper); margin: 0 0 6px; font-weight: 700; }
-  .font-d { font-size: 14px; color: var(--ink-muted); margin: 0; line-height: 1.5; }
+  .font { background: var(--surface-tag); border: 1px solid var(--line); border-radius: 16px; padding: 22px; }
+  .font-n { font-size: 26px; color: var(--ink); margin: 0 0 6px; font-weight: 700; }
+  .font-d { font-size: 14px; color: var(--ink-soft); margin: 0; line-height: 1.5; }
   .states { display: flex; flex-wrap: wrap; gap: 10px; }
   .state { font-size: 14px; font-weight: 600; padding: 8px 18px; border-radius: 999px; background: var(--ink); color: var(--paper); }
   .state.s1 { background: var(--ink-soft); }
