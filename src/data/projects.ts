@@ -32,6 +32,8 @@ export interface Metric {
   label: L;
 }
 export interface Award {
+  /** Tipo de distinción (p. ej. "Mención de Honor"); Sobre mí lo antepone al título. */
+  kind?: L;
   title: L;
   detail: L;
   image?: string;
@@ -82,6 +84,12 @@ export interface Project {
   role: L;
   duration: L;
   team?: L;
+  /** Aviso visible bajo el banner (p. ej. ejercicio académico). */
+  note?: L;
+  /** Si es true, "Resultado" se muestra como "Entregable". */
+  deliverable?: boolean;
+  /** Reemplaza el título del bloque de cifras. */
+  metricsLabel?: L;
   tools: string;
   question?: L;
   sections: Section[];
@@ -227,6 +235,7 @@ export const projects: Project[] = [
         image: "images/dex/estilo-visual.jpg",
       },
       {
+        kind: { es: "Mención de Honor", en: "Honorable Mention" },
         title: { es: "Taller 6: Experiencias Interactivas", en: "Workshop 6: Interactive Experiences" },
         detail: { es: "Mención de Honor · Muestra DEX UPB, 10 de noviembre de 2026", en: "Honorable Mention · DEX UPB Showcase, November 10, 2026" },
         image: "images/dex/mencion-honor-taller-6.jpg",
@@ -526,8 +535,8 @@ export const projects: Project[] = [
     title: "Jardín de Bruma",
     tag: { es: "Gamificación · Estrategia para marca", en: "Gamification · Brand strategy" },
     result: {
-      es: "Sistema de gamificación para Bruma, un emprendimiento de regalos artesanales: una comunidad que compra, vuelve y recomienda con recompensas de costo mínimo.",
-      en: "A gamification system for Bruma, a handmade-gift business: a community that buys, returns and recommends, powered by very low-cost rewards.",
+      es: "Propuesta de gamificación para Bruma, un emprendimiento de regalos artesanales: una comunidad que compra, vuelve y recomienda con recompensas de costo mínimo.",
+      en: "A gamification proposal for Bruma, a handmade-gift business: a community that buys, returns and recommends, powered by very low-cost rewards.",
     },
     color: "#8E5F78",
     tint: "#F3E6EC",
@@ -537,6 +546,9 @@ export const projects: Project[] = [
     role: { es: "Planteamiento de la idea y presentación de la propuesta, en conjunto con el equipo", en: "Idea development and proposal presentation, jointly with the team" },
     duration: { es: "Octubre 2026", en: "October 2026" },
     team: { es: "Proyecto en equipo", en: "Team project" },
+    note: { es: "Ejercicio académico con cliente: propuesta de diseño, sin implementación.", en: "Academic client exercise: design proposal, not implemented." },
+    deliverable: true,
+    metricsLabel: { es: "El sistema en números", en: "The system in numbers" },
     tools: "Instagram · WhatsApp · Correo electrónico · Presentación de estrategia",
     question: {
       es: "¿Cómo construir una comunidad que compre, vuelva y recomiende una marca artesanal, con recompensas que cuesten poco pero impacten a las personas?",

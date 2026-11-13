@@ -26,7 +26,7 @@ const { lang } = Astro.props;
           <div class="contact-links">
             {site.linkedin && <a href={site.linkedin} target="_blank" rel="noopener" class="link-underline">{contact.linkedin[lang]} ↗</a>}
             <a href={site.github} target="_blank" rel="noopener" class="link-underline">{contact.github[lang]} ↗</a>
-            {site.cv && <a href={asset(site.cv)} class="link-underline">{contact.cv[lang]} ↗</a>}
+            {site.cv && <a href={asset(site.cv)} class="link-underline">{contact.cv[lang]} ↓</a>}
           </div>
         </div>
       </div>

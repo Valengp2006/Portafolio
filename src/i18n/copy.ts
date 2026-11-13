@@ -39,6 +39,8 @@ export const ui = {
     team: { es: "Equipo", en: "Team" },
     tools: { es: "Herramientas", en: "Tools" },
     result: { es: "Resultado", en: "Outcome" },
+    deliverable: { es: "Entregable", en: "Deliverable" },
+    deliverableFinal: { es: "Entregable final", en: "Final deliverable" },
     question: { es: "Pregunta de diseño", en: "Design question" },
     decisions: { es: "Decisiones clave", en: "Key decisions" },
     challenge: { es: "Reto", en: "Challenge" },
@@ -179,13 +181,13 @@ export const about = {
     es: [
       "Soy Valentina, estudiante de 6.º semestre de Ingeniería en Diseño de Entretenimiento Digital en la Universidad Pontificia Bolivariana (UPB), en Medellín. Diseño productos y experiencias digitales que parten de la investigación y terminan en prototipos que se pueden probar con personas.",
       "Mi enfoque está en las experiencias interactivas: desde una app social para artistas hasta una experiencia inmersiva en VR o una instalación audiovisual. Me interesa que la tecnología quede en segundo plano y que lo que se note sea la experiencia de quien la usa.",
-      "He trabajado con marcas, patrimonio cultural y problemáticas sociales. Me gusta especialmente el patrimonio digital: que las comunidades sean protagonistas de su propia memoria y no solo sujetos de documentación.",
+      "He desarrollado proyectos académicos para marcas, patrimonio cultural y problemáticas sociales. Me gusta especialmente el patrimonio digital: que las comunidades sean protagonistas de su propia memoria y no solo sujetos de documentación.",
       "Estoy buscando prácticas para el semestre 2027-2 y también estoy abierta a proyectos freelance.",
     ],
     en: [
       "I'm Valentina, a 6th-semester Digital Entertainment Design Engineering student at Universidad Pontificia Bolivariana (UPB) in Medellín. I design digital products and experiences that start from research and end in prototypes that can be tested with people.",
       "My focus is interactive experiences: from a social app for artists to an immersive VR experience or an audiovisual installation. I want the technology to stay in the background so that what stands out is the experience of the person using it.",
-      "I've worked with brands, cultural heritage and social issues. I'm especially drawn to digital heritage: communities as protagonists of their own memory, not just subjects of documentation.",
+      "I've developed academic projects for brands, cultural heritage and social issues. I'm especially drawn to digital heritage: communities as protagonists of their own memory, not just subjects of documentation.",
       "I'm looking for an internship for the 2027-2 term and I'm also open to freelance projects.",
     ],
   },
@@ -219,37 +221,96 @@ export const services = {
   eyebrow: { es: "Servicios", en: "Services" },
   h1: { es: "¿En qué puedo ayudarte?", en: "How can I help?" },
   body: {
-    es: "Trabajo de la investigación al prototipo, en proyectos de producto digital, experiencias interactivas y patrimonio cultural. Disponible para prácticas 2027-2 y freelance.",
-    en: "I work from research to prototype on digital product, interactive experience and cultural heritage projects. Available for 2027-2 internships and freelance work.",
+    es: "Trabajo de la investigación al prototipo, en proyectos de producto digital, gamificación para emprendimientos, experiencias interactivas y patrimonio cultural. Disponible para prácticas 2027-2 y freelance.",
+    en: "I work from research to prototype on digital product, gamification for small businesses, interactive experiences, and cultural heritage projects. Available for 2027-2 internships and freelance.",
   },
   items: [
     {
       title: { es: "Investigación UX y diseño UI de producto", en: "UX research and product UI design" },
-      tagline: { es: "Interfaces claras que nacen de entender a las personas.", en: "Clear interfaces born from understanding people." },
-      body: { es: "Investigación con usuarios, arquitectura de información, wireframes, UI kit y prototipos interactivos de alta fidelidad.", en: "User research, information architecture, wireframes, UI kits and high-fidelity interactive prototypes." },
+      tagline: { es: "Interfaces claras que nacen de entender a las personas.", en: "Clear interfaces that come from understanding people." },
+      body: {
+        es: "Investigación con usuarios, arquitectura de información, wireframes, UI kit y prototipos interactivos de alta fidelidad. El UI kit también se puede contratar por separado.",
+        en: "User research, information architecture, wireframes, UI kit, and high-fidelity interactive prototypes. The UI kit can also be hired on its own.",
+      },
       image: "images/servicios/ux-ui.webp" as string | null,
       accent: "#8C2F52",
       faqs: [
-        { q: { es: "¿Cómo es el proceso?", en: "What does the process look like?" }, a: { es: "Investigo para entender al usuario, defino el problema, valido la estructura con wireframes de baja fidelidad y construyo un prototipo interactivo en Figma que podemos probar.", en: "I research to understand the user, define the problem, validate the structure with low-fidelity wireframes and build an interactive Figma prototype we can test." } },
-        { q: { es: "¿Qué entregables recibes?", en: "What deliverables do you get?" }, a: { es: "Según el proyecto: hallazgos de investigación, flujos, wireframes, UI kit y prototipo listo para pruebas de usuario.", en: "Depending on the project: research findings, flows, wireframes, a UI kit and a prototype ready for user testing." } },
+        {
+          q: { es: "¿Cómo es el proceso?", en: "What does the process look like?" },
+          a: {
+            es: "Investigo para entender al usuario, defino el problema, valido la estructura con wireframes de baja fidelidad y construyo un prototipo interactivo en Figma que podemos probar.",
+            en: "I research to understand the user, define the problem, validate the structure with low-fidelity wireframes, and build an interactive Figma prototype we can test.",
+          },
+        },
+        {
+          q: { es: "¿Qué entregables recibes?", en: "What deliverables do you get?" },
+          a: {
+            es: "Según el proyecto: hallazgos de investigación, flujos, wireframes, un UI kit con tipografías, colores y componentes con sus estados, y un prototipo listo para pruebas de usuario.",
+            en: "Depending on the project: research findings, flows, wireframes, a UI kit with typography, colors, and components with their states, and a prototype ready for user testing.",
+          },
+        },
       ],
     },
     {
-      title: { es: "Experiencias interactivas y medios generativos", en: "Interactive experiences and generative media" },
-      tagline: { es: "Experiencias donde la audiencia se vuelve parte de la obra.", en: "Experiences where the audience becomes part of the piece." },
-      body: { es: "Instalaciones, experiencias inmersivas y sistemas en tiempo real que combinan interacción, sonido e imagen para marcas, eventos y espacios culturales.", en: "Installations, immersive experiences and real-time systems that combine interaction, sound and visuals for brands, events and cultural venues." },
+      title: { es: "Gamificación y fidelización para emprendimientos", en: "Gamification and loyalty for small businesses" },
+      tagline: {
+        es: "Una comunidad que compra, vuelve y recomienda, sin recompensas que el negocio no pueda sostener.",
+        en: "A community that buys, returns, and recommends, without rewards the business can't sustain.",
+      },
+      body: {
+        es: "Diseño de sistemas de puntos, rangos y recompensas para negocios pequeños, a partir de cómo compran hoy sus clientes y de lo que el negocio puede costear.",
+        en: "Design of point, rank, and reward systems for small businesses, based on how their customers buy today and what the business can afford.",
+      },
+      image: "images/servicios/gamificacion.webp" as string | null,
+      accent: "#8E5F78",
+      faqs: [
+        {
+          q: { es: "¿Cómo es el proceso?", en: "What does the process look like?" },
+          a: {
+            es: "Entiendo cómo llegan y compran tus clientes, cruzo sus necesidades con dinámicas de juego, defino reglas y recompensas de costo controlado, y dejo planteadas las hipótesis para validar con clientes reales.",
+            en: "I learn how your customers find and buy from you, match their needs with game dynamics, define rules and cost-controlled rewards, and set out hypotheses to validate with real customers.",
+          },
+        },
+        {
+          q: { es: "¿Qué entregables recibes?", en: "What deliverables do you get?" },
+          a: {
+            es: "Reglas del sistema, rangos y recompensas, flujo de entrada y participación, calendario de piloto e indicadores de medición. Es una propuesta de diseño: el piloto y la operación los ejecuta el negocio.",
+            en: "System rules, ranks and rewards, entry and participation flow, a pilot calendar, and measurement indicators. It is a design proposal: the pilot and day-to-day operation are run by the business.",
+          },
+        },
+      ],
+    },
+    {
+      title: { es: "Experiencias interactivas para eventos e instalaciones", en: "Interactive experiences for events and installations" },
+      tagline: { es: "Experiencias donde la audiencia se vuelve parte de la obra.", en: "Experiences where the audience becomes part of the work." },
+      body: {
+        es: "Instalaciones, experiencias inmersivas y sistemas en tiempo real que combinan interacción, sonido e imagen para marcas, eventos y espacios culturales.",
+        en: "Installations, immersive experiences, and real-time systems that combine interaction, sound, and image for brands, events, and cultural spaces.",
+      },
       image: "images/servicios/experiencias-interactivas.webp" as string | null,
       accent: "#2B3A67",
       faqs: [
-        { q: { es: "¿Qué tipo de proyectos haces?", en: "What kinds of projects do you do?" }, a: { es: "Experiencias de VR, instalaciones audiovisuales, interfaces para performances en vivo y experiencias con visión artificial.", en: "VR experiences, audiovisual installations, live-performance interfaces and computer-vision experiences." } },
-        { q: { es: "¿Con qué tecnologías trabajas?", en: "Which technologies do you use?" }, a: { es: "Unity, TouchDesigner, p5.js y ml5.js, WebGPU, OSC, Open Stage Control y Strudel.", en: "Unity, TouchDesigner, p5.js and ml5.js, WebGPU, OSC, Open Stage Control and Strudel." } },
+        {
+          q: { es: "¿Qué tipo de proyectos haces?", en: "What kinds of projects do you do?" },
+          a: {
+            es: "Experiencias con cámara y gestos para eventos y activaciones de marca, interfaces web para instalaciones y performances en vivo, y experiencias de VR y realidad aumentada.",
+            en: "Camera- and gesture-based experiences for events and brand activations, web interfaces for installations and live performances, and VR and augmented reality experiences.",
+          },
+        },
+        {
+          q: { es: "¿Con qué tecnologías trabajas?", en: "What technologies do you work with?" },
+          a: {
+            es: "Unity, TouchDesigner, p5.js y ml5.js, WebGPU, OSC, Open Stage Control y Strudel.",
+            en: "Unity, TouchDesigner, p5.js and ml5.js, WebGPU, OSC, Open Stage Control, and Strudel.",
+          },
+        },
       ],
     },
     {
       title: { es: "Patrimonio cultural e impacto social", en: "Cultural heritage and social impact" },
       tagline: { es: "Llevar la memoria y las comunidades a experiencias digitales.", en: "Bringing memory and communities into digital experiences." },
       body: { es: "Investigación de campo, narrativa y producción digital para documentar tradiciones y crear espacios seguros y participativos.", en: "Field research, storytelling and digital production to document traditions and create safe, participatory spaces." },
-      image: "images/servicios/patrimonio-impacto.webp" as string | null,
+      image: "images/servicios/patrimonio-cultural.webp" as string | null,
       accent: "#B5651D",
       faqs: [
         { q: { es: "¿Combinas investigación y producción?", en: "Do you combine research and production?" }, a: { es: "Sí: la investigación documental y de campo es la base de lo que se diseña y se produce.", en: "Yes: documentary and field research is the base of what gets designed and produced." } },

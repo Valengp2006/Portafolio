@@ -27,7 +27,7 @@ const awards = ["dissonance", "pasos-de-tradicion"].flatMap((slug) => {
           <h1 class="hero-title reveal">{about.h1[lang]}</h1>
           <div class="hero-body reveal">
             {about.body[lang].map((para) => <p>{para}</p>)}
-            <a href={pagePath(lang, "contact")} class="link-underline">{about.contactLink[lang]} ↗</a>
+            <a href={pagePath(lang, "contact")} class="link-underline">{about.contactLink[lang]}</a>
           </div>
         </div>
         <div class="hero-photo reveal">
@@ -67,7 +67,7 @@ const awards = ["dissonance", "pasos-de-tradicion"].flatMap((slug) => {
         <h2 class="skill-title">{about.awardsTitle[lang]}</h2>
         <p class="award-note">{about.awardsNote[lang]}</p>
         <ul class="award-list">
-          {awards.map((a) => <li>★ {a.title[lang]} <span style="color:var(--figma-muted)">· {a.project}</span></li>)}
+          {awards.map((a) => <li>★ {a.kind ? `${a.kind[lang]}, ` : ""}{a.title[lang]} <span style="color:var(--figma-muted)">· {a.project}</span></li>)}
         </ul>
       </div>
     </section>

@@ -32,8 +32,8 @@ const more = byTier(2).slice(0, 2);
             <p class="hero-bio">{home.bio[lang]}</p>
             <div class="hero-links">
               <a href={pagePath(lang, "projects")} class="cta-primary">{home.ctaProjects[lang]}</a>
-              <a href={pagePath(lang, "contact")} class="link-underline">{home.ctaContact[lang]} ↗</a>
-              <a href={pagePath(lang, "about")} class="link-underline">{lang === "es" ? "Sobre mí" : "About me"} ↗</a>
+              <a href={pagePath(lang, "contact")} class="link-underline">{home.ctaContact[lang]}</a>
+              <a href={pagePath(lang, "about")} class="link-underline">{lang === "es" ? "Sobre mí" : "About me"}</a>
             </div>
           </div>
         </div>
@@ -50,7 +50,7 @@ const more = byTier(2).slice(0, 2);
             <p class="eyebrow reveal">{home.featuredEyebrow[lang]}</p>
             <h2 class="featured-heading reveal">{home.featuredTitle[lang]}</h2>
           </div>
-          <a href={pagePath(lang, "projects")} class="link-underline featured-all">{ui.common.viewAll[lang]} ↗</a>
+          <a href={pagePath(lang, "projects")} class="link-underline featured-all">{ui.common.viewAll[lang]}</a>
         </div>
         <div class="featured-cards">
           <div class="reveal"><ProjectCard project={first} layout="hero" lang={lang} /></div>
@@ -68,7 +68,7 @@ const more = byTier(2).slice(0, 2);
         <ul class="awards-list">
           {home.awardsList[lang].map((a) => <li>{a}</li>)}
         </ul>
-        <a href={pagePath(lang, "projects", "dissonance")}>{home.awardsLink[lang]} ↗</a>
+        <a href={pagePath(lang, "projects", "dissonance")}>{home.awardsLink[lang]}</a>
       </div>
     </section>
 

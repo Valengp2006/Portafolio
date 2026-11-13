@@ -40,6 +40,12 @@ const t = ui.project;
       </div>
     </section>
 
+    {p.note && (
+      <div class="wrap note-wrap">
+        <p class="note" role="note">{p.note[lang]}</p>
+      </div>
+    )}
+
     <section class="info-row wrap reveal">
       <div class="info-item">
         <p class="info-label">{t.role[lang]}</p>
@@ -60,7 +66,7 @@ const t = ui.project;
         <p class="info-body">{p.tools}</p>
       </div>
       <div class="info-item info-item-lg">
-        <p class="info-label">{t.result[lang]}</p>
+        <p class="info-label">{p.deliverable ? t.deliverable[lang] : t.result[lang]}</p>
         <p class="info-body">{p.result[lang]}</p>
       </div>
     </section>
@@ -78,7 +84,7 @@ const t = ui.project;
 
     {p.metrics && (
       <section class="wrap reveal metrics">
-        <p class="section-label">{t.metrics[lang]}</p>
+        <p class="section-label">{p.metricsLabel ? p.metricsLabel[lang] : t.metrics[lang]}</p>
         <div class="metrics-grid">
           {p.metrics.map((m) => (
             <div>
@@ -165,7 +171,7 @@ const t = ui.project;
     )}
 
     <section class="wrap reveal resultado">
-      <p class="section-label">{t.outcome[lang]}</p>
+      <p class="section-label">{p.deliverable ? t.deliverableFinal[lang] : t.outcome[lang]}</p>
       <p class="resultado-body">{p.outcome[lang]}</p>
     </section>
 
@@ -346,5 +352,7 @@ const t = ui.project;
       .pn-next .pn-text { flex: 1; }
       .pn-name { white-space: normal; }
     }
+    .note-wrap { padding-top: 22px; padding-bottom: 0; }
+    .note { margin: 0; padding: 12px 18px; border: 1px solid var(--line); border-left: 4px solid var(--accent); border-radius: 10px; background: var(--surface-warm); font-size: 15px; line-height: 1.5; color: var(--ink); }
 </style>
 </Layout>

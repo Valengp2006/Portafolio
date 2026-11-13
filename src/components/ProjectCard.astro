@@ -26,7 +26,7 @@ const alt = p.coverAlt[lang];
           <p class="card-hero-desc">{p.result[lang]}</p>
           {p.awards && <p class="card-badge">★ {p.awards.length} {lang === "es" ? "reconocimientos DEX 2026" : "DEX 2026 recognitions"}</p>}
         </div>
-        <div class="card-hero-icon" aria-hidden="true">↗</div>
+        <div class="card-hero-icon" aria-hidden="true">→</div>
       </div>
     </div>
   </a>
@@ -39,7 +39,7 @@ const alt = p.coverAlt[lang];
       <span class="card-tag" style={`background:${p.tint}; color:${p.textColor};`}>{p.tag[lang]}</span>
       <h3 class="card-vertical-title">{p.title}</h3>
       <p class="card-vertical-desc">{p.result[lang]}</p>
-      <span class="card-link" style={`color:${p.color}`}>{ui.common.viewProject[lang]} <span aria-hidden="true">↗</span></span>
+      <span class="card-link" style={`color:${p.color}`}>{ui.common.viewProject[lang]}</span>
     </div>
   </a>
 )}
@@ -51,7 +51,7 @@ const alt = p.coverAlt[lang];
       <span class="card-tag" style={`background:${p.tint}; color:${p.textColor};`}>{p.tag[lang]}</span>
       <h3 class="card-horizontal-title">{p.title}</h3>
       <p class="card-horizontal-desc">{p.result[lang]}</p>
-      <span class="card-link" style={`color:${p.color}`}>{ui.common.viewProject[lang]} <span aria-hidden="true">↗</span></span>
+      <span class="card-link" style={`color:${p.color}`}>{ui.common.viewProject[lang]}</span>
     </div>
   </a>
 )}
@@ -63,7 +63,7 @@ const alt = p.coverAlt[lang];
       <span class="card-tag" style={`background:${p.tint}; color:${p.textColor};`}>{p.tag[lang]}</span>
       <h3 class="card-tile-title">{p.title}</h3>
       <p class="card-tile-desc">{p.result[lang]}</p>
-      <span class="card-link" style={`color:${p.color}`}>{ui.common.viewProject[lang]} <span aria-hidden="true">↗</span></span>
+      <span class="card-link" style={`color:${p.color}`}>{ui.common.viewProject[lang]}</span>
     </div>
   </a>
 )}
@@ -76,7 +76,6 @@ const alt = p.coverAlt[lang];
       <p class="card-compact-desc">{p.result[lang]}</p>
     </div>
     <span class="card-tag" style={`background:${p.tint}; color:${p.textColor};`}>{p.tag[lang]}</span>
-    <span class="card-link" style={`color:${p.color}`} aria-hidden="true">↗</span>
   </a>
 )}
 
@@ -222,7 +221,7 @@ const alt = p.coverAlt[lang];
   .card-badge { margin: 0; font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600; color: #F3D98B; }
 
   /* Compact (laboratorio de experimentos) */
-  .card-compact { display: grid; grid-template-columns: 132px 1fr auto auto; align-items: center; gap: 24px; padding: 14px 28px 14px 14px; background: #F5F1EA; }
+  .card-compact { display: grid; grid-template-columns: 132px 1fr auto; align-items: center; gap: 24px; padding: 14px 28px 14px 14px; background: #F5F1EA; }
   .card-compact-thumb { width: 132px; height: 88px; border-radius: 10px; object-fit: cover; display: block; }
   .card-compact-thumb.ph span { font-size: 40px; }
   .card-compact:hover { background: #F0ECE4; }
