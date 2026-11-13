@@ -25,7 +25,6 @@ export const ui = {
   },
   footer: {
     location: { es: "Medellín, Colombia", en: "Medellín, Colombia" },
-    available: { es: "Busco prácticas 2027-2", en: "Seeking an internship for 2027-2" },
   },
   common: {
     viewProject: { es: "Ver proyecto", en: "View project" },
