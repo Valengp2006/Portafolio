@@ -152,7 +152,7 @@ export const home = {
     {
       n: "01",
       title: { es: "Marcas y producto digital", en: "Brands and digital products" },
-      body: { es: "Interfaces, flujos y experiencias interactivas que traducen la identidad de una marca en algo que las personas pueden usar y recordar.", en: "Interfaces, flows and interactive experiences that translate a brand's identity into something people can use and remember." },
+      body: { es: "Interfaces, flujos, experiencias interactivas y sistemas de gamificación y fidelización que traducen la identidad de una marca o emprendimiento en algo que las personas pueden usar y recordar.", en: "Interfaces, flows, interactive experiences and gamification and loyalty systems that translate the identity of a brand or small business into something people can use and remember." },
     },
     {
       n: "02",
@@ -331,7 +331,7 @@ export const contact = {
   info: [
     { label: { es: "Ubicación", en: "Location" }, body: { es: "Medellín, Colombia", en: "Medellín, Colombia" } },
     { label: { es: "Disponibilidad", en: "Availability" }, body: { es: "Prácticas 2027-2 · Freelance", en: "Internship 2027-2 · Freelance" } },
-    { label: { es: "Enfoque", en: "Focus" }, body: { es: "UX/UI · Producto · Experiencias interactivas", en: "UX/UI · Product · Interactive experiences" } },
+    { label: { es: "Enfoque", en: "Focus" }, body: { es: "UX/UI · Producto · Experiencias interactivas · Gamificación", en: "UX/UI · Product · Interactive experiences · Gamification" } },
   ],
   linkedin: { es: "LinkedIn", en: "LinkedIn" },
   github: { es: "GitHub", en: "GitHub" },
