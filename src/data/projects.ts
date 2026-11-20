@@ -633,7 +633,7 @@ export const projects: Project[] = [
     textColor: "#3F336F",
     cover: "images/projects/contemplar/cover.jpg",
     coverAlt: { es: "Clímax del ensayo: filamentos violetas y un sistema de cuerpos", en: "Rehearsal climax: violet filaments and a system of bodies" },
-    role: { es: "Diseño de interacción · Programación creativa · Diseño visual", en: "Interaction design · Creative coding · Visual design" },
+    role: { es: "Diseño de interacción · Diseño visual · Prototipado con apoyo de IA", en: "Interaction design · Visual design · Prototyping with AI support" },
     duration: { es: "Septiembre 2026", en: "September 2026" },
     tools: "WebGPU · JavaScript · Vite · GitHub Pages",
     question: {
@@ -702,7 +702,7 @@ export const projects: Project[] = [
     textColor: "#4B3A9E",
     cover: "images/projects/cosmos/cover.jpg",
     coverAlt: { es: "La Luna de Cosmos: una esfera generativa de textura viva sobre fondo negro", en: "Cosmos' Moon: a generative sphere with a living texture on a black background" },
-    role: { es: "Diseño de interacción · Programación creativa · Diseño audiovisual", en: "Interaction design · Creative coding · Audiovisual design" },
+    role: { es: "Diseño de interacción · Diseño audiovisual · Prototipado con apoyo de IA", en: "Interaction design · Audiovisual design · Prototyping with AI support" },
     duration: { es: "Marzo – Mayo 2026", en: "March – May 2026" },
     team: { es: "Proyecto en equipo", en: "Team project" },
     tools: "TouchDesigner · Strudel · Open Stage Control · Node.js · Socket.io",
@@ -765,8 +765,8 @@ export const projects: Project[] = [
     ],
     stack: ["TouchDesigner", "Strudel", "Open Stage Control", "Node.js", "Socket.io", "OSC"],
     outcome: {
-      es: "Se presentó como instalación en la muestra de proyectos de la Universidad Pontificia Bolivariana, integrando investigación, programación creativa y diseño de interacción.",
-      en: "It was presented as an installation at the Universidad Pontificia Bolivariana's project showcase, bringing together research, creative coding and interaction design.",
+      es: "Se presentó como instalación en la muestra de proyectos de la Universidad Pontificia Bolivariana, integrando investigación, prototipado con apoyo de IA y diseño de interacción.",
+      en: "It was presented as an installation at the Universidad Pontificia Bolivariana's project showcase, bringing together research, AI-assisted prototyping and interaction design.",
     },
   },
 
@@ -786,7 +786,7 @@ export const projects: Project[] = [
     textColor: "#7E3220",
     cover: "images/projects/orquesta/cover.png",
     coverAlt: { es: "Pantalla de dirección de Orquesta Corporal", en: "Conducting screen of Orquesta Corporal" },
-    role: { es: "Diseño de interacción · Visión por computador · Diseño sonoro", en: "Interaction design · Computer vision · Sound design" },
+    role: { es: "Diseño de interacción · Diseño sonoro · Prototipado con visión artificial (apoyo de IA)", en: "Interaction design · Sound design · Computer-vision prototyping (AI-assisted)" },
     duration: { es: "Octubre 2026 · Proyecto final de Visión por Computador", en: "October 2026 · Computer Vision final project" },
     tools: "p5.js · ml5.js (BodyPose / MoveNet) · Tone.js",
     question: {
@@ -811,8 +811,8 @@ export const projects: Project[] = [
       {
         label: { es: "Implementación", en: "Implementation" },
         body: {
-          es: "La cámara detecta 17 puntos del cuerpo con ml5.js BodyPose (MoveNet), con espejo activado y un filtro One Euro que suaviza la señal. El pulso se detecta como un golpe en el punto más bajo de la muñeca derecha, con histéresis y amplitud mínima relativa a los hombros; el tempo sale del promedio de los últimos golpes y se limita entre 0,5× y 1,5× del tempo escrito (80 BPM). La dinámica se calcula desde la postura (nariz y punto medio de hombros) con una línea base adaptativa, y el corte exige separar y luego cruzar los brazos durante 300 ms. El audio usa Tone.js con muestras reales, reverberación suave y un limitador.",
-          en: "The camera detects 17 body keypoints with ml5.js BodyPose (MoveNet), with mirroring on and a One Euro filter smoothing the signal. The pulse is detected as a stroke at the lowest point of the right wrist, with hysteresis and a minimum amplitude relative to shoulder width; tempo comes from the average of the last strokes and is limited between 0.5× and 1.5× of the written tempo (80 BPM). Dynamics are computed from posture (nose and shoulder midpoint) with an adaptive baseline, and the cut requires separating and then crossing the arms for 300 ms. Audio uses Tone.js with real samples, soft reverb and a limiter.",
+          es: "El diseño de los gestos y de las reglas es mío; la programación la hice con apoyo de IA. La cámara detecta 17 puntos del cuerpo con ml5.js BodyPose (MoveNet), con espejo activado y un filtro One Euro que suaviza la señal. El pulso se detecta como un golpe en el punto más bajo de la muñeca derecha, con histéresis y amplitud mínima relativa a los hombros; el tempo sale del promedio de los últimos golpes y se limita entre 0,5× y 1,5× del tempo escrito (80 BPM). La dinámica se calcula desde la postura (nariz y punto medio de hombros) con una línea base adaptativa, y el corte exige separar y luego cruzar los brazos durante 300 ms. El audio usa Tone.js con muestras reales, reverberación suave y un limitador.",
+          en: "The gesture and rule design is mine; the coding was done with AI assistance. The camera detects 17 body keypoints with ml5.js BodyPose (MoveNet), with mirroring on and a One Euro filter smoothing the signal. The pulse is detected as a stroke at the lowest point of the right wrist, with hysteresis and a minimum amplitude relative to shoulder width; tempo comes from the average of the last strokes and is limited between 0.5× and 1.5× of the written tempo (80 BPM). Dynamics are computed from posture (nose and shoulder midpoint) with an adaptive baseline, and the cut requires separating and then crossing the arms for 300 ms. Audio uses Tone.js with real samples, soft reverb and a limiter.",
         },
       },
     ],

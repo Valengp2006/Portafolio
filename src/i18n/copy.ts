@@ -93,8 +93,8 @@ export const home = {
   },
   name: "Valentina Garzón Pérez",
   role: {
-    es: "Estudiante de 6.º semestre de Ingeniería en Diseño de Entretenimiento Digital · UPB, Medellín",
-    en: "6th-semester student of Digital Entertainment Design Engineering · UPB, Medellín",
+    es: "Ingeniería en Diseño de Entretenimiento Digital · UPB, Medellín",
+    en: "Digital Entertainment Design Engineering · UPB, Medellín",
   },
   bio: {
     es: "Diseño productos y experiencias digitales a partir de la investigación: entiendo a las personas, defino el problema y lo llevo a prototipos que se pueden probar. Mi trabajo se mueve entre marcas, patrimonio cultural y problemáticas sociales.",
@@ -111,8 +111,8 @@ export const home = {
     en: "Dissonance received 4 distinctions at DEX 2026",
   },
   awardsList: {
-    es: ["Mejor Producto: Experiencias Interactivas", "Mejor Interacción Jugador-Entorno", "Estilo Visual Más Original", "Mención de Honor, Taller 6"],
-    en: ["Best Product: Interactive Experiences", "Best Player–Environment Interaction", "Most Original Visual Style", "Honorable Mention, Workshop 6"],
+    es: ["Mejor Producto: Experiencias Interactivas", "Mejor Interacción Jugador-Entorno", "Estilo Visual Más Original", "Mención de Honor, Taller 6: Experiencias Interactivas"],
+    en: ["Best Product: Interactive Experiences", "Best Player–Environment Interaction", "Most Original Visual Style", "Honorable Mention, Workshop 6: Interactive Experiences"],
   },
   awardsLink: { es: "Ver el caso de estudio", en: "Read the case study" },
 
@@ -179,14 +179,16 @@ export const about = {
   h1: { es: "Diseñadora UX/UI y de producto", en: "UX/UI & product designer" },
   body: {
     es: [
-      "Soy Valentina, estudiante de 6.º semestre de Ingeniería en Diseño de Entretenimiento Digital en la Universidad Pontificia Bolivariana (UPB), en Medellín. Diseño productos y experiencias digitales que parten de la investigación y terminan en prototipos que se pueden probar con personas.",
+      "Soy Valentina, estudiante de Ingeniería en Diseño de Entretenimiento Digital (graduación prevista 2028) en la Universidad Pontificia Bolivariana (UPB), en Medellín. Diseño productos y experiencias digitales que parten de la investigación y terminan en prototipos que se pueden probar con personas.",
       "Mi enfoque está en las experiencias interactivas: desde una app social para artistas hasta una experiencia inmersiva en VR o una instalación audiovisual. Me interesa que la tecnología quede en segundo plano y que lo que se note sea la experiencia de quien la usa.",
+      "Diseño la experiencia, las reglas de interacción y el prototipo; para la programación (p5.js, ml5.js, JavaScript) me apoyo en herramientas de IA, y estoy aprendiendo Unity de forma más autónoma.",
       "He desarrollado proyectos académicos para marcas, patrimonio cultural y problemáticas sociales. Me gusta especialmente el patrimonio digital: que las comunidades sean protagonistas de su propia memoria y no solo sujetos de documentación.",
       "Estoy buscando prácticas para el semestre 2027-2 y también estoy abierta a proyectos freelance.",
     ],
     en: [
-      "I'm Valentina, a 6th-semester Digital Entertainment Design Engineering student at Universidad Pontificia Bolivariana (UPB) in Medellín. I design digital products and experiences that start from research and end in prototypes that can be tested with people.",
+      "I'm Valentina, a student of Digital Entertainment Design Engineering (expected graduation 2028) at Universidad Pontificia Bolivariana (UPB) in Medellín. I design digital products and experiences that start from research and end in prototypes that can be tested with people.",
       "My focus is interactive experiences: from a social app for artists to an immersive VR experience or an audiovisual installation. I want the technology to stay in the background so that what stands out is the experience of the person using it.",
+      "I design the experience, the interaction rules, and the prototype; for coding (p5.js, ml5.js, JavaScript) I work with AI tools, and I'm learning Unity more independently.",
       "I've developed academic projects for brands, cultural heritage and social issues. I'm especially drawn to digital heritage: communities as protagonists of their own memory, not just subjects of documentation.",
       "I'm looking for an internship for the 2027-2 term and I'm also open to freelance projects.",
     ],
@@ -194,20 +196,59 @@ export const about = {
   contactLink: { es: "Conversemos", en: "Let's talk" },
   portraitAlt: { es: "Retrato de Valentina Garzón", en: "Portrait of Valentina Garzón" },
   skillsEyebrow: { es: "Habilidades y herramientas", en: "Skills and tools" },
-  toolsTitle: { es: "Herramientas", en: "Tools" },
-  skillsTitle: { es: "Habilidades", en: "Skills" },
   langsTitle: { es: "Idiomas", en: "Languages" },
-  // Basado en los proyectos publicados (ver src/data/projects.ts).
-  toolGroups: [
-    { title: { es: "Diseño e investigación", en: "Design and research" }, items: ["Figma", "FigJam", "Notion", "Google Forms"] },
-    { title: { es: "Experiencias interactivas", en: "Interactive experiences" }, items: ["Unity", "Vuforia", "TouchDesigner", "p5.js", "ml5.js", "Tone.js", "Strudel", "Open Stage Control", "WebGPU"] },
-    { title: { es: "Desarrollo y producción", en: "Development and production" }, items: ["GitHub", "Node.js", "Socket.io", "Luma AI", "CapCut"] },
+  // Alineado con el CV (versión base, no publicada). Nivel en palabras; sin inflar.
+  // Tone.js, Strudel, Open Stage Control, WebGPU, Node.js, Socket.io y Vuforia NO van aquí: aparecen como stack en cada proyecto.
+  skillGroups: [
+    {
+      title: { es: "Diseño e investigación", en: "Design and research" },
+      items: [
+        { name: { es: "Figma", en: "Figma" }, level: { es: "intermedio-avanzado", en: "intermediate-advanced" } },
+        { name: { es: "FigJam", en: "FigJam" } },
+        { name: { es: "Investigación UX", en: "UX research" } },
+        { name: { es: "Pruebas con usuarios", en: "User testing" } },
+        { name: { es: "UI kit", en: "UI kit" } },
+        { name: { es: "Arquitectura de información", en: "Information architecture" } },
+        { name: { es: "Gamificación", en: "Gamification" }, level: { es: "propuesta de diseño", en: "design proposal" } },
+      ],
+    },
+    {
+      title: { es: "Experiencias interactivas", en: "Interactive experiences" },
+      items: [
+        { name: { es: "Diseño de experiencias de VR y AR", en: "VR and AR experience design" } },
+        { name: { es: "Diseño de interacción", en: "Interaction design" } },
+        { name: { es: "Unity", en: "Unity" }, level: { es: "básico", en: "basic" } },
+        { name: { es: "TouchDesigner", en: "TouchDesigner" }, level: { es: "básico-intermedio", en: "basic-intermediate" } },
+        { name: { es: "p5.js y ml5.js", en: "p5.js and ml5.js" }, level: { es: "básico; prototipado asistido por IA", en: "basic; AI-assisted prototyping" } },
+      ],
+    },
+    {
+      title: { es: "Desarrollo web", en: "Web development" },
+      items: [{ name: { es: "JavaScript, HTML y CSS", en: "JavaScript, HTML and CSS" }, level: { es: "básico; con asistencia de IA", en: "basic; with AI assistance" } }],
+    },
+    {
+      title: { es: "IA generativa", en: "Generative AI" },
+      items: [
+        { name: { es: "Prototipado y programación asistida por IA", en: "AI-assisted prototyping and coding" } },
+        { name: { es: "Producción de video con Luma AI", en: "Video production with Luma AI" } },
+      ],
+    },
+    {
+      title: { es: "Producción y documentación", en: "Production and documentation" },
+      items: [
+        { name: { es: "Notion", en: "Notion" } },
+        { name: { es: "Google Forms", en: "Google Forms" } },
+        { name: { es: "GitHub", en: "GitHub" } },
+        { name: { es: "CapCut", en: "CapCut" } },
+      ],
+    },
   ],
-  skills: {
-    es: ["Investigación UX", "Pruebas con usuarios", "Diseño de interfaces y UI Kit", "Prototipado interactivo", "Arquitectura de información", "Diseño de interacción", "Experiencias inmersivas (VR y AR)", "Gamificación", "Narrativa interactiva", "Dirección creativa", "Programación creativa", "Investigación cultural"],
-    en: ["UX research", "User testing", "Interface design and UI kits", "Interactive prototyping", "Information architecture", "Interaction design", "Immersive experiences (VR and AR)", "Gamification", "Interactive storytelling", "Creative direction", "Creative coding", "Cultural research"],
-  },
-  languages: { es: ["Español (nativo)", "Inglés (B2)"], en: ["Spanish (native)", "English (B2)"] },
+  trainingTitle: { es: "Formación en curso", en: "Ongoing training" },
+  training: [
+    { es: "Especialización de diseño UX/UI: de la investigación a la accesibilidad (Domestika)", en: "UX/UI design specialization: from research to accessibility (Domestika)" },
+    { es: "Basics: Unity (Domestika)", en: "Basics: Unity (Domestika)" },
+  ],
+  languages: { es: ["Español (nativo)", "Inglés (intermedio-alto, B2)"], en: ["Spanish (native)", "English (upper-intermediate, B2)"] },
   awardsEyebrow: { es: "Reconocimientos", en: "Recognitions" },
   awardsTitle: { es: "Reconocimientos de la UPB", en: "UPB recognitions" },
   awardsNote: {
@@ -300,8 +341,8 @@ export const services = {
         {
           q: { es: "¿Con qué tecnologías trabajas?", en: "What technologies do you work with?" },
           a: {
-            es: "Unity, TouchDesigner, p5.js y ml5.js, WebGPU, OSC, Open Stage Control y Strudel.",
-            en: "Unity, TouchDesigner, p5.js and ml5.js, WebGPU, OSC, Open Stage Control, and Strudel.",
+            es: "Diseño y prototipo con Figma, Unity, TouchDesigner, p5.js y ml5.js, con apoyo de IA para la implementación.",
+            en: "I design and prototype with Figma, Unity, TouchDesigner, p5.js and ml5.js, using AI support for implementation.",
           },
         },
       ],

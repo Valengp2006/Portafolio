@@ -40,22 +40,27 @@ const awards = ["dissonance", "pasos-de-tradicion"].flatMap((slug) => {
       <div class="wrap skills-wrap">
         <p class="eyebrow reveal">{about.skillsEyebrow[lang]}</p>
         <div class="skills-grid reveal">
-          <div class="skill-col">
-            <h3 class="skill-title">{about.toolsTitle[lang]}</h3>
-            {about.toolGroups.map((g) => (
+          <div class="groups-col">
+            {about.skillGroups.map((g) => (
               <div class="tool-group">
                 <p class="tool-group-t">{g.title[lang]}</p>
-                <div class="pills">{g.items.map((t) => <span class="tag-pill">{t}</span>)}</div>
+                <div class="pills">
+                  {g.items.map((it) => (
+                    <span class="tag-pill">{it.name[lang]}{"level" in it && it.level && <span class="lvl"> · {it.level[lang]}</span>}</span>
+                  ))}
+                </div>
               </div>
             ))}
           </div>
-          <div class="skill-col">
-            <h3 class="skill-title">{about.skillsTitle[lang]}</h3>
-            <div class="pills">{about.skills[lang].map((t) => <span class="tag-pill">{t}</span>)}</div>
-          </div>
-          <div class="skill-col skill-col-narrow">
-            <h3 class="skill-title">{about.langsTitle[lang]}</h3>
-            <div class="pills">{about.languages[lang].map((t) => <span class="tag-pill">{t}</span>)}</div>
+          <div class="aside-col">
+            <div class="skill-col">
+              <h3 class="skill-title">{about.langsTitle[lang]}</h3>
+              <div class="pills">{about.languages[lang].map((t) => <span class="tag-pill">{t}</span>)}</div>
+            </div>
+            <div class="skill-col">
+              <h3 class="skill-title">{about.trainingTitle[lang]}</h3>
+              <ul class="train">{about.training.map((t) => <li>{t[lang]}</li>)}</ul>
+            </div>
           </div>
         </div>
       </div>
@@ -161,7 +166,7 @@ const awards = ["dissonance", "pasos-de-tradicion"].flatMap((slug) => {
     .skills-wrap { padding-top: 45px; padding-bottom: 90px; }
     .skills-grid { 
       display: grid; 
-      grid-template-columns: 5fr 4fr 2fr; 
+      grid-template-columns: 7fr 4fr; 
       gap: 40px; 
       margin-top: 51px; 
     }
@@ -198,5 +203,12 @@ const awards = ["dissonance", "pasos-de-tradicion"].flatMap((slug) => {
     .award-list { list-style: none; padding: 0; margin: 20px 0 0; display: grid; gap: 12px; max-width: 760px; }
     .award-list li { margin: 0; padding: 16px 20px; background: #F5F1EA; border: 1px solid #E4DFD6; border-radius: 12px; font-family: var(--font-inter); font-size: 16px; color: var(--figma-dark); }
     .award-note { font-family: var(--font-inter); color: var(--figma-soft); margin: 8px 0 0; }
+    .groups-col .tool-group:last-child { margin-bottom: 0; }
+    .aside-col { display: grid; gap: 36px; align-content: start; }
+    .tag-pill { border-radius: 18px; }
+    .lvl { color: var(--figma-muted); font-size: 13px; }
+    .train { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+    .train li { font-family: var(--font-inter); font-size: 15px; line-height: 1.5; color: var(--figma-soft); padding-left: 16px; position: relative; margin: 0; }
+    .train li::before { content: ""; position: absolute; left: 0; top: 9px; width: 6px; height: 6px; border-radius: 50%; background: var(--figma-muted); }
 </style>
 </Layout>
