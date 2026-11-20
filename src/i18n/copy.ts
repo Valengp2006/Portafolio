@@ -93,8 +93,9 @@ export const home = {
   },
   name: "Valentina Garzón Pérez",
   role: {
-    es: "Ingeniería en Diseño de Entretenimiento Digital · UPB, Medellín",
-    en: "Digital Entertainment Design Engineering · UPB, Medellín",
+    // TODO: actualizar semestre al pasar a octavo (aquí, en el hero de Inicio, y en el párrafo de Sobre mí más abajo).
+    es: "Ingeniería en Diseño de Entretenimiento Digital · 7.º semestre · UPB, Medellín",
+    en: "Digital Entertainment Design Engineering · 7th semester · UPB, Medellín",
   },
   bio: {
     es: "Diseño productos y experiencias digitales a partir de la investigación: entiendo a las personas, defino el problema y lo llevo a prototipos que se pueden probar. Mi trabajo se mueve entre marcas, patrimonio cultural y problemáticas sociales.",
@@ -177,16 +178,17 @@ export const about = {
   title: { es: "Sobre mí — Valentina Garzón", en: "About — Valentina Garzón" },
   eyebrow: { es: "Sobre mí", en: "About me" },
   h1: { es: "Diseñadora UX/UI y de producto", en: "UX/UI & product designer" },
+  // TODO: actualizar semestre al pasar a octavo (primer párrafo, en ES y EN; ver también el hero de Inicio).
   body: {
     es: [
-      "Soy Valentina, estudiante de Ingeniería en Diseño de Entretenimiento Digital (graduación prevista 2028) en la Universidad Pontificia Bolivariana (UPB), en Medellín. Diseño productos y experiencias digitales que parten de la investigación y terminan en prototipos que se pueden probar con personas.",
+      "Soy Valentina, estudiante de séptimo semestre de Ingeniería en Diseño de Entretenimiento Digital en la Universidad Pontificia Bolivariana (UPB), en Medellín. Diseño productos y experiencias digitales que parten de la investigación y terminan en prototipos que se pueden probar con personas.",
       "Mi enfoque está en las experiencias interactivas: desde una app social para artistas hasta una experiencia inmersiva en VR o una instalación audiovisual. Me interesa que la tecnología quede en segundo plano y que lo que se note sea la experiencia de quien la usa.",
       "Diseño la experiencia, las reglas de interacción y el prototipo; para la programación (p5.js, ml5.js, JavaScript) me apoyo en herramientas de IA, y estoy aprendiendo Unity de forma más autónoma.",
       "He desarrollado proyectos académicos para marcas, patrimonio cultural y problemáticas sociales. Me gusta especialmente el patrimonio digital: que las comunidades sean protagonistas de su propia memoria y no solo sujetos de documentación.",
       "Estoy buscando prácticas para el semestre 2027-2 y también estoy abierta a proyectos freelance.",
     ],
     en: [
-      "I'm Valentina, a student of Digital Entertainment Design Engineering (expected graduation 2028) at Universidad Pontificia Bolivariana (UPB) in Medellín. I design digital products and experiences that start from research and end in prototypes that can be tested with people.",
+      "I'm Valentina, a seventh-semester student of Digital Entertainment Design Engineering at Universidad Pontificia Bolivariana (UPB) in Medellín. I design digital products and experiences that start from research and end in prototypes that can be tested with people.",
       "My focus is interactive experiences: from a social app for artists to an immersive VR experience or an audiovisual installation. I want the technology to stay in the background so that what stands out is the experience of the person using it.",
       "I design the experience, the interaction rules, and the prototype; for coding (p5.js, ml5.js, JavaScript) I work with AI tools, and I'm learning Unity more independently.",
       "I've developed academic projects for brands, cultural heritage and social issues. I'm especially drawn to digital heritage: communities as protagonists of their own memory, not just subjects of documentation.",

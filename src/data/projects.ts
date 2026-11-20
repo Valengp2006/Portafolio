@@ -126,7 +126,7 @@ export const projects: Project[] = [
       es: "Terminal de ATLAS-NET, la web ficticia de la misión Dissonance-1: «Revise la convocatoria y envíe su postulación»",
       en: "ATLAS-NET terminal, the fictional website of the Dissonance-1 mission: “Review the call and submit your application”",
     },
-    role: { es: "Dirección creativa · Diseño de experiencia", en: "Creative direction · Experience design" },
+    role: { es: "Dirección creativa · Diseño de experiencia · Diseño del sitio web · Documentación del proceso", en: "Creative direction · Experience design · Website design · Process documentation" },
     duration: { es: "Julio – Noviembre 2026 · Taller 6", en: "July – November 2026 · Workshop 6" },
     team: { es: "Proyecto en equipo", en: "Team project" },
     tools: "Unity · VR · HTML/CSS/JS · GitHub Pages",
@@ -152,8 +152,8 @@ export const projects: Project[] = [
       {
         label: { es: "Proceso de diseño", en: "Design process" },
         body: {
-          es: "Traduje la investigación en seis intenciones de diseño (involucrar desde el primer contacto, convertir la curiosidad en vulnerabilidad, hacer que la persona actúe, dar a cada medio una función propia, crear tensión sin sobresaltos y quedar en la memoria) y en una progresión emocional y visual que va de lo corporativo a lo cósmico. Desde la dirección creativa mantuve la coherencia entre narrativa, recorrido del participante, sonido e imagen, y las pruebas con usuarios ajustaron el ritmo de cada acto.",
-          en: "I translated the research into six design intentions (engage from first contact, turn curiosity into vulnerability, make people act, give each medium its own role, build tension without jump scares, and stay in memory) and into an emotional and visual progression that moves from corporate to cosmic. As creative director I kept narrative, participant journey, sound and visuals coherent, and user tests tuned the pacing of each act.",
+          es: "Con el equipo traducimos la investigación en seis intenciones de diseño (involucrar desde el primer contacto, convertir la curiosidad en vulnerabilidad, hacer que la persona actúe, dar a cada medio una función propia, crear tensión sin sobresaltos y quedar en la memoria) y en una progresión emocional y visual que va de lo corporativo a lo cósmico. Desde la dirección creativa mantuve la coherencia entre narrativa, recorrido del participante, sonido e imagen, y las pruebas con usuarios ajustaron el ritmo de cada acto.",
+          en: "With the team we translated the research into six design intentions (engage from first contact, turn curiosity into vulnerability, make people act, give each medium its own role, build tension without jump scares, and stay in memory) and into an emotional and visual progression that moves from corporate to cosmic. As creative director I kept narrative, participant journey, sound and visuals coherent, and user tests tuned the pacing of each act.",
         },
       },
     ],
@@ -258,8 +258,8 @@ export const projects: Project[] = [
     ],
     stack: ["Unity", "VR", "HTML/CSS/JS", "GitHub Pages"],
     outcome: {
-      es: "Dissonance recibió cuatro distinciones en la muestra DEX 2026 de la UPB: Mejor Producto en Experiencias Interactivas, Mejor Interacción Jugador-Entorno, Estilo Visual Más Original y Mención de Honor del Taller 6. El equipo documentó investigación, diseño y pruebas en un sitio público.",
-      en: "Dissonance received four distinctions at UPB's DEX 2026 showcase: Best Product in Interactive Experiences, Best Player–Environment Interaction, Most Original Visual Style and the Workshop 6 Honorable Mention. The team documented research, design and testing on a public site.",
+      es: "Dissonance recibió cuatro distinciones en la muestra DEX 2026 de la UPB: Mejor Producto en Experiencias Interactivas, Mejor Interacción Jugador-Entorno, Estilo Visual Más Original y Mención de Honor del Taller 6. Con el equipo documentamos investigación, diseño y pruebas en un sitio público: yo diseñé e implementé el sitio web y organicé la documentación del proceso, con apoyo de IA en ambos.",
+      en: "Dissonance received four distinctions at UPB's DEX 2026 showcase: Best Product in Interactive Experiences, Best Player–Environment Interaction, Most Original Visual Style and the Workshop 6 Honorable Mention. With the team we documented research, design and testing on a public site: I designed and implemented the website and organized the process documentation, with AI support in both.",
     },
   },
 
@@ -787,7 +787,7 @@ export const projects: Project[] = [
     cover: "images/projects/orquesta/cover.png",
     coverAlt: { es: "Pantalla de dirección de Orquesta Corporal", en: "Conducting screen of Orquesta Corporal" },
     role: { es: "Diseño de interacción · Diseño sonoro · Prototipado con visión artificial (apoyo de IA)", en: "Interaction design · Sound design · Computer-vision prototyping (AI-assisted)" },
-    duration: { es: "Octubre 2026 · Proyecto final de Visión por Computador", en: "October 2026 · Computer Vision final project" },
+    duration: { es: "Octubre 2026 · Proyecto final de Visión Artificial", en: "October 2026 · Computer Vision final project" },
     tools: "p5.js · ml5.js (BodyPose / MoveNet) · Tone.js",
     question: {
       es: "¿Cómo hacer que alguien sin formación musical sienta lo que es dirigir una orquesta, usando solo su cuerpo?",
@@ -837,7 +837,7 @@ export const projects: Project[] = [
     metrics: [
       { value: { es: "4", en: "4" }, label: { es: "gestos: pulso, entradas, dinámica y corte", en: "gestures: pulse, cues, dynamics and cut-off" } },
       { value: { es: "6", en: "6" }, label: { es: "instrumentos reales: violín, flauta, clarinete, chelo, contrabajo y piano", en: "real instruments: violin, flute, clarinet, cello, double bass and piano" } },
-      { value: { es: "60 FPS", en: "60 FPS" }, label: { es: "estables durante casi todo el proyecto en las pruebas", en: "stable for almost the whole project in testing" } },
+      { value: { es: "60 FPS", en: "60 FPS" }, label: { es: "estables durante casi todas las pruebas", en: "stable during almost all tests" } },
       { value: { es: "148", en: "148" }, label: { es: "pulsos de partitura a 80 BPM", en: "beats of score at 80 BPM" } },
     ],
     gallery: [
