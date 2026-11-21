@@ -63,6 +63,7 @@ export type Block =
   | { type: "palette"; label: L; body?: L; colors: { name: L; hex: string }[]; fonts: { name: string; note: L }[]; states: L[] }
   | { type: "flow"; label: L; body?: L; steps: L[] }
   | { type: "chips"; label: L; body?: L; items: L[] }
+  | { type: "metrics"; label: L; items: { value: L; label: L }[] }
   | { type: "quote"; label: L; body: L };
 
 export type Category = "ux" | "interactive" | "heritage";
@@ -485,6 +486,15 @@ export const projects: Project[] = [
         },
       },
       {
+        type: "metrics",
+        label: { es: "Investigación en números", en: "Research in numbers" },
+        items: [
+          { value: { es: "27", en: "27" }, label: { es: "respuestas de encuesta", en: "survey responses" } },
+          { value: { es: "5", en: "5" }, label: { es: "entrevistas", en: "interviews" } },
+          { value: { es: "5", en: "5" }, label: { es: "pruebas de usabilidad", en: "usability tests" } },
+        ],
+      },
+      {
         type: "quote",
         label: { es: "Reflexión", en: "Reflection" },
         body: {
@@ -522,8 +532,8 @@ export const projects: Project[] = [
     ],
     stack: ["Figma", "FigJam", "Notion", "Google Forms"],
     outcome: {
-      es: "Un prototipo interactivo de alta fidelidad, validado con usuarios. Las pruebas destacaron la identidad visual, la facilidad de navegación, la claridad de los flujos principales y la propuesta de comunidad para artistas.",
-      en: "A high-fidelity interactive prototype, validated with users. Testing highlighted the visual identity, ease of navigation, clarity of the main flows and the community proposal for artists.",
+      es: "Un prototipo interactivo de alta fidelidad, validado en 5 pruebas de usabilidad. Las pruebas destacaron la identidad visual, la facilidad de navegación, la claridad de los flujos principales y la propuesta de comunidad para artistas.",
+      en: "A high-fidelity interactive prototype, validated in 5 usability tests. Testing highlighted the visual identity, ease of navigation, clarity of the main flows and the community proposal for artists.",
     },
   },
 

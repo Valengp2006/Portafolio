@@ -378,5 +378,5 @@ export const contact = {
   ],
   linkedin: { es: "LinkedIn", en: "LinkedIn" },
   github: { es: "GitHub", en: "GitHub" },
-  cv: { es: "Descargar CV", en: "Download résumé" },
+  cv: { es: "Descargar CV", en: "Download résumé (in Spanish)" },
 } as const;
