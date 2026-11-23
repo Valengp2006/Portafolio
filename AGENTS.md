@@ -42,6 +42,8 @@ Cada vez que un agente cambie contenido, estructura, textos o tome una decisión
 
 ## Decisiones tomadas
 
+- **MUSE como trabajo en equipo (CV, nov 2026):** los textos dicen que Valentina participó en la investigación UX y en el diseño de wireframes, flujos, UI kit y prototipo, con el trabajo repartido entre el equipo; sus aportes destacados son el flujo de eventos, «Artista de la Semana», el UI Kit y la navegación. La identidad gráfica se atribuye al equipo ("Con el equipo construimos…"). Evitar frases que presenten MUSE como trabajo individual.
+
 - **MUSE, cifras reales de investigación:** bloque "Investigación en números" (27 respuestas de encuesta · 5 entrevistas · 5 pruebas de usabilidad), justo después de "Investigación UX" y antes de "Reflexión" y "Decisiones clave"; el resultado final dice "validado en 5 pruebas de usabilidad". Las cifras van solo ahí; el texto "encuestas, entrevistas y pruebas con usuarios" de la sección de investigación se deja sin cifras. Hay un tipo de bloque `metrics` en `VisualBlocks` (mismo estilo que `metrics` de los demás proyectos).
 
 - **Atribución en Dissonance (CV actualizado):** los textos distinguen lo del equipo de lo propio. "Con el equipo traducimos la investigación en seis intenciones…"; la dirección creativa y la coherencia sí son de Valentina; ella diseñó e implementó el sitio web (con apoyo de IA) y organizó la documentación del proceso. Rol: Dirección creativa · Diseño de experiencia · Diseño del sitio web · Documentación del proceso.

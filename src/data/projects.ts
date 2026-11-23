@@ -432,8 +432,8 @@ export const projects: Project[] = [
         type: "columns",
         label: { es: "Mi rol", en: "My role" },
         body: {
-          es: "Mis aportes destacados: el flujo de eventos, la sección «Artista de la Semana», el UI Kit y la navegación.",
-          en: "My highlighted contributions: the events flow, the “Artist of the Week” section, the UI Kit and navigation.",
+          es: "Participé en la investigación UX y en el diseño de wireframes, flujos, UI kit y prototipo interactivo en Figma, con el trabajo repartido entre el equipo. Mis aportes destacados: el flujo de eventos, la sección «Artista de la Semana», el UI Kit y la navegación.",
+          en: "I took part in the UX research and in the design of wireframes, flows, the UI kit and the interactive prototype in Figma, with the work shared among the team. My highlighted contributions: the events flow, the “Artist of the Week” section, the UI Kit and navigation.",
         },
         items: [
           {
@@ -518,7 +518,7 @@ export const projects: Project[] = [
       },
       {
         challenge: { es: "Lograr una dirección visual coherente.", en: "Achieve a coherent visual direction." },
-        solution: { es: "Construí una identidad gráfica a partir de la investigación visual y el análisis de referentes, que fueron clave para tomar decisiones de diseño.", en: "I built a graphic identity from visual research and reference analysis, which were key to making design decisions." },
+        solution: { es: "Con el equipo construimos una identidad gráfica a partir de la investigación visual y el análisis de referentes, que fueron clave para tomar decisiones de diseño.", en: "With the team we built a graphic identity from visual research and reference analysis, which were key to making design decisions." },
       },
     ],
     gallery: [
