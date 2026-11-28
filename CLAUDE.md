@@ -42,6 +42,8 @@ Cada vez que un agente cambie contenido, estructura, textos o tome una decisión
 
 ## Decisiones tomadas
 
+- **Orquesta Corporal (27-nov-2026):** la experiencia en vivo es https://valengp2006.github.io/orquesta-corporal/ (reemplaza el enlace del editor de p5.js), con repo https://github.com/Valengp2006/orquesta-corporal, documentación en Notion y video en YouTube (PO6iQugyyH8). Portada: gran final (`orquesta/cover.jpg`); galería de 12 capturas de la experiencia en orden + 3 diagramas de diseño. Las capturas originales (1920×1080 PNG) vienen de `fotos-orquesta-corporal.zip` y se guardan como JPG a 1600 px.
+
 - **MUSE como trabajo en equipo (CV, nov 2026):** los textos dicen que Valentina participó en la investigación UX y en el diseño de wireframes, flujos, UI kit y prototipo, con el trabajo repartido entre el equipo; sus aportes destacados son el flujo de eventos, «Artista de la Semana», el UI Kit y la navegación. La identidad gráfica se atribuye al equipo ("Con el equipo construimos…"). Evitar frases que presenten MUSE como trabajo individual.
 
 - **MUSE, cifras reales de investigación:** bloque "Investigación en números" (27 respuestas de encuesta · 5 entrevistas · 5 pruebas de usabilidad), justo después de "Investigación UX" y antes de "Reflexión" y "Decisiones clave"; el resultado final dice "validado en 5 pruebas de usabilidad". Las cifras van solo ahí; el texto "encuestas, entrevistas y pruebas con usuarios" de la sección de investigación se deja sin cifras. Hay un tipo de bloque `metrics` en `VisualBlocks` (mismo estilo que `metrics` de los demás proyectos).
@@ -81,7 +83,7 @@ Cada vez que un agente cambie contenido, estructura, textos o tome una decisión
 - **Dissonance** tiene su video "Recorrido completo (versión acelerada)" en YouTube (5wiIbKju99w).
 - **Jardín de Bruma** es un proyecto solo conceptual: no tiene videos ni prototipo funcional y no se prevé agregarlos.
 - **Cosmos** corrige su stack: público desde el teléfono (Node.js + Socket.io), performer en iPad (Open Stage Control), Strudel y TouchDesigner.
-- **Enlaces a repositorios** (`links` con "Repositorio en GitHub"): Dissonance, Contemplar lo infinito, Cauce (why-bother), Encantar, Cosmos (Proyecto_Cosmos) y Pasos de Tradición. Orquesta Corporal (no tiene repo: solo el enlace directo del p5.js Web Editor y su Notion), MUSE y Jardín de Bruma no tienen repo enlazado.
+- **Enlaces a repositorios** (`links` con "Repositorio en GitHub"): Dissonance, Contemplar lo infinito, Cauce (why-bother), Encantar, Cosmos (Proyecto_Cosmos) y Pasos de Tradición. MUSE y Jardín de Bruma no tienen repo enlazado.
 - **Repo de Hechizos → `encantar`:** el enlace del sitio ya apunta a `Valengp2006/encantar`. Ya está renombrado (nov 2026) y su sitio vive en valengp2006.github.io/encantar/. La carpeta local y su remoto siguen con el nombre viejo.
 - **Videos:** cada proyecto puede tener `videos` en `projects.ts`: `youtube` (ID; se carga solo al hacer clic, vía youtube-nocookie) o `src` (MP4 en `public/videos/`, con `poster`). Todos los videos actuales están en YouTube: Cosmos, Pasos de Tradición (4: Making of, Códice, Rastro de los Gestos y Cúpula de Legados), Cauce (mbFWkJXmFDI), Contemplar lo infinito (ki0KPbzuUF4) y Encantar (CHbMVxdAO8U). No se guardan videos pesados en el repo (límite de GitHub y peso en el historial); `public/videos/` quedó sin uso.
 - **Cauce:** su portada y galería salen de fotogramas de su grabación (los de la captura en vivo se descartaron por oscuros). Contemplar sumó dos fotogramas del ensayo.
