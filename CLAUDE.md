@@ -47,7 +47,7 @@ Cada vez que un agente cambie contenido, estructura, textos o tome una decisión
 - **Todo el contenido de un proyecto son `blocks`** (`VisualBlocks.astro`): chapter, text, facts, statement, quote, steps, cards, columns, pairs, flow, chips, metrics, gallery, videos (con `vertical` para videos de móvil), awards y links. `Project.astro` solo pinta banner, aviso, bloques y navegación. Ya no existen los campos sections/decisions/system/stack/outcome. Colores neutros del sitio, el color del proyecto solo en detalles y sin cajas oscuras para resaltar (decisión de Valentina).
 - **Tarjetas (27-nov-2026):** título, año, etiquetas, "Proyecto académico", marcador "Individual" o "En equipo", texto de 2-3 líneas y "Mi rol" en una línea. La tarjeta grande pone la imagen arriba y el texto debajo. Dissonance lleva "★ 4 distinciones DEX 2026" y aclara que la portada es ATLAS-NET, "la web ficticia de la misión" (no usar "Dissonance-1" en títulos ni pies).
 - **Filtros en /proyectos:** Todos · Experiencia inmersiva · UX/UI · Visión artificial · Audiovisual (`immersive`, `ux`, `vision`, `av`; un proyecto puede tener varias). La barra solo aparece con JavaScript, recuerda el filtro en el hash y anuncia el conteo.
-- **Pendientes visibles:** lo que no está confirmado se escribe como "[PENDIENTE: …]" en la propia página (pedido de Valentina). Reemplazar cada uno cuando llegue el dato; nunca inventarlo.
+- **Pendientes ocultos en el sitio (27-nov-2026):** lo no confirmado se escribe como "[PENDIENTE: …]" en `projects.ts`. Se ve en `astro dev` y no se publica (`src/data/pending.ts` quita la marca, los elementos que quedan vacíos y las secciones sin contenido; los capítulos se renumeran). Reemplazar cada uno cuando llegue el dato; nunca inventarlo.
 - **Primera persona solo para lo propio;** lo del equipo, en plural. No se nombran integrantes. Niveles reales: Figma intermedio-avanzado, Unity básico, TouchDesigner básico-intermedio, programación con apoyo de IA.
 - **Dissonance:** parte de Valentina: dirección creativa, diseño de experiencia, diseño e implementación del sitio web y organización de la documentación (con apoyo de IA). En equipo: los tres actos y la traducción de la investigación. El desarrollo en VR no es suyo.
 - **Pasos de Tradición:** Valentina implementó la realidad aumentada en Unity (Vuforia) con apoyo de IA y tutoriales, hizo 4 entrevistas con el equipo, escribió el guion del Códice y diseñó la arquitectura de información.
@@ -98,12 +98,12 @@ Cada vez que un agente cambie contenido, estructura, textos o tome una decisión
 ## Estado actual
 
 - 29 páginas generadas (es/en); build sin errores, sin enlaces ni imágenes rotas y con la misma estructura en ambos idiomas.
-- Reestructura de los 9 proyectos publicada en `main` (27-nov-2026), por pedido de Valentina, con marcas [PENDIENTE] visibles. Para subir cambios sin desplegar, usar `[skip ci]` en el mensaje del commit. El workflow usa el grupo de concurrencia `pages-2`.
+- Reestructura de los 9 proyectos publicada en `main` (27-nov-2026), por pedido de Valentina; las marcas [PENDIENTE] no se muestran en el sitio. Para subir cambios sin desplegar, usar `[skip ci]` en el mensaje del commit. El workflow usa el grupo de concurrencia `pages-2`.
 - Capturas de la web ficticia y del sitio de Dissonance en `public/images/projects/dissonance/` (tomadas de las versiones publicadas).
 
 ## Pendientes
 
-- [PENDIENTE] en páginas: Dissonance (fecha y perfil de las pruebas, cuáles dos puzzles quedaron, cambios en VR, aprendizaje como directora creativa); MUSE (materia, qué no fue suyo, cambios tras las pruebas); Orquesta (pruebas con personas, aprendizajes); Pasos (pruebas con personas); Cosmos (materia, resultados medidos).
+- Datos [PENDIENTE] (ocultos en el sitio): Dissonance (fecha y perfil de las pruebas, cuáles dos puzzles quedaron, cambios en VR, aprendizaje como directora creativa); MUSE (materia, qué no fue suyo, cambios tras las pruebas); Orquesta (pruebas con personas, aprendizajes); Pasos (pruebas con personas); Cosmos (materia, resultados medidos).
 - Confirmar atribuciones del sitio web de Dissonance y de la realidad aumentada de Pasos frente a los créditos publicados en los sitios de cada proyecto.
 - Portadas finales de los proyectos, fotos de Cosmos en mejor calidad, remoto local de `hechizos-disney` al repo `encantar`, actualizar CV y LinkedIn.
 - Actualizar el semestre al pasar a octavo (TODO en `copy.ts`).

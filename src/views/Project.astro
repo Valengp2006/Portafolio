@@ -4,12 +4,15 @@ import VisualBlocks from "../components/VisualBlocks.astro";
 import { asset, pagePath, other, type Lang } from "../i18n";
 import { ui } from "../i18n/copy";
 import { nextOf, prevOf, type Project } from "../data/projects";
+import { publicBlocks } from "../data/pending";
 
 interface Props { lang: Lang; project: Project }
 const { lang, project: p } = Astro.props;
 const next = nextOf(p.slug);
 const prev = prevOf(p.slug);
 const t = ui.project;
+// Las marcas [PENDIENTE] solo se ven en desarrollo.
+const blocks = import.meta.env.DEV ? p.blocks : publicBlocks(p.blocks);
 ---
 
 <Layout
@@ -42,7 +45,7 @@ const t = ui.project;
       </div>
     )}
 
-    <VisualBlocks blocks={p.blocks} lang={lang} accent={p.color} />
+    <VisualBlocks blocks={blocks} lang={lang} accent={p.color} />
 
     <section class="wrap reveal next-project">
       <nav class="pn" aria-label={t.next[lang]}>

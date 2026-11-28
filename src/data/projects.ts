@@ -11,7 +11,8 @@ import type { L } from "../i18n";
 // tier 3 = laboratorio (versión corta)
 // featured = aparece en el inicio (solo tres)
 //
-// Lo que falte por confirmar se escribe como "[PENDIENTE: …]".
+// Lo que falte por confirmar se escribe como "[PENDIENTE: …]": se ve en
+// `astro dev` y se oculta en el sitio publicado (ver `pending.ts`).
 // Imágenes: archivos en public/images/projects/<slug>/ ; aquí se escribe la
 // ruta SIN `public` y SIN base, p. ej. "images/projects/dissonance/cover.webp".
 // Si `cover` falta, la tarjeta usa el color del proyecto (no se rompe nada).
