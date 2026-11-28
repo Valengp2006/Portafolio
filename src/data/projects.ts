@@ -863,6 +863,7 @@ export const projects: Project[] = [
           t("Escribí el guion de El Códice de los Pasos", "I wrote the script of El Códice de los Pasos"),
           t("Produje sus secuencias audiovisuales con IA y las integré con chroma key", "I produced its audiovisual sequences with AI and integrated them with chroma key"),
           t("Diseñé la arquitectura de información y organicé la documentación", "I designed the information architecture and organized the documentation"),
+          t("Implementé el sitio web con Astro, HTML, CSS y JavaScript, con apoyo de IA", "I implemented the website with Astro, HTML, CSS and JavaScript, with AI support"),
         ],
         [
           t("Investigamos la historia, los oficios y los referentes", "We researched the history, the trades and the references"),
