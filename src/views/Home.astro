@@ -1,15 +1,14 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import ProjectCard from "../components/ProjectCard.astro";
-import { byTier } from "../data/projects";
+import { featured } from "../data/projects";
 import { site } from "../data/site";
 import { asset, pagePath, other, type Lang } from "../i18n";
 import { home, meta, ui } from "../i18n/copy";
 
 interface Props { lang: Lang }
 const { lang } = Astro.props;
-const [first, ...pair] = byTier(1);
-const more = byTier(2).slice(0, 2);
+const [first, ...pair] = featured;
 ---
 <Layout
   lang={lang}
@@ -87,16 +86,6 @@ const more = byTier(2).slice(0, 2);
         </div>
       </div>
     </section>
-
-    {more.length > 0 && (
-      <section class="featured">
-        <div class="wrap">
-          <div class="more-grid">
-            {more.map((p) => <div class="reveal"><ProjectCard project={p} layout="vertical" lang={lang} /></div>)}
-          </div>
-        </div>
-      </section>
-    )}
 
     <section class="areas section-bg">
       <div class="wrap">
@@ -361,8 +350,7 @@ const more = byTier(2).slice(0, 2);
     .step-n { font-family: var(--font-display); font-weight: 600; font-size: 14px; color: var(--ink-muted); margin: 0 0 8px; }
     .step-t { font-family: var(--font-display); font-weight: 600; font-size: 22px; margin: 0 0 8px; }
     .step-b { font-size: 15px; line-height: 24px; color: var(--ink-soft); margin: 0; }
-    .more-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 31px; }
-    @media (max-width: 900px) { .steps-grid { grid-template-columns: 1fr 1fr; } .more-grid { grid-template-columns: 1fr; } .awards-title { font-size: 28px; line-height: 36px; } }
+    @media (max-width: 900px) { .steps-grid { grid-template-columns: 1fr 1fr; } .awards-title { font-size: 28px; line-height: 36px; } }
     @media (max-width: 560px) { .steps-grid { grid-template-columns: 1fr; } }
   </style>
 </Layout>

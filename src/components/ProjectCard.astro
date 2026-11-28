@@ -5,26 +5,31 @@ import { ui } from "../i18n/copy";
 
 interface Props {
   project: Project;
-  layout: "hero" | "vertical" | "horizontal" | "compact" | "tile";
+  layout: "hero" | "vertical" | "compact" | "tile";
   lang: Lang;
 }
 const { project: p, layout, lang } = Astro.props;
 const href = pagePath(lang, "projects", p.slug);
 const cover = p.cover ? asset(p.cover) : null;
 const alt = p.coverAlt[lang];
+const mode = ui.card[p.mode][lang];
 ---
 
 {layout === "hero" && (
-  <a href={href} class="card card-hero" style={`background:${p.color};`}>
+  <a href={href} class="card card-hero" >
     {cover && <img src={cover} alt={alt} class="card-hero-img" loading="lazy" />}
-    <div class="card-hero-shade"></div>
     <div class="card-hero-content">
-      <span class="card-tag" style={`background:${p.tint}; color:${p.textColor};`}>{p.tag[lang]}</span>
+      <div class="card-tags">
+        {p.tags.map((tag) => <span class="card-tag" style={`background:${p.tint}; color:${p.textColor};`}>{tag[lang]}</span>)}
+      </div>
       <div class="card-hero-text-wrap">
         <div class="card-hero-text">
           <h3 class="card-hero-title">{p.title}</h3>
-          <p class="card-hero-desc">{p.result[lang]}</p>
-          {p.awards && <p class="card-badge">★ {p.awards.length} {lang === "es" ? "reconocimientos DEX 2026" : "DEX 2026 recognitions"}</p>}
+          <p class="card-meta on-dark"><span>{p.year}</span><span>{ui.card.academic[lang]}</span><span class="card-mode">{mode}</span></p>
+          <p class="card-hero-desc">{p.summary[lang]}</p>
+          <p class="card-role on-dark"><strong>{ui.card.myRole[lang]}:</strong> {p.roleLine[lang]}</p>
+          {p.badge && <p class="card-badge">{p.badge[lang]}</p>}
+          {p.coverNote && <p class="card-cover-note">{p.coverNote[lang]}</p>}
         </div>
         <div class="card-hero-icon" aria-hidden="true">→</div>
       </div>
@@ -32,37 +37,18 @@ const alt = p.coverAlt[lang];
   </a>
 )}
 
-{layout === "vertical" && (
-  <a href={href} class="card card-vertical">
-    {cover ? <img src={cover} alt={alt} class="card-vertical-img" loading="lazy" /> : <div class="card-vertical-img ph" style={`background:${p.color};`} role="img" aria-label={alt}><span>{p.title.charAt(0)}</span></div>}
-    <div class="card-vertical-body">
-      <span class="card-tag" style={`background:${p.tint}; color:${p.textColor};`}>{p.tag[lang]}</span>
-      <h3 class="card-vertical-title">{p.title}</h3>
-      <p class="card-vertical-desc">{p.result[lang]}</p>
-      <span class="card-link" style={`color:${p.color}`}>{ui.common.viewProject[lang]}</span>
-    </div>
-  </a>
-)}
-
-{layout === "horizontal" && (
-  <a href={href} class="card card-horizontal">
-    {cover ? <img src={cover} alt={alt} class="card-horizontal-img" loading="lazy" /> : <div class="card-horizontal-img ph" style={`background:${p.color};`} role="img" aria-label={alt}><span>{p.title.charAt(0)}</span></div>}
-    <div class="card-horizontal-body">
-      <span class="card-tag" style={`background:${p.tint}; color:${p.textColor};`}>{p.tag[lang]}</span>
-      <h3 class="card-horizontal-title">{p.title}</h3>
-      <p class="card-horizontal-desc">{p.result[lang]}</p>
-      <span class="card-link" style={`color:${p.color}`}>{ui.common.viewProject[lang]}</span>
-    </div>
-  </a>
-)}
-
-{layout === "tile" && (
-  <a href={href} class="card card-tile">
-    {cover ? <img src={cover} alt={alt} class="card-tile-img" loading="lazy" /> : <div class="card-tile-img ph" style={`background:${p.color};`} role="img" aria-label={alt}><span>{p.title.charAt(0)}</span></div>}
-    <div class="card-tile-body">
-      <span class="card-tag" style={`background:${p.tint}; color:${p.textColor};`}>{p.tag[lang]}</span>
-      <h3 class="card-tile-title">{p.title}</h3>
-      <p class="card-tile-desc">{p.result[lang]}</p>
+{(layout === "vertical" || layout === "tile") && (
+  <a href={href} class={`card card-${layout}`}>
+    {cover ? <img src={cover} alt={alt} class={`card-${layout}-img`} loading="lazy" /> : <div class={`card-${layout}-img ph`} style={`background:${p.color};`} role="img" aria-label={alt}><span>{p.title.charAt(0)}</span></div>}
+    <div class={`card-${layout}-body`}>
+      <div class="card-tags">
+        {p.tags.map((tag) => <span class="card-tag" style={`background:${p.tint}; color:${p.textColor};`}>{tag[lang]}</span>)}
+      </div>
+      <h3 class={`card-${layout}-title`}>{p.title}</h3>
+      <p class="card-meta"><span>{p.year}</span><span>{ui.card.academic[lang]}</span><span class="card-mode">{mode}</span></p>
+      <p class={`card-${layout}-desc`}>{p.summary[lang]}</p>
+      <p class="card-role"><strong>{ui.card.myRole[lang]}:</strong> {p.roleLine[lang]}</p>
+      {p.badge && <p class="card-badge dark">{p.badge[lang]}</p>}
       <span class="card-link" style={`color:${p.color}`}>{ui.common.viewProject[lang]}</span>
     </div>
   </a>
@@ -73,9 +59,13 @@ const alt = p.coverAlt[lang];
     {cover ? <img src={cover} alt="" class="card-compact-thumb" loading="lazy" /> : <div class="card-compact-thumb ph" style={`background:${p.color};`} aria-hidden="true"><span>{p.title.charAt(0)}</span></div>}
     <div class="card-compact-main">
       <h3 class="card-compact-title">{p.title}</h3>
-      <p class="card-compact-desc">{p.result[lang]}</p>
+      <p class="card-meta"><span>{p.year}</span><span>{ui.card.academic[lang]}</span><span class="card-mode">{mode}</span></p>
+      <p class="card-compact-desc">{p.summary[lang]}</p>
+      <p class="card-role"><strong>{ui.card.myRole[lang]}:</strong> {p.roleLine[lang]}</p>
     </div>
-    <span class="card-tag" style={`background:${p.tint}; color:${p.textColor};`}>{p.tag[lang]}</span>
+    <div class="card-tags card-compact-tags">
+      {p.tags.map((tag) => <span class="card-tag" style={`background:${p.tint}; color:${p.textColor};`}>{tag[lang]}</span>)}
+    </div>
   </a>
 )}
 
@@ -97,22 +87,13 @@ const alt = p.coverAlt[lang];
   }
 
   /* Hero (MUSE-style full-width dark card) */
-  .card-hero { min-height: 483px; }
-  .card-hero-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-  .card-hero-shade { 
-    position: absolute; 
-    inset: 0; 
-    background: linear-gradient(180deg, rgba(81, 81, 81, 0) 0%, #1F1B16 93%);
-    opacity: 0.9;
-  }
+  .card-hero { background: #1F1B16; }
+  .card-hero-img { display: block; width: 100%; height: 380px; object-fit: cover; }
   .card-hero-content { 
-    position: absolute; 
-    inset: 0; 
     display: flex; 
     flex-direction: column; 
-    justify-content: flex-end; 
     gap: 16px; 
-    padding: 56px; 
+    padding: 36px 56px 48px; 
   }
   .card-hero-text-wrap {
     display: flex; 
@@ -138,7 +119,7 @@ const alt = p.coverAlt[lang];
     font-family: 'Inter', sans-serif;
     font-size: 18px; 
     line-height: 30px;
-    color: rgba(250,247,242,0.72); 
+    color: rgba(250,247,242,0.82); 
     margin: 0; 
   }
   
@@ -157,9 +138,10 @@ const alt = p.coverAlt[lang];
   }
 
   /* Vertical (2-up medium cards) */
-  .card-vertical { background: #F5F1EA; border: none; }
+  .card-vertical { background: #F5F1EA; border: none; height: 100%; display: flex; flex-direction: column; }
   .card-vertical-img { width: 100%; height: 258px; object-fit: cover; }
-  .card-vertical-body { padding: 32px; display: flex; flex-direction: column; align-items: flex-start; gap: 16px; }
+  .card-vertical-body { padding: 32px; display: flex; flex-direction: column; align-items: flex-start; gap: 14px; flex: 1; }
+  .card-vertical .card-link { margin-top: auto; }
   .card-vertical-title { 
     font-family: 'Fraunces', serif; 
     font-weight: 400; 
@@ -169,26 +151,6 @@ const alt = p.coverAlt[lang];
     margin: 0; 
   }
   .card-vertical-desc { 
-    font-family: 'Inter', sans-serif;
-    font-size: 14px; 
-    line-height: 22px;
-    color: #1F1B16; 
-    margin: 0; 
-  }
-
-  /* Horizontal (wide 2-column card) */
-  .card-horizontal { display: flex; height: 280px; background: #F5F1EA; }
-  .card-horizontal-img { width: 50%; height: 100%; object-fit: cover; border-radius: 16px 0 0 16px; }
-  .card-horizontal-body { width: 50%; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; gap: 16px; padding: 0 60px; }
-  .card-horizontal-title { 
-    font-family: 'Fraunces', serif; 
-    font-weight: 400; 
-    font-size: 32px; 
-    line-height: 40px;
-    color: #1F1B16;
-    margin: 0; 
-  }
-  .card-horizontal-desc { 
     font-family: 'Inter', sans-serif;
     font-size: 14px; 
     line-height: 22px;
@@ -207,27 +169,35 @@ const alt = p.coverAlt[lang];
   }
 
   @media (max-width: 900px) {
-    .card-hero-content { padding: 32px; }
-    .card-hero-title, .card-vertical-title, .card-horizontal-title { font-size: 28px; line-height: 36px; }
-    .card-horizontal { flex-direction: column; height: auto; }
-    .card-horizontal-img, .card-horizontal-body { width: 100%; }
-    .card-horizontal-img { border-radius: 16px 16px 0 0; height: 200px; }
-    .card-horizontal-body { border-radius: 0 0 16px 16px; padding: 24px; }
+    .card-hero-content { padding: 24px; }
+    .card-hero-img { height: 210px; }
+    .card-hero-icon { display: none; }
+    .card-hero-title, .card-vertical-title { font-size: 28px; line-height: 36px; }
   }
-  .card-hero { min-height: 483px; }
   .ph { display: flex; align-items: center; justify-content: center; }
   .ph span { font-family: 'Fraunces', serif; font-size: 96px; color: rgba(255,255,255,0.35); line-height: 1; }
-  .card-horizontal-img.ph { border-radius: 16px 0 0 16px; }
   .card-badge { margin: 0; font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600; color: #F3D98B; }
+  .card-badge.dark { color: #7A5A00; }
+  .card-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+  .card-meta { margin: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; font-family: 'Inter', sans-serif; font-size: 13px; line-height: 18px; color: #57504A; }
+  .card-meta span + span::before { content: "·"; margin-right: 10px; }
+  .card-meta span.card-mode { font-weight: 600; color: #1F1B16; }
+  .card-role { margin: 0; font-family: 'Inter', sans-serif; font-size: 13.5px; line-height: 20px; color: #1F1B16; }
+  .card-meta.on-dark { color: rgba(250,247,242,0.78); }
+  .card-meta.on-dark span.card-mode { color: #FAF7F2; }
+  .card-role.on-dark { color: #FAF7F2; font-size: 15px; line-height: 22px; }
+  .card-cover-note { margin: 0; font-family: 'Inter', sans-serif; font-size: 12.5px; line-height: 18px; color: rgba(250,247,242,0.7); }
 
   /* Compact (laboratorio de experimentos) */
   .card-compact { display: grid; grid-template-columns: 132px 1fr auto; align-items: center; gap: 24px; padding: 14px 28px 14px 14px; background: #F5F1EA; }
   .card-compact-thumb { width: 132px; height: 88px; border-radius: 10px; object-fit: cover; display: block; }
   .card-compact-thumb.ph span { font-size: 40px; }
   .card-compact:hover { background: #F0ECE4; }
-  .card-compact-title { font-family: 'Fraunces', serif; font-weight: 400; font-size: 24px; line-height: 30px; color: #1F1B16; margin: 0 0 4px; }
+  .card-compact-tags { flex-direction: column; align-items: flex-end; max-width: 260px; }
+  .card-compact-main { display: flex; flex-direction: column; gap: 6px; }
+  .card-compact-title { font-family: 'Fraunces', serif; font-weight: 400; font-size: 24px; line-height: 30px; color: #1F1B16; margin: 0; }
   .card-compact-desc { font-family: 'Inter', sans-serif; font-size: 14px; line-height: 22px; color: #57504A; margin: 0; max-width: 640px; }
-  @media (max-width: 900px) { .card-compact { grid-template-columns: 96px 1fr; padding: 12px; gap: 14px; } .card-compact-thumb { width: 96px; height: 72px; } .card-compact .card-tag { grid-column: 2; } .card-compact > .card-link { display: none; } .card-horizontal-img.ph { border-radius: 16px 16px 0 0; height: 200px; } }
+  @media (max-width: 900px) { .card-compact { grid-template-columns: 96px 1fr; padding: 12px; gap: 14px; } .card-compact-thumb { width: 96px; height: 72px; } .card-compact-tags { grid-column: 2; flex-direction: row; align-items: flex-start; } .card-compact > .card-link { display: none; } }
 
   /* Tile (segundo nivel, 3 columnas) */
   .card-tile { background: #F5F1EA; height: 100%; display: flex; flex-direction: column; }
@@ -235,6 +205,6 @@ const alt = p.coverAlt[lang];
   .card-tile-img.ph span { font-size: 72px; }
   .card-tile-body { padding: 22px 24px 24px; display: flex; flex-direction: column; align-items: flex-start; gap: 12px; flex: 1; }
   .card-tile-title { font-family: 'Fraunces', serif; font-weight: 400; font-size: 26px; line-height: 32px; color: #1F1B16; margin: 0; }
-  .card-tile-desc { font-family: 'Inter', sans-serif; font-size: 14px; line-height: 22px; color: #57504A; margin: 0; display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden; }
+  .card-tile-desc { font-family: 'Inter', sans-serif; font-size: 14px; line-height: 22px; color: #57504A; margin: 0; }
   .card-tile .card-link { margin-top: auto; }
 </style>
