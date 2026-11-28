@@ -123,19 +123,17 @@ const L_ = {
   tools: t("Herramientas", "Tools"),
   mine: t("Mi parte", "My part"),
   team: t("En equipo", "As a team"),
-  notMine: t("No fue mío", "Not mine"),
   solo: t("No aplica: proyecto individual", "Not applicable: individual project"),
   challenge: t("Reto", "Challenge"),
   solution: t("Solución", "Solution"),
 };
 
-/** Las tres columnas de "Rol y equipo". */
-const roles = (mine: L[], team: L[], notMine: L[]): Block => ({
+/** Las dos columnas de "Rol y equipo". El crédito a lo que hicieron otras personas va como última línea de `team`. */
+const roles = (mine: L[], team: L[]): Block => ({
   type: "columns",
   items: [
     { title: L_.mine, bullets: mine },
     { title: L_.team, bullets: team },
-    { title: L_.notMine, bullets: notMine },
   ],
 });
 
@@ -222,14 +220,16 @@ export const projects: Project[] = [
         [
           t("Dirección creativa", "Creative direction"),
           t("Diseño de experiencia", "Experience design"),
-          t("Diseñé e implementé el sitio web del proyecto, con apoyo de IA", "I designed and implemented the project website, with AI support"),
+          t("Redacté e implementé el sitio público del proyecto, con apoyo de Claude Code", "I wrote and implemented the project's public website, with Claude Code's support"),
+          t("Hice el diseño inicial del sitio ficticio ATLAS-NET", "I made the initial design of the fictional ATLAS-NET site"),
           t("Organicé la documentación del proceso, con apoyo de IA", "I organized the process documentation, with AI support"),
         ],
         [
           t("Diseñamos los tres actos", "We designed the three acts"),
           t("Traducimos la investigación en decisiones de diseño", "We translated the research into design decisions"),
+          t("ATLAS-NET se desarrolló entre un compañero y yo, con varias versiones; él implementó el sitio", "ATLAS-NET was developed by a teammate and me, across several versions; he implemented the site"),
+          t("El desarrollo en VR fue producido por compañeros del equipo", "The VR development was produced by teammates"),
         ],
-        [t("El desarrollo en VR", "The VR development")],
       ),
       {
         type: "text",
@@ -352,8 +352,8 @@ export const projects: Project[] = [
         type: "text",
         label: t("El sitio web del proyecto", "The project website"),
         body: t(
-          "Aparte de la ficción, diseñé e implementé, con apoyo de IA, el sitio que presenta el proyecto real, y organicé allí la documentación del proceso.",
-          "Outside the fiction, I designed and implemented, with AI support, the website that presents the real project, and organized the process documentation there.",
+          "Aparte de la ficción, redacté e implementé, con apoyo de Claude Code, el sitio público que presenta el proyecto real, y organicé allí la documentación del proceso.",
+          "Outside the fiction, I wrote and implemented, with Claude Code's support, the public website that presents the real project, and organized the process documentation there.",
         ),
       },
 
@@ -397,8 +397,8 @@ export const projects: Project[] = [
       {
         type: "text",
         body: t(
-          "Probamos Dissonance con 5 participantes y registramos las sesiones con notas de observación. Separamos la desorientación que diseñamos a propósito de la fricción que había que corregir. [PENDIENTE: fecha de las sesiones y perfil de las personas participantes]",
-          "We tested Dissonance with 5 participants and recorded the sessions as observation notes. We separated the disorientation we designed on purpose from the friction we had to fix. [PENDIENTE: session dates and participant profiles]",
+          "Probamos Dissonance con un grupo pequeño de participantes y registramos las sesiones con notas de observación. Separamos la desorientación que diseñamos a propósito de la fricción que había que corregir. [PENDIENTE: fecha de las sesiones y perfil de las personas participantes]",
+          "We tested Dissonance with a small group of participants and recorded the sessions as observation notes. We separated the disorientation we designed on purpose from the friction we had to fix. [PENDIENTE: session dates and participant profiles]",
         ),
       },
       {
@@ -499,8 +499,8 @@ export const projects: Project[] = [
         [
           t("Repartimos el trabajo de investigación y diseño", "We shared the research and design work"),
           t("Construimos la identidad gráfica a partir de investigación visual y referentes", "We built the graphic identity from visual research and references"),
+          t("[PENDIENTE: crédito a mis compañeros por las partes que hicieron]", "[PENDIENTE: credit to my teammates for the parts they did]"),
         ],
-        [t("[PENDIENTE: qué partes hizo solo el resto del equipo]", "[PENDIENTE: which parts were done only by the rest of the team]")],
       ),
 
       CH.reto,
@@ -683,11 +683,9 @@ export const projects: Project[] = [
           t("Programé con apoyo de IA", "I coded it with AI support"),
           t("Documenté el storyboard, la planificación técnica y la bitácora", "I documented the storyboard, technical planning and design log"),
         ],
-        [L_.solo],
         [
-          t("El modelo de detección (MoveNet) y las librerías p5.js, ml5.js y Tone.js", "The detection model (MoveNet) and the p5.js, ml5.js and Tone.js libraries"),
-          t("Las muestras de instrumentos (tonejs-instruments)", "The instrument samples (tonejs-instruments)"),
-          t("La música: Beethoven, Sinfonía n.º 9 (dominio público)", "The music: Beethoven, Symphony No. 9 (public domain)"),
+          L_.solo,
+          t("Créditos a terceros: el modelo MoveNet, las librerías p5.js, ml5.js y Tone.js, las muestras de tonejs-instruments y la música de Beethoven (Sinfonía n.º 9, dominio público)", "Third-party credits: the MoveNet model, the p5.js, ml5.js and Tone.js libraries, the tonejs-instruments samples and Beethoven's music (Symphony No. 9, public domain)"),
         ],
       ),
 
@@ -831,7 +829,7 @@ export const projects: Project[] = [
       "Experiencia transmedia sobre quienes sostienen la Semana Santa de Santa Fe de Antioquia desde el anonimato. Mejor proyecto del Taller 5: Experiencias Interactivas.",
       "A transmedia experience about the people who sustain Holy Week in Santa Fe de Antioquia from anonymity. Best project of Workshop 5: Interactive Experiences.",
     ),
-    roleLine: t("Guion, arquitectura de información y realidad aumentada con apoyo de IA", "Script, information architecture and AI-assisted augmented reality"),
+    roleLine: t("Guion, arquitectura de información y realidad aumentada, con IA y aportes de un compañero", "Script, information architecture and augmented reality, with AI and a teammate's contributions"),
     color: "#B5651D",
     tint: "#F2E4D3",
     textColor: "#7A4718",
@@ -860,7 +858,7 @@ export const projects: Project[] = [
       CH.rol,
       roles(
         [
-          t("Implementé la realidad aumentada en Unity (Vuforia), con apoyo de IA y tutoriales", "I implemented the augmented reality in Unity (Vuforia), with AI support and tutorials"),
+          t("Implementé la realidad aumentada en Unity (Vuforia), con apoyo de IA y tutoriales y con aportes de un compañero", "I implemented the augmented reality in Unity (Vuforia), with AI support, tutorials and contributions from a teammate"),
           t("Realicé 4 entrevistas con el equipo", "I conducted 4 interviews with the team"),
           t("Escribí el guion de El Códice de los Pasos", "I wrote the script of El Códice de los Pasos"),
           t("Produje sus secuencias audiovisuales con IA y las integré con chroma key", "I produced its audiovisual sequences with AI and integrated them with chroma key"),
@@ -869,8 +867,9 @@ export const projects: Project[] = [
         [
           t("Investigamos la historia, los oficios y los referentes", "We researched the history, the trades and the references"),
           t("Planteamos tres experiencias complementarias", "We proposed three complementary experiences"),
+          t("Un compañero aportó a la programación de la realidad aumentada", "A teammate contributed to the augmented reality programming"),
+          t("Cúpula de Legados y El Rastro de los Gestos fueron producidos por compañeros del equipo", "Cúpula de Legados and El Rastro de los Gestos were produced by teammates"),
         ],
-        [t("La producción de Cúpula de Legados y de El Rastro de los Gestos", "The production of Cúpula de Legados and El Rastro de los Gestos")],
       ),
 
       CH.reto,
@@ -1039,8 +1038,10 @@ export const projects: Project[] = [
           t("Implementé el servidor, la comunicación por OSC y las interfaces, con apoyo de IA", "I implemented the server, OSC communication and interfaces, with AI support"),
           t("Probé la sincronización y la estabilidad del sistema", "I tested the system's synchronization and stability"),
         ],
-        [L_.solo],
-        [t("Las herramientas, librerías y protocolos de terceros sobre los que está construido", "The third-party tools, libraries and protocols it is built on")],
+        [
+          L_.solo,
+          t("Créditos a terceros: las herramientas, librerías y protocolos sobre los que está construido", "Third-party credits: the tools, libraries and protocols it is built on"),
+        ],
       ),
 
       CH.reto,
